@@ -3,4 +3,5 @@
     <string name="epcc_logo">EPCC logo</string>
     <string name="professores">Professores</string>
     <string name="alunos">Alunos</string>
+    <string name="profile_picture">Profile picture</string>
 </resources>
