@@ -23,7 +23,9 @@ abstract public class HumanActivity<E extends Human, T extends HumanAdapter<? ex
 
 		this.recyclerView.setLayoutManager(this.choseLayoutManager());
 
-		this.adapter = (T) this.generateAdapterCreator().createAdapter(this.generateList(), this);
+		this.adapter = this.generateAdapterCreator().createAdapter(this.generateList(), this);
+
+		this.recyclerView.setAdapter(this.adapter);
 	}
 
 	protected RecyclerView.LayoutManager choseLayoutManager() {
