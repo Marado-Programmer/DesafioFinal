@@ -3,12 +3,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <include layout="@layout/header_layout"
-        android:layout_width="match_parent"
+    <Button android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
-    <include layout="@layout/lists_layout"
-        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:id="@+id/teacherBtn"
+        android:text="@string/professores" />
+    <Button android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:id="@+id/studentBtn"
+        android:text="@string/alunos" />
 </LinearLayout>
