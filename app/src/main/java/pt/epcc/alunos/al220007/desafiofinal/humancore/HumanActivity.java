@@ -1,4 +1,4 @@
-package pt.epcc.alunos.al220007.desafiofinal;
+package pt.epcc.alunos.al220007.desafiofinal.humancore;
 
 import android.os.Bundle;
 //import android.support.annotation.Nullable;
@@ -9,6 +9,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+
+import pt.epcc.alunos.al220007.desafiofinal.R;
+import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 
 abstract public class HumanActivity<E extends Human, T extends HumanAdapter<? extends HumanViewHolder>> extends AppCompatActivity {
 	protected RecyclerView recyclerView;

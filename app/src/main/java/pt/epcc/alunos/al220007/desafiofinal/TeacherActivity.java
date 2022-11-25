@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import pt.epcc.alunos.al220007.desafiofinal.entities.Teacher;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanActivity;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanAdapterCreator;
+
 public class TeacherActivity extends HumanActivity<Teacher, TeacherAdapter> {
 
 	@Override
