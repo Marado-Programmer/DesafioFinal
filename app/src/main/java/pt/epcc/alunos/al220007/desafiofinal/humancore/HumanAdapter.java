@@ -31,11 +31,10 @@ abstract public class HumanAdapter<T extends HumanViewHolder> extends Adapter<T>
 	@NonNull
 	@Override
 	public T onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-		// TODO create layout
 		View view = LayoutInflater.from(parent.getContext())
 			.inflate(R.layout.human_id_layout, parent, false);
 
-		T viewHolder = (T) this.getInstance.createViewHolder(view);
+		T viewHolder = this.getInstance.createViewHolder(view);
 		viewHolder.init(this.context);
 
 		return viewHolder;
@@ -48,7 +47,7 @@ abstract public class HumanAdapter<T extends HumanViewHolder> extends Adapter<T>
 		holder.profilePic.setImageResource(human.getImage());
 		holder.name.setText(human.getName());
 
-		this.manage((T) holder, human);
+		this.manage(holder, human);
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package pt.epcc.alunos.al220007.desafiofinal;
+package pt.epcc.alunos.al220007.desafiofinal.entities;
 
 public enum AcademicLevel {
 	BACHELOR,

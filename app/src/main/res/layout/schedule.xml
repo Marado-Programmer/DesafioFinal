@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:text="Schedule:"
+    android:textStyle="bold"
+    android:id="@+id/schedule_caption" />
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/schedule_caption">
+        <TableRow>
+            <TextView android:text="Week days:" />
+            <TextView android:text="9am to 12pm and 2pm to 5pm" />
+        </TableRow>
+
+        <TableRow>
+            <TextView android:text="Saturday:" />
+            <TextView android:text="10am to 12pm" />
+        </TableRow>
+    </TableLayout>
+</RelativeLayout>

@@ -1,11 +1,8 @@
 package pt.epcc.alunos.al220007.desafiofinal.humancore;
 
 import android.os.Bundle;
-//import android.support.annotation.Nullable;
-//import android.support.v7.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatActivity;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -31,9 +28,7 @@ abstract public class HumanActivity<E extends Human, T extends HumanAdapter<? ex
 		this.recyclerView.setAdapter(this.adapter);
 	}
 
-	protected RecyclerView.LayoutManager choseLayoutManager() {
-		return new LinearLayoutManager(this);
-	}
+	abstract protected RecyclerView.LayoutManager choseLayoutManager();
 
 	abstract protected HumanAdapterCreator<T> generateAdapterCreator();
 

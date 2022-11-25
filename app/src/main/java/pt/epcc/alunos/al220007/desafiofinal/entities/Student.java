@@ -3,8 +3,6 @@ package pt.epcc.alunos.al220007.desafiofinal.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import pt.epcc.alunos.al220007.desafiofinal.Hobby;
-
 public class Student extends Human {
 	private final List<Hobby> hobbies;
 

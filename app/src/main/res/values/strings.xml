@@ -4,4 +4,21 @@
     <string name="professores">Professores</string>
     <string name="alunos">Alunos</string>
     <string name="profile_picture">Profile picture</string>
+    <string name="title_activity_header">HeaderActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="contacts">Contacts:</string>
+    <string name="name">Associacao de Ensino Cristovao Colombo</string>
+    <string name="street">Avenida do Infante n.o 6</string>
+    <string name="postal_code">9000–015 - Funchal</string>
+    <string name="country_district">Madeira, Portugal</string>
+    <string name="nif">NIF: 511 071 515</string>
+    <string name="telephone">(+351) 291 201 770</string>
+    <string name="email">info@epcc.pt</string>
 </resources>

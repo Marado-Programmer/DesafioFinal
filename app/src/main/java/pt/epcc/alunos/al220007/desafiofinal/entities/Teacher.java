@@ -3,14 +3,10 @@ package pt.epcc.alunos.al220007.desafiofinal.entities;
 import java.util.HashMap;
 import java.util.Map;
 
-import pt.epcc.alunos.al220007.desafiofinal.AcademicLevel;
-import pt.epcc.alunos.al220007.desafiofinal.SubjectModule;
-import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
-
 public class Teacher extends Human {
-	private String school;
-	private AcademicLevel academicLevel;
-	private Map<Integer, SubjectModule> modules;
+	private final String school;
+	private final AcademicLevel academicLevel;
+	private final Map<Integer, SubjectModule> modules;
 
 	public Teacher(int image, String name, String school, AcademicLevel academicLevel) {
 		super(image, name);

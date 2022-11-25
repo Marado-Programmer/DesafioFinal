@@ -1,9 +1,13 @@
 package pt.epcc.alunos.al220007.desafiofinal;
 
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import pt.epcc.alunos.al220007.desafiofinal.entities.AcademicLevel;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Teacher;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanActivity;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanAdapterCreator;
@@ -23,5 +27,10 @@ public class TeacherActivity extends HumanActivity<Teacher, TeacherAdapter> {
 			new Teacher(R.drawable.logo_epcc, "Torres", "EPCC", AcademicLevel.MASTER),
 			new Teacher(R.drawable.ic_launcher_foreground, "Joao", "sim", AcademicLevel.DOCTOR)
 		));
+	}
+
+	@Override
+	protected RecyclerView.LayoutManager choseLayoutManager() {
+		return new GridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
 	}
 }

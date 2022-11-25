@@ -1,0 +1,4 @@
+RecyclerView -> ViewGroup
+ViewHolder -> List item. How it behaves
+Adapter -> binds views to data
+LayoutManager -> aranja os ViewHolder. Linear ou Grid?
