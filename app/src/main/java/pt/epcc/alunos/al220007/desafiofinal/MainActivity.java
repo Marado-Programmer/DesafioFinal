@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanActivity;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 	private Button teacherBtn, studentBtn;
 
@@ -27,9 +29,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 	@Override
 	public void onClick(View v) {
-		if (v == this.teacherBtn) {
-			Intent intent = new Intent(MainActivity.this, TeacherActivity.class);
+		Class<? extends HumanActivity> activityClass = this.getClass(v);
+
+		if (activityClass != null) {
+			Intent intent = new Intent(MainActivity.this, activityClass);
 			this.startActivity(intent);
 		}
+	}
+
+	private Class<? extends HumanActivity> getClass(View v) {
+		if (v == this.teacherBtn) {
+			return TeacherActivity.class;
+		}
+		if (v == this.studentBtn) {
+			return StudentActivity.class;
+		}
+
+		return null;
 	}
 }

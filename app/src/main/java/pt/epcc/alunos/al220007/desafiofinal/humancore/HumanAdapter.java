@@ -1,4 +1,4 @@
-package pt.epcc.alunos.al220007.desafiofinal;
+package pt.epcc.alunos.al220007.desafiofinal.humancore;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
 
 import java.util.List;
+
+import pt.epcc.alunos.al220007.desafiofinal.R;
+import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 
 abstract public class HumanAdapter<T extends HumanViewHolder> extends Adapter<T> {
 	protected HumanViewHolderCreator<T> getInstance;
@@ -40,7 +43,12 @@ abstract public class HumanAdapter<T extends HumanViewHolder> extends Adapter<T>
 
 	@Override
 	public void onBindViewHolder(@NonNull T holder, int position) {
-		this.manage((T) holder, this.list.get(position));
+		Human human = this.list.get(position);
+
+		holder.profilePic.setImageResource(human.getImage());
+		holder.name.setText(human.getName());
+
+		this.manage((T) holder, human);
 	}
 
 	@Override
