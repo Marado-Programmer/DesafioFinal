@@ -2,11 +2,14 @@ package pt.epcc.alunos.al220007.desafiofinal.humancore;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import pt.epcc.alunos.al220007.desafiofinal.HumanRecyclerViewFragment;
+import pt.epcc.alunos.al220007.desafiofinal.LayoutManagerType;
 import pt.epcc.alunos.al220007.desafiofinal.R;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 
@@ -15,22 +18,27 @@ abstract public class HumanActivity<E extends Human, T extends HumanAdapter<? ex
 	protected T adapter;
 
 	@Override
-	protected void onCreate(/*@Nullable */@androidx.annotation.Nullable Bundle savedInstanceState) {
+	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		this.setContentView(R.layout.activity_human_list);
+		this.setContentView(R.layout.activity_human_fragment);
 
-		this.recyclerView = this.findViewById(R.id.list);
+		if (savedInstanceState == null) {
+			Bundle bundle = new Bundle();
+			bundle.putInt("layoutManagerType", this.choseLayoutManager().id);
 
-		this.recyclerView.setLayoutManager(this.choseLayoutManager());
-
-		this.adapter = this.generateAdapterCreator().createAdapter(this.generateList(), this);
-
-		this.recyclerView.setAdapter(this.adapter);
+			this.getSupportFragmentManager().beginTransaction()
+				.setReorderingAllowed(true)
+				.add(
+					R.id.fragment_frame,
+					HumanRecyclerViewFragment.class,
+					bundle
+				).commit();
+		}
 	}
 
-	abstract protected RecyclerView.LayoutManager choseLayoutManager();
+	abstract protected LayoutManagerType choseLayoutManager();
 
-	abstract protected HumanAdapterCreator<T> generateAdapterCreator();
+	abstract public HumanAdapterCreator<T> generateAdapterCreator();
 
-	abstract protected List<E> generateList();
+	abstract public List<E> generateList();
 }

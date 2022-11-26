@@ -2,6 +2,7 @@ package pt.epcc.alunos.al220007.desafiofinal;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -23,6 +24,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		setContentView(R.layout.activity_main);
 
 		this.findViews();
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		this.getMenuInflater().inflate(R.menu.main, menu);
+
+		return true;
 	}
 
 	private void findViews() {

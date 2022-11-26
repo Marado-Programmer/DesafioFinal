@@ -1,8 +1,5 @@
 package pt.epcc.alunos.al220007.desafiofinal;
 
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,12 +12,12 @@ import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanAdapterCreator;
 public class TeacherActivity extends HumanActivity<Teacher, TeacherAdapter> {
 
 	@Override
-	protected HumanAdapterCreator<TeacherAdapter> generateAdapterCreator() {
+	public HumanAdapterCreator<TeacherAdapter> generateAdapterCreator() {
 		return new TeacherAdapterCreator();
 	}
 
 	@Override
-	protected List<Teacher> generateList() {
+	public List<Teacher> generateList() {
 		return new ArrayList<>(Arrays.asList(
 			new Teacher(R.drawable.ic_launcher_foreground, "Augusto", "Bambi", AcademicLevel.BACHELOR),
 			new Teacher(R.drawable.ic_launcher_background, "Marado", "EBSANTONIO", AcademicLevel.LICENTIATE),
@@ -30,7 +27,7 @@ public class TeacherActivity extends HumanActivity<Teacher, TeacherAdapter> {
 	}
 
 	@Override
-	protected RecyclerView.LayoutManager choseLayoutManager() {
-		return new GridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
+	protected LayoutManagerType choseLayoutManager() {
+		return LayoutManagerType.GRID;
 	}
 }

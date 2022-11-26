@@ -21,4 +21,5 @@
     <string name="nif">NIF: 511 071 515</string>
     <string name="telephone">(+351) 291 201 770</string>
     <string name="email">info@epcc.pt</string>
+    <string name="settings">Settings</string>
 </resources>
