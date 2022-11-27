@@ -13,8 +13,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
-import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanActivity;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanAdapter;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanViewHolder;
 
@@ -27,38 +25,42 @@ public class HumanRecyclerViewFragment<T extends HumanAdapter<? extends HumanVie
 
 	protected ImageButton button;
 
-	protected HumanActivity<? extends Human, ? extends HumanAdapter<? extends HumanViewHolder>> activity;
-
-	protected final String LAYOUT_MANAGER_KEY = "layoutManagerType";
+	protected static final String LAYOUT_MANAGER_KEY = "layoutManagerType";
 
 	protected final int LINEAR_IMAGE = R.drawable.linear;
 	protected final int GRID_IMAGE = R.drawable.grid;
 
 	protected LayoutManagerType curLayoutManager;
 
+	public HumanRecyclerViewFragment(T adapter, Bundle bundle) {
+		super();
+		this.adapter = adapter;
+		this.setArguments(bundle);
+	}
+
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		this.activity = (HumanActivity<? extends Human, ? extends HumanAdapter<HumanViewHolder>>) this.getActivity();
+		Bundle args = this.getArguments();
 
-		assert this.activity != null;
-
-		this.adapter = (T) this.activity
-			.generateAdapterCreator()
-			.createAdapter(this.activity.generateList(), this.activity);
-
-		this.curLayoutManager = LayoutManagerType.fromID(
-			this.requireArguments().getInt(this.LAYOUT_MANAGER_KEY, 0)
-		);
+		if (args != null) {
+			this.curLayoutManager = LayoutManagerType.fromID(
+				args.getInt(HumanRecyclerViewFragment.LAYOUT_MANAGER_KEY, 0)
+			);
+		}
 
 		if (savedInstanceState != null) {
 			this.curLayoutManager = LayoutManagerType.fromID(
 				savedInstanceState
-					.getInt(this.LAYOUT_MANAGER_KEY, 0)
+					.getInt(HumanRecyclerViewFragment.LAYOUT_MANAGER_KEY, 0)
 			) == LayoutManagerType.GRID
 				? LayoutManagerType.LINEAR
 				: LayoutManagerType.GRID;
+		}
+
+		if (this.curLayoutManager == null) {
+			this.curLayoutManager = LayoutManagerType.LINEAR;
 		}
 	}
 
@@ -69,7 +71,9 @@ public class HumanRecyclerViewFragment<T extends HumanAdapter<? extends HumanVie
 		@Nullable ViewGroup container,
 		@Nullable Bundle savedInstanceState
 	) {
-		return inflater.inflate(R.layout.activity_human_list, container, false);
+		inflater.inflate(R.layout.activity_human_list, container, false);
+
+		return super.onCreateView(inflater, container, savedInstanceState);
 	}
 
 	@Override
@@ -91,7 +95,7 @@ public class HumanRecyclerViewFragment<T extends HumanAdapter<? extends HumanVie
 	public void onSaveInstanceState(@NonNull Bundle outState) {
 		super.onSaveInstanceState(outState);
 
-		outState.putInt(this.LAYOUT_MANAGER_KEY, this.curLayoutManager.id);
+		outState.putInt(HumanRecyclerViewFragment.LAYOUT_MANAGER_KEY, this.curLayoutManager.id);
 	}
 
 	private void setLayoutManager(LayoutManagerType layoutManagerType) {
