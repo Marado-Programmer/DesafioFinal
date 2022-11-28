@@ -18,25 +18,23 @@ abstract public class HumanActivity<E extends Human, T extends HumanAdapter<? ex
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.activity_human_fragment);
 
-		if (savedInstanceState == null) {
-			this.getSupportFragmentManager().beginTransaction()
-				//.setReorderingAllowed(true)
-				.add(
-					R.id.fragment_frame,
-					new HumanRecyclerViewFragment<>(
-						this.generateAdapterCreator()
-							.createAdapter(
-								this.generateList(), this
-							),
-						this.createBundle()
-					)
-				).commit();
-		}
+		this.getSupportFragmentManager().beginTransaction()
+			.setReorderingAllowed(true)
+			.add(
+				R.id.fragment_frame,
+				new HumanRecyclerViewFragment<>(
+					this.generateAdapterCreator()
+						.createAdapter(
+							this.generateList(), this
+						),
+					this.createBundle()
+				)
+			).commit();
 	}
 
 	protected Bundle createBundle() {
 		Bundle bundle = new Bundle();
-		bundle.putInt("layoutManagerType", this.choseLayoutManager().id);
+		bundle.putInt(HumanRecyclerViewFragment.LAYOUT_MANAGER_KEY, this.choseLayoutManager().id);
 
 		return bundle;
 	}

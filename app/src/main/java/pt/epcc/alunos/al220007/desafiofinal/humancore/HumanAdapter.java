@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView.Adapter;
 
 import java.util.List;
 
+import pt.epcc.alunos.al220007.desafiofinal.LayoutManagerType;
 import pt.epcc.alunos.al220007.desafiofinal.R;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 
@@ -18,6 +19,7 @@ abstract public class HumanAdapter<T extends HumanViewHolder> extends Adapter<T>
 
 	protected List<? extends Human> list;
 	protected Context context;
+	protected LayoutManagerType layoutManagerType;
 
 	public <E extends Human> HumanAdapter(List<E> list, Context context) {
 		this.getInstance = createCreator();
@@ -32,7 +34,7 @@ abstract public class HumanAdapter<T extends HumanViewHolder> extends Adapter<T>
 	@Override
 	public T onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 		View view = LayoutInflater.from(parent.getContext())
-			.inflate(R.layout.human_id_layout, parent, false);
+			.inflate(this.choseLayout(), parent, false);
 
 		T viewHolder = this.getInstance.createViewHolder(view);
 		viewHolder.init(this.context);
@@ -44,8 +46,12 @@ abstract public class HumanAdapter<T extends HumanViewHolder> extends Adapter<T>
 	public void onBindViewHolder(@NonNull T holder, int position) {
 		Human human = this.list.get(position);
 
-		holder.profilePic.setImageResource(human.getImage());
-		holder.name.setText(human.getName());
+		if (holder.profilePic != null) {
+			holder.profilePic.setImageResource(human.getImage());
+		}
+		if (holder.name != null) {
+			holder.name.setText(human.getName());
+		}
 
 		this.manage(holder, human);
 	}
@@ -53,6 +59,19 @@ abstract public class HumanAdapter<T extends HumanViewHolder> extends Adapter<T>
 	@Override
 	public int getItemCount() {
 		return this.list.size();
+	}
+
+	protected int choseLayout() {
+		switch (this.layoutManagerType) {
+			case GRID: return R.layout.human_id_layout_grid;
+			case LINEAR:
+			default:
+				return R.layout.human_id_layout_linear;
+		}
+	}
+
+	public void setLayoutManagerType(LayoutManagerType layoutManagerType) {
+		this.layoutManagerType = layoutManagerType;
 	}
 
 	abstract protected <E extends Human> void manage(T holder, E human);

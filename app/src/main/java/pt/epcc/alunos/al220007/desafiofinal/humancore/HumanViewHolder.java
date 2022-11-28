@@ -27,9 +27,10 @@ abstract public class HumanViewHolder extends ViewHolder implements View.OnClick
 
 		itemView.setOnClickListener(this);
 
+
 		this.include = itemView.findViewById(R.id.card_view_extra);
-		this.include.setLayoutResource(this.extraID());
-		this.include.inflate();
+		//this.include.setLayoutResource(this.extraID());
+		//this.include.inflate();
 
 		this.profilePic = itemView.findViewById(R.id.profile_pic);
 		this.name = itemView.findViewById(R.id.name);

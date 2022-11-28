@@ -25,7 +25,42 @@ public class StudentActivity extends HumanActivity<Student, StudentAdapter> {
 			new Student(R.drawable.logo_epcc, "Zara G"),
 			new Student(R.drawable.logo_epcc, "Gson"),
 			new Student(R.drawable.logo_epcc, "Kroa"),
+			new Student(R.drawable.logo_epcc, "Zizzy Jr"),
+
+			new Student(R.drawable.logo_epcc, "Zara G"),
+			new Student(R.drawable.logo_epcc, "Gson"),
+			new Student(R.drawable.logo_epcc, "Kroa"),
+			new Student(R.drawable.logo_epcc, "Zizzy Jr"),
+
+			new Student(R.drawable.logo_epcc, "Zara G"),
+			new Student(R.drawable.logo_epcc, "Gson"),
+			new Student(R.drawable.logo_epcc, "Kroa"),
+			new Student(R.drawable.logo_epcc, "Zizzy Jr"),
+
+			new Student(R.drawable.logo_epcc, "Zara G"),
+			new Student(R.drawable.logo_epcc, "Gson"),
+			new Student(R.drawable.logo_epcc, "Kroa"),
+			new Student(R.drawable.logo_epcc, "Zizzy Jr"),
+
+			new Student(R.drawable.logo_epcc, "Zara G"),
+			new Student(R.drawable.logo_epcc, "Gson"),
+			new Student(R.drawable.logo_epcc, "Kroa"),
+			new Student(R.drawable.logo_epcc, "Zizzy Jr"),
+
+			new Student(R.drawable.logo_epcc, "Zara G"),
+			new Student(R.drawable.logo_epcc, "Gson"),
+			new Student(R.drawable.logo_epcc, "Kroa"),
+			new Student(R.drawable.logo_epcc, "Zizzy Jr"),
+
+			new Student(R.drawable.logo_epcc, "Zara G"),
+			new Student(R.drawable.logo_epcc, "Gson"),
+			new Student(R.drawable.logo_epcc, "Kroa"),
+			new Student(R.drawable.logo_epcc, "Zizzy Jr"),
+
+			new Student(R.drawable.logo_epcc, "Zara G"),
+			new Student(R.drawable.logo_epcc, "Gson"),
+			new Student(R.drawable.logo_epcc, "Kroa"),
 			new Student(R.drawable.logo_epcc, "Zizzy Jr")
-		));
+			));
 	}
 }
