@@ -2,6 +2,8 @@ package pt.epcc.alunos.al220007.desafiofinal;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,7 +18,7 @@ public class StudentActivity extends HumanActivity<Student, StudentAdapter> {
 	}
 
 	@Override
-	protected List<Student> generateList() {
+	public List<Student> generateList() {
 		return new ArrayList<>(Arrays.asList(
 			new Student(R.drawable.logo_epcc, "Zara G"),
 			new Student(R.drawable.logo_epcc, "Gson"),
@@ -61,8 +63,9 @@ public class StudentActivity extends HumanActivity<Student, StudentAdapter> {
 		);
 	}
 
+	@NonNull
 	@Override
-	public StudentAdapter createAdapter(List<Student> list, Context context) {
-		return new StudentAdapter(list, context);
+	public StudentAdapter createAdapter(HumanActivity context) {
+		return new StudentAdapter(context);
 	}
 }

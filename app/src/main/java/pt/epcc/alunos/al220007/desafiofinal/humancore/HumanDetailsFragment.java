@@ -1,6 +1,7 @@
 package pt.epcc.alunos.al220007.desafiofinal.humancore;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,25 +24,18 @@ public class HumanDetailsFragment extends Fragment {
 	protected long id;
 	protected int extra;
 
-	public HumanDetailsFragment() {
-		super();
-	}
-
-	public HumanDetailsFragment(Bundle bundle) {
-		this();
-		this.setArguments(bundle.getBundle("human"));
-	}
-
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		if (this.getArguments() == null) {
+		Bundle args = getArguments();
+
+		if (args == null) {
 			return;
 		}
 
-		this.id = this.getArguments().getLong("id", 0);
-		this.extra = this.getArguments().getInt("extra", 0);
+		id = args.getLong("id", 0);
+		extra = args.getInt("extra", 0);
 	}
 
 	@Nullable
@@ -58,18 +52,15 @@ public class HumanDetailsFragment extends Fragment {
 	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
-		this.include = view.findViewById(R.id.card_view_extra);
-		this.include.setLayoutResource(this.extra);
-		this.include.inflate();
+		include = view.findViewById(R.id.card_view_extra);
+		include.setLayoutResource(extra);
+		include.inflate();
 
-		this.profilePic = view.findViewById(R.id.profile_pic);
-		this.name = view.findViewById(R.id.name);
-		this.findViews(view);
-	}
+		profilePic = view.findViewById(R.id.profile_pic);
 
-	@Override
-	public void onSaveInstanceState(@NonNull Bundle outState) {
-		super.onSaveInstanceState(outState);
+		name = view.findViewById(R.id.name);
+
+		findViews(view);
 	}
 
 	protected void findViews(View view) {

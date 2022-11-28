@@ -1,6 +1,5 @@
 package pt.epcc.alunos.al220007.desafiofinal.humancore;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -14,19 +13,19 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 import pt.epcc.alunos.al220007.desafiofinal.R;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 
-abstract public class HumanViewHolder extends ViewHolder implements View.OnClickListener {
+abstract public class HumanViewHolder<E extends Human> extends ViewHolder implements View.OnClickListener {
 	protected final View view;
 
 	protected ImageView profilePic;
 	protected TextView name;
 
-	protected Context context;
+	protected HumanActivity context;
 
-	protected Human human;
+	protected E human;
 
 	protected boolean isInit;
 
-	protected HumanViewHolder(@NonNull View itemView, Context context) {
+	protected HumanViewHolder(@NonNull View itemView, HumanActivity context) {
 		super(itemView);
 
 		this.context = context;
@@ -52,28 +51,41 @@ abstract public class HumanViewHolder extends ViewHolder implements View.OnClick
 			return;
 		}
 
+
+		Bundle bundle = this.helperBundle();
+
 		if (
 			this.context.getResources().getConfiguration().orientation
 			== Configuration.ORIENTATION_LANDSCAPE
 		) {
+			Bundle bundleFragment = new Bundle();
+
+			bundleFragment.putLong("id", getItemId());
+			bundleFragment.putInt("extra", this.extraID());
+
+			bundleFragment.putBundle("human", bundle);
+
+			this.context.getSupportFragmentManager().beginTransaction()
+				.setReorderingAllowed(true)
+				.add(
+					R.id.details,
+					HumanDetailsFragment.class,
+					bundleFragment
+				).commit();
 			return;
 		}
 
 		Intent intent = new Intent(this.context, HumanDetailsActivity.class);
 
-		Bundle bundle = this.helperBundle();
-
-		bundle.putLong("id", this.getItemId());
-		bundle.putInt("extra", this.extraID());
+		intent.putExtra("id", this.getItemId());
+		intent.putExtra("extra", this.extraID());
 
 		intent.putExtra("human", bundle);
 
 		this.context.startActivity(intent);
 	}
 
-	public final <E extends Human> void setHuman(E human) {
-		assert this.human != null;
-
+	public final void setHuman(E human) {
 		this.human = human;
 	}
 }

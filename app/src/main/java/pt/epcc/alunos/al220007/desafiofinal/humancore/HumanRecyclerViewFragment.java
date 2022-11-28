@@ -17,46 +17,48 @@ import pt.epcc.alunos.al220007.desafiofinal.LayoutManagerType;
 import pt.epcc.alunos.al220007.desafiofinal.R;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 
-public class HumanRecyclerViewFragment<T extends HumanAdapter<? extends Human, ? extends HumanViewHolder>>
-	extends Fragment
-	implements View.OnClickListener
+public final class HumanRecyclerViewFragment<
+		E extends Human,
+		T extends HumanAdapter<E, ? extends HumanViewHolder>
+	> extends Fragment implements View.OnClickListener
 {
-	protected RecyclerView recyclerView;
-	protected T adapter;
-
-	protected ImageButton button;
-
 	public static final String LAYOUT_MANAGER_KEY = "layoutManagerType";
+	private static final String POS_KEY = "pos";
 
-	protected final int LINEAR_IMAGE = R.drawable.linear;
-	protected final int GRID_IMAGE = R.drawable.grid;
+	private static final int LAYOUT = R.layout.activity_human_list;
 
-	protected LayoutManagerType curLayoutManager;
+	private static final int BUTTON_ID = R.id.layout_type;
+	private static final int LIST_ID = R.id.list;
 
-	public HumanRecyclerViewFragment() {
-		super();
-	}
+	private static final int LINEAR_IMAGE = R.drawable.linear;
+	private static final int GRID_IMAGE = R.drawable.grid;
 
-	public HumanRecyclerViewFragment(T adapter, Bundle bundle) {
-		this();
-		this.adapter = adapter;
-		this.setArguments(bundle);
-	}
+	private static final int SPAN_COUNT = 3;
+
+	private HumanActivity<E, T> context;
+
+	private RecyclerView recyclerView;
+	private T adapter;
+
+	private LayoutManagerType curLayoutManager;
+
+	private ImageButton button;
+
+	private int pos;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		Bundle args = this.getArguments();
+		prepareForList();
 
-		if (savedInstanceState != null) {
-			args = savedInstanceState;
+		calcInitialLayoutManager(savedInstanceState);
+
+		if (savedInstanceState == null) {
+			return;
 		}
+		pos = savedInstanceState.getInt(POS_KEY, -1);
 
-		this.curLayoutManager = LayoutManagerType.fromID(
-			args != null ? args
-				.getInt(HumanRecyclerViewFragment.LAYOUT_MANAGER_KEY, 0) : 0
-		);
 	}
 
 	@Nullable
@@ -66,75 +68,107 @@ public class HumanRecyclerViewFragment<T extends HumanAdapter<? extends Human, ?
 		@Nullable ViewGroup container,
 		@Nullable Bundle savedInstanceState
 	) {
-		return inflater.inflate(R.layout.activity_human_list, container, false);
+		return inflater.inflate(LAYOUT, container, false);
 	}
 
 	@Override
 	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
-		this.button = view.findViewById(R.id.layout_type);
+		button = view.findViewById(BUTTON_ID);
 
-		this.button.setOnClickListener(this);
+		button.setOnClickListener(this);
 
-		this.recyclerView = view.findViewById(R.id.list);
+		recyclerView = view.findViewById(LIST_ID);
 
-		this.setLayoutManager(this.curLayoutManager);
+		setLayoutManager(curLayoutManager);
 
-		this.recyclerView.setAdapter(this.adapter);
+		recyclerView.setAdapter(adapter);
+
+		scroll(pos);
 	}
 
 	@Override
 	public void onSaveInstanceState(@NonNull Bundle outState) {
 		super.onSaveInstanceState(outState);
 
-		outState.putInt(HumanRecyclerViewFragment.LAYOUT_MANAGER_KEY, this.curLayoutManager.id);
+		outState.putInt(LAYOUT_MANAGER_KEY, curLayoutManager.id);
+		outState.putInt(POS_KEY, pos);
+	}
+
+	private void prepareForList() {
+		context = (HumanActivity<E, T>) getActivity();
+
+		assert context != null;
+
+		adapter = context.createAdapter(context);
+	}
+
+	private void calcInitialLayoutManager(Bundle bundle) {
+		Bundle args = getArguments();
+
+		if (bundle != null) {
+			args = bundle;
+		}
+
+		assert args != null;
+
+		curLayoutManager = LayoutManagerType.fromID(args.getInt(LAYOUT_MANAGER_KEY));
 	}
 
 	private void setLayoutManager(LayoutManagerType layoutManagerType) {
-		if (this.adapter != null) {
-			this.adapter.setLayoutManagerType(layoutManagerType);
+		adapter.setLayoutManagerType(layoutManagerType);
+
+		recyclerView.setLayoutManager(getLayoutManager(layoutManagerType));
+	}
+
+	private void scroll(int pos) {
+		if (pos > 0) {
+			recyclerView.scrollToPosition(pos);
+			return;
 		}
 
-		assert this.recyclerView != null;
+		pos = 0;
 
-		int pos = 0;
-		RecyclerView.LayoutManager layoutManager = this.recyclerView.getLayoutManager();
+		RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
 
 		if (layoutManager != null) {
 			pos = ((LinearLayoutManager) layoutManager)
 				.findFirstCompletelyVisibleItemPosition();
 		}
 
-		this.recyclerView.setLayoutManager(this.getLayoutManager(layoutManagerType));
-		this.recyclerView.scrollToPosition(pos);
+		recyclerView.scrollToPosition(pos);
 
+		this.pos = pos;
 	}
 
 	private RecyclerView.LayoutManager getLayoutManager(LayoutManagerType layoutManagerType) {
 		switch (layoutManagerType) {
 			case GRID: {
-				this.curLayoutManager = LayoutManagerType.GRID;
-				this.button.setImageResource(this.GRID_IMAGE);
-				return new GridLayoutManager(this.getActivity(), 3);
+				curLayoutManager = LayoutManagerType.GRID;
+				button.setImageResource(GRID_IMAGE);
+				return new GridLayoutManager(context, SPAN_COUNT);
 			}
 			case LINEAR:
 			default: {
-				this.curLayoutManager = LayoutManagerType.LINEAR;
-				this.button.setImageResource(this.LINEAR_IMAGE);
-				return new LinearLayoutManager(this.getActivity());
+				curLayoutManager = LayoutManagerType.LINEAR;
+				button.setImageResource(LINEAR_IMAGE);
+				return new LinearLayoutManager(context);
 			}
 		}
 	}
 
 	@Override
 	public void onClick(View v) {
-		if (v == this.button) {
-			this.setLayoutManager(
-				this.curLayoutManager == LayoutManagerType.LINEAR
-					? LayoutManagerType.GRID
-					: LayoutManagerType.LINEAR
-			);
+		if (v != button) {
+			return;
 		}
+
+		setLayoutManager(
+			curLayoutManager == LayoutManagerType.LINEAR
+				? LayoutManagerType.GRID
+				: LayoutManagerType.LINEAR
+		);
+
 	}
 }

@@ -1,6 +1,5 @@
 package pt.epcc.alunos.al220007.desafiofinal.humancore;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,31 +13,34 @@ import pt.epcc.alunos.al220007.desafiofinal.LayoutManagerType;
 import pt.epcc.alunos.al220007.desafiofinal.R;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 
-abstract public class HumanAdapter<E extends Human, T extends HumanViewHolder>
+abstract public class HumanAdapter<E extends Human, T extends HumanViewHolder<E>>
 		extends Adapter<T>
-		implements HumanViewHolderCreator<T>
+		implements HumanViewHolderCreator<E, T>
 {
+	protected static final int LINEAR_LAYOUT = R.layout.human_id_layout_linear;
+	protected static final int GRID_LAYOUT = R.layout.human_id_layout_grid;
+
 	protected List<E> list;
-	protected Context context;
+	protected HumanActivity context;
 	protected LayoutManagerType layoutManagerType;
 
-	public HumanAdapter(List<E> list, Context context) {
-		this.list = list;
+	public HumanAdapter(HumanActivity context) {
 		this.context = context;
+		list = context.generateList();
 	}
 
 	@NonNull
 	@Override
 	public T onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 		View view = LayoutInflater.from(parent.getContext())
-			.inflate(this.choseLayout(), parent, false);
+			.inflate(choseLayout(), parent, false);
 
-		return this.createViewHolder(view, this.context);
+		return createViewHolder(view, context);
 	}
 
 	@Override
 	public void onBindViewHolder(@NonNull T holder, int position) {
-		E human = this.list.get(position);
+		E human = list.get(position);
 
 		holder.setHuman(human);
 
@@ -53,30 +55,30 @@ abstract public class HumanAdapter<E extends Human, T extends HumanViewHolder>
 
 	@Override
 	public int getItemCount() {
-		return this.list.size();
+		return list.size();
 	}
 
 	protected int choseLayout() {
-		LayoutManagerType type = this.layoutManagerType;
+		LayoutManagerType type = layoutManagerType;
 
 		if (type == null) {
-			type = this.getDefaultLayout();
+			type = getDefaultLayout();
 		}
 
 		// WORKAROUND
-		type = this.getDefaultLayout();
+		type = getDefaultLayout();
 
 		switch (type) {
-			case GRID: return R.layout.human_id_layout_grid;
-			case LINEAR: return R.layout.human_id_layout_linear;
+			case GRID: return GRID_LAYOUT;
+			case LINEAR: return LINEAR_LAYOUT;
 		}
 
 		return 0;
 	}
 
+	abstract protected LayoutManagerType getDefaultLayout();
+
 	public void setLayoutManagerType(LayoutManagerType layoutManagerType) {
 		this.layoutManagerType = layoutManagerType;
 	}
-
-	abstract protected LayoutManagerType getDefaultLayout();
 }

@@ -2,6 +2,8 @@ package pt.epcc.alunos.al220007.desafiofinal.humancore;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import java.util.List;
 
 import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
@@ -11,5 +13,6 @@ public interface HumanAdapterCreator<
 		T extends HumanAdapter<E, ? extends HumanViewHolder>
 	>
 {
-	T createAdapter(List<E> list, Context context);
+	@NonNull
+	T createAdapter(HumanActivity context);
 }

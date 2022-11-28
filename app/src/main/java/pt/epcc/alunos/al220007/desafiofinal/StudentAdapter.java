@@ -4,27 +4,25 @@ import android.content.Context;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
-
-import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Student;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanActivity;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanAdapter;
-import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanViewHolder;
 
 public class StudentAdapter extends HumanAdapter<Student, StudentViewHolder> {
-	public StudentAdapter(List<Student> list, Context context) {
-		super(list, context);
+	public StudentAdapter(HumanActivity<Student, HumanAdapter<Student, StudentViewHolder>> context) {
+		super(context);
 	}
+
 
 	@Override
 	protected LayoutManagerType getDefaultLayout() {
 		return LayoutManagerType.LINEAR;
 	}
 
+	@NonNull
 	@Override
-	public StudentViewHolder createViewHolder(View view, Context context) {
+	public StudentViewHolder createViewHolder(View view, HumanActivity context) {
 		return new StudentViewHolder(view, context);
 	}
 }

@@ -3,8 +3,11 @@ package pt.epcc.alunos.al220007.desafiofinal.humancore;
 import android.content.Context;
 import android.view.View;
 
-import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanViewHolder;
+import androidx.annotation.NonNull;
 
-public interface HumanViewHolderCreator<T extends HumanViewHolder> {
-	T createViewHolder(View view, Context context);
+import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
+
+public interface HumanViewHolderCreator<E extends Human, T extends HumanViewHolder<E>> {
+	@NonNull
+	T createViewHolder(View view, HumanActivity context);
 }

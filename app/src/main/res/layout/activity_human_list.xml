@@ -3,21 +3,16 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
     <ImageButton
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_alignParentEnd="true"
         android:contentDescription="@string/layout_type"
         android:id="@+id/layout_type"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
-        android:layout_alignParentRight="true" />
-</RelativeLayout>
-<androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/list"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+        android:layout_gravity="right" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

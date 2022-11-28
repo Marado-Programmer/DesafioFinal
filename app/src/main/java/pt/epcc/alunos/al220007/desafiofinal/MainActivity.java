@@ -9,10 +9,7 @@ import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanActivity;
-import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanAdapter;
-import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanViewHolder;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 	private Button teacherBtn, studentBtn;
@@ -49,19 +46,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 			this.switchActivity(HeaderActivity.class);
 		}
 
-		Class<? extends HumanActivity<? extends Human, ? extends HumanAdapter<? extends Human, ? extends HumanViewHolder>>> activityClass = this.getClass(v);
+		Class<? extends HumanActivity> activityClass = this.getClass(v);
 
 		if (activityClass != null) {
 			this.switchActivity(activityClass);
 		}
 	}
 
-	private <E extends Human, T extends HumanAdapter<E, ? extends HumanViewHolder>> Class<? extends HumanActivity<E, T>> getClass(View v) {
+	private Class<? extends HumanActivity> getClass(View v) {
 		if (v == this.teacherBtn) {
-			return (Class<? extends HumanActivity<E, T>>) TeacherActivity.class;
+			return  TeacherActivity.class;
 		}
 		if (v == this.studentBtn) {
-			return (Class<? extends HumanActivity<E, T>>) StudentActivity.class;
+			return StudentActivity.class;
 		}
 
 		return null;

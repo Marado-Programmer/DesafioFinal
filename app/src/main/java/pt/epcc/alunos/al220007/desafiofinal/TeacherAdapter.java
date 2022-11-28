@@ -1,17 +1,16 @@
 package pt.epcc.alunos.al220007.desafiofinal;
 
-import android.content.Context;
 import android.view.View;
 
-import java.util.List;
+import androidx.annotation.NonNull;
 
 import pt.epcc.alunos.al220007.desafiofinal.entities.Teacher;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanActivity;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanAdapter;
 
 public class TeacherAdapter extends HumanAdapter<Teacher, TeacherViewHolder> {
-
-	public TeacherAdapter(List<Teacher> list, Context context) {
-		super(list, context);
+	public TeacherAdapter(HumanActivity<Teacher, HumanAdapter<Teacher, TeacherViewHolder>> context) {
+		super(context);
 	}
 
 	@Override
@@ -19,8 +18,9 @@ public class TeacherAdapter extends HumanAdapter<Teacher, TeacherViewHolder> {
 		return LayoutManagerType.GRID;
 	}
 
+	@NonNull
 	@Override
-	public TeacherViewHolder createViewHolder(View view, Context context) {
+	public TeacherViewHolder createViewHolder(View view, HumanActivity context) {
 		return new TeacherViewHolder(view, context);
 	}
 }

@@ -17,7 +17,8 @@ public class HumanDetailsActivity extends AppCompatActivity {
 			.setReorderingAllowed(true)
 			.add(
 				R.id.details,
-				new HumanDetailsFragment(this.getIntent().getExtras())
+				HumanDetailsFragment.class,
+				this.getIntent().getExtras()
 			).commit();
 	}
 }

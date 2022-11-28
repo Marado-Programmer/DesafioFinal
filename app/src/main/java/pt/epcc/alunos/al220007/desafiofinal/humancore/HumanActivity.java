@@ -24,7 +24,9 @@ abstract public class HumanActivity<
 		super.onCreate(savedInstanceState);
 		setContentView(LAYOUT);
 
-		transact();
+		if (savedInstanceState == null) {
+			transact();
+		}
 	}
 
 	protected final void transact() {
@@ -33,10 +35,8 @@ abstract public class HumanActivity<
 			.setReorderingAllowed(true)
 			.add(
 				FRAME_LAYOUT,
-				new HumanRecyclerViewFragment<>(
-					createAdapter(generateList(), this),
-					createBundle()
-				)
+				HumanRecyclerViewFragment.class,
+				createBundle()
 			).commit();
 	}
 
@@ -51,7 +51,7 @@ abstract public class HumanActivity<
 		return bundle;
 	}
 
-	abstract protected List<E> generateList();
+	abstract public List<E> generateList();
 
 	abstract protected LayoutManagerType choseLayoutManager();
 }
