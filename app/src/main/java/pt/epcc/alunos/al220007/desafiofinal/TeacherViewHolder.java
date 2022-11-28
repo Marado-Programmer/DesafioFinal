@@ -1,5 +1,6 @@
 package pt.epcc.alunos.al220007.desafiofinal;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
@@ -25,8 +26,9 @@ public class TeacherViewHolder extends HumanViewHolder {
 		this.academicLevel = view.findViewById(R.id.teacherAcademicLevel);
 	}
 
+	@NonNull
 	@Override
-	public void onClick(View v) {
-
+	protected Bundle helperBundle() {
+		return new Bundle();
 	}
 }

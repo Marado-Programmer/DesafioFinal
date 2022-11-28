@@ -1,5 +1,6 @@
 package pt.epcc.alunos.al220007.desafiofinal;
 
+import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -21,8 +22,9 @@ public class StudentViewHolder extends HumanViewHolder {
 
 	}
 
+	@NonNull
 	@Override
-	public void onClick(View v) {
-
+	protected Bundle helperBundle() {
+		return new Bundle();
 	}
 }

@@ -1,7 +1,6 @@
 package pt.epcc.alunos.al220007.desafiofinal.humancore;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +12,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.Random;
 
 import pt.epcc.alunos.al220007.desafiofinal.LayoutManagerType;
 import pt.epcc.alunos.al220007.desafiofinal.R;
@@ -43,8 +40,6 @@ public class HumanRecyclerViewFragment<T extends HumanAdapter<? extends HumanVie
 		this();
 		this.adapter = adapter;
 		this.setArguments(bundle);
-
-		Log.d("HumanRVFrag", adapter.toString() + '\n' + bundle.toString());
 	}
 
 	@Override
@@ -52,8 +47,6 @@ public class HumanRecyclerViewFragment<T extends HumanAdapter<? extends HumanVie
 		super.onCreate(savedInstanceState);
 
 		Bundle args = this.getArguments();
-
-		Log.i("ONCREATE", new Random().hashCode() + "\n" + (savedInstanceState != null));
 
 		if (savedInstanceState != null) {
 			args = savedInstanceState;
@@ -99,10 +92,8 @@ public class HumanRecyclerViewFragment<T extends HumanAdapter<? extends HumanVie
 
 	private void setLayoutManager(LayoutManagerType layoutManagerType) {
 		if (this.adapter != null) {
-			Log.w("ADAPTER", "NULL");
 			this.adapter.setLayoutManagerType(layoutManagerType);
 		}
-		Log.w("ADAPTER", "ADAPTER");
 
 		assert this.recyclerView != null;
 

@@ -25,9 +25,10 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity android:name=".HeaderActivity" />
+        <activity android:name=".humancore.HumanDetailsActivity" />
         <activity android:name=".TeacherActivity" />
         <activity android:name=".StudentActivity" />
-        <activity android:name=".HeaderActivity" />
     </application>
 
 </manifest>
