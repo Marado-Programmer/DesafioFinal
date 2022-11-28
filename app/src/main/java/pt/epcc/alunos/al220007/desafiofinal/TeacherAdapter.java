@@ -5,25 +5,22 @@ import android.view.View;
 
 import java.util.List;
 
-import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Teacher;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanAdapter;
-import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanViewHolderCreator;
 
-public class TeacherAdapter extends HumanAdapter<TeacherViewHolder> {
+public class TeacherAdapter extends HumanAdapter<Teacher, TeacherViewHolder> {
 
-	public <E extends Human> TeacherAdapter(List<E> list, Context context) {
+	public TeacherAdapter(List<Teacher> list, Context context) {
 		super(list, context);
 	}
 
 	@Override
-	protected <E extends Human> void manage(TeacherViewHolder holder, E human) {
-		Teacher teacher = (Teacher) human;
-		//holder.school.setText("School: " + teacher.getSchool());
+	protected LayoutManagerType getDefaultLayout() {
+		return LayoutManagerType.GRID;
 	}
 
 	@Override
-	public TeacherViewHolder createViewHolder(View view) {
-		return new TeacherViewHolder(view);
+	public TeacherViewHolder createViewHolder(View view, Context context) {
+		return new TeacherViewHolder(view, context);
 	}
 }

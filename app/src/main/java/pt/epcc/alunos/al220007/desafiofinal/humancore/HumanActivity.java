@@ -13,33 +13,45 @@ import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 
 abstract public class HumanActivity<
 		E extends Human,
-		T extends HumanAdapter<? extends HumanViewHolder>
-	> extends AppCompatActivity implements HumanAdapterCreator<T>
+		T extends HumanAdapter<E, ? extends HumanViewHolder>
+	> extends AppCompatActivity implements HumanAdapterCreator<E, T>
 {
+	protected static final int LAYOUT = R.layout.activity_human_fragment;
+	protected static final int FRAME_LAYOUT = R.id.fragment_frame;
+
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		this.setContentView(R.layout.activity_human_fragment);
+		setContentView(LAYOUT);
 
-		this.getSupportFragmentManager().beginTransaction()
+		transact();
+	}
+
+	protected final void transact() {
+		getSupportFragmentManager()
+			.beginTransaction()
 			.setReorderingAllowed(true)
 			.add(
-				R.id.fragment_frame,
+				FRAME_LAYOUT,
 				new HumanRecyclerViewFragment<>(
-					this.createAdapter(this.generateList(), this),
-					this.createBundle()
+					createAdapter(generateList(), this),
+					createBundle()
 				)
 			).commit();
 	}
 
 	protected Bundle createBundle() {
 		Bundle bundle = new Bundle();
-		bundle.putInt(HumanRecyclerViewFragment.LAYOUT_MANAGER_KEY, this.choseLayoutManager().id);
+
+		bundle.putInt(
+			HumanRecyclerViewFragment.LAYOUT_MANAGER_KEY,
+			choseLayoutManager().id
+		);
 
 		return bundle;
 	}
 
-	abstract protected LayoutManagerType choseLayoutManager();
-
 	abstract protected List<E> generateList();
+
+	abstract protected LayoutManagerType choseLayoutManager();
 }

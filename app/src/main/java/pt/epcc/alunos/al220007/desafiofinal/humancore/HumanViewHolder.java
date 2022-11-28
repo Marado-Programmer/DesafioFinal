@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 import pt.epcc.alunos.al220007.desafiofinal.R;
+import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 
 abstract public class HumanViewHolder extends ViewHolder implements View.OnClickListener {
 	protected final View view;
@@ -21,33 +22,29 @@ abstract public class HumanViewHolder extends ViewHolder implements View.OnClick
 
 	protected Context context;
 
+	protected Human human;
+
 	protected boolean isInit;
 
-	protected HumanViewHolder(@NonNull View itemView) {
+	protected HumanViewHolder(@NonNull View itemView, Context context) {
 		super(itemView);
+
+		this.context = context;
 
 		itemView.setOnClickListener(this);
 
 		this.profilePic = itemView.findViewById(R.id.profile_pic);
 		this.name = itemView.findViewById(R.id.name);
-		this.findViews(itemView);
 
 		this.view = itemView;
 		this.isInit = false;
 	}
 
-	public void init(Context context) {
-		if (this.isInit) {
-			throw new RuntimeException("Already initiated");
-		}
-
-		this.context = context;
-		this.isInit = true;
-	}
-
 	abstract protected int extraID();
+
 	abstract protected void findViews(View view);
-	 abstract protected Bundle helperBundle();
+
+	abstract protected Bundle helperBundle();
 
 	@Override
 	public final void onClick(View v) {
@@ -59,7 +56,7 @@ abstract public class HumanViewHolder extends ViewHolder implements View.OnClick
 			this.context.getResources().getConfiguration().orientation
 			== Configuration.ORIENTATION_LANDSCAPE
 		) {
-
+			return;
 		}
 
 		Intent intent = new Intent(this.context, HumanDetailsActivity.class);
@@ -71,7 +68,12 @@ abstract public class HumanViewHolder extends ViewHolder implements View.OnClick
 
 		intent.putExtra("human", bundle);
 
-		//HumanAdapter<? extends HumanViewHolder> viewHolder = (HumanAdapter<? extends HumanViewHolder>) getBindingAdapter();
 		this.context.startActivity(intent);
+	}
+
+	public final <E extends Human> void setHuman(E human) {
+		assert this.human != null;
+
+		this.human = human;
 	}
 }

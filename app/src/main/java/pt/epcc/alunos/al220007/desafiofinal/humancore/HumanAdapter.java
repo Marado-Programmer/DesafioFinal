@@ -14,15 +14,15 @@ import pt.epcc.alunos.al220007.desafiofinal.LayoutManagerType;
 import pt.epcc.alunos.al220007.desafiofinal.R;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 
-abstract public class HumanAdapter<T extends HumanViewHolder>
+abstract public class HumanAdapter<E extends Human, T extends HumanViewHolder>
 		extends Adapter<T>
 		implements HumanViewHolderCreator<T>
 {
-	protected List<? extends Human> list;
+	protected List<E> list;
 	protected Context context;
 	protected LayoutManagerType layoutManagerType;
 
-	public <E extends Human> HumanAdapter(List<E> list, Context context) {
+	public HumanAdapter(List<E> list, Context context) {
 		this.list = list;
 		this.context = context;
 	}
@@ -33,24 +33,22 @@ abstract public class HumanAdapter<T extends HumanViewHolder>
 		View view = LayoutInflater.from(parent.getContext())
 			.inflate(this.choseLayout(), parent, false);
 
-		T viewHolder = this.createViewHolder(view);
-		viewHolder.init(this.context);
-
-		return viewHolder;
+		return this.createViewHolder(view, this.context);
 	}
 
 	@Override
 	public void onBindViewHolder(@NonNull T holder, int position) {
-		Human human = this.list.get(position);
+		E human = this.list.get(position);
+
+		holder.setHuman(human);
 
 		if (holder.profilePic != null) {
 			holder.profilePic.setImageResource(human.getImage());
 		}
+
 		if (holder.name != null) {
 			holder.name.setText(human.getName());
 		}
-
-		this.manage(holder, human);
 	}
 
 	@Override
@@ -59,17 +57,26 @@ abstract public class HumanAdapter<T extends HumanViewHolder>
 	}
 
 	protected int choseLayout() {
-		switch (this.layoutManagerType) {
-			case GRID: return R.layout.human_id_layout_grid;
-			case LINEAR:
-			default:
-				return R.layout.human_id_layout_linear;
+		LayoutManagerType type = this.layoutManagerType;
+
+		if (type == null) {
+			type = this.getDefaultLayout();
 		}
+
+		// WORKAROUND
+		type = this.getDefaultLayout();
+
+		switch (type) {
+			case GRID: return R.layout.human_id_layout_grid;
+			case LINEAR: return R.layout.human_id_layout_linear;
+		}
+
+		return 0;
 	}
 
 	public void setLayoutManagerType(LayoutManagerType layoutManagerType) {
 		this.layoutManagerType = layoutManagerType;
 	}
 
-	abstract protected <E extends Human> void manage(T holder, E human);
+	abstract protected LayoutManagerType getDefaultLayout();
 }

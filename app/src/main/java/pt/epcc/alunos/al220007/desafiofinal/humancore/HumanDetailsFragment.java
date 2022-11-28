@@ -20,7 +20,7 @@ public class HumanDetailsFragment extends Fragment {
 	protected ImageView profilePic;
 	protected TextView name;
 
-	protected int id;
+	protected long id;
 	protected int extra;
 
 	public HumanDetailsFragment() {
@@ -29,7 +29,7 @@ public class HumanDetailsFragment extends Fragment {
 
 	public HumanDetailsFragment(Bundle bundle) {
 		this();
-		this.setArguments(bundle);
+		this.setArguments(bundle.getBundle("human"));
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class HumanDetailsFragment extends Fragment {
 			return;
 		}
 
-		this.id = this.getArguments().getInt("id", 0);
+		this.id = this.getArguments().getLong("id", 0);
 		this.extra = this.getArguments().getInt("extra", 0);
 	}
 

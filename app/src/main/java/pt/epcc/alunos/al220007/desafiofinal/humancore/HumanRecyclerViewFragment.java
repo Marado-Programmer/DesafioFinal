@@ -15,8 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import pt.epcc.alunos.al220007.desafiofinal.LayoutManagerType;
 import pt.epcc.alunos.al220007.desafiofinal.R;
+import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 
-public class HumanRecyclerViewFragment<T extends HumanAdapter<? extends HumanViewHolder>>
+public class HumanRecyclerViewFragment<T extends HumanAdapter<? extends Human, ? extends HumanViewHolder>>
 	extends Fragment
 	implements View.OnClickListener
 {

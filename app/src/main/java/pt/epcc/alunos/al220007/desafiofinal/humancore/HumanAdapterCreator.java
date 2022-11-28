@@ -6,6 +6,10 @@ import java.util.List;
 
 import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 
-public interface HumanAdapterCreator<T extends HumanAdapter<? extends HumanViewHolder>> {
-	T createAdapter(List<? extends Human> list, Context context);
+public interface HumanAdapterCreator<
+		E extends Human,
+		T extends HumanAdapter<E, ? extends HumanViewHolder>
+	>
+{
+	T createAdapter(List<E> list, Context context);
 }
