@@ -19,7 +19,7 @@ public class TeacherAdapter extends HumanAdapter<TeacherViewHolder> {
 	@Override
 	protected <E extends Human> void manage(TeacherViewHolder holder, E human) {
 		Teacher teacher = (Teacher) human;
-		holder.school.setText("School: " + teacher.getSchool());
+		//holder.school.setText("School: " + teacher.getSchool());
 	}
 
 	@Override
