@@ -7,12 +7,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
 
-import pt.epcc.alunos.al220007.desafiofinal.HumanRecyclerViewFragment;
 import pt.epcc.alunos.al220007.desafiofinal.LayoutManagerType;
 import pt.epcc.alunos.al220007.desafiofinal.R;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 
-abstract public class HumanActivity<E extends Human, T extends HumanAdapter<? extends HumanViewHolder>> extends AppCompatActivity {
+abstract public class HumanActivity<
+		E extends Human,
+		T extends HumanAdapter<? extends HumanViewHolder>
+	> extends AppCompatActivity implements HumanAdapterCreator<T>
+{
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,8 +40,6 @@ abstract public class HumanActivity<E extends Human, T extends HumanAdapter<? ex
 	}
 
 	abstract protected LayoutManagerType choseLayoutManager();
-
-	abstract protected HumanAdapterCreator<T> generateAdapterCreator();
 
 	abstract protected List<E> generateList();
 }

@@ -1,6 +1,7 @@
-package pt.epcc.alunos.al220007.desafiofinal;
+package pt.epcc.alunos.al220007.desafiofinal.humancore;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +14,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import pt.epcc.alunos.al220007.desafiofinal.LayoutManagerType;
-import pt.epcc.alunos.al220007.desafiofinal.R;
 import java.util.Random;
 
-import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanAdapter;
-import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanViewHolder;
+import pt.epcc.alunos.al220007.desafiofinal.LayoutManagerType;
+import pt.epcc.alunos.al220007.desafiofinal.R;
 
 public class HumanRecyclerViewFragment<T extends HumanAdapter<? extends HumanViewHolder>>
 	extends Fragment
