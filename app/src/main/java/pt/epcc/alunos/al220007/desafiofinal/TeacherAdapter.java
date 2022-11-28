@@ -1,6 +1,7 @@
 package pt.epcc.alunos.al220007.desafiofinal;
 
 import android.content.Context;
+import android.view.View;
 
 import java.util.List;
 
@@ -16,13 +17,13 @@ public class TeacherAdapter extends HumanAdapter<TeacherViewHolder> {
 	}
 
 	@Override
-	protected HumanViewHolderCreator<TeacherViewHolder> createCreator() {
-		return new TeacherViewHolderCreator();
-	}
-
-	@Override
 	protected <E extends Human> void manage(TeacherViewHolder holder, E human) {
 		Teacher teacher = (Teacher) human;
 		holder.school.setText("School: " + teacher.getSchool());
+	}
+
+	@Override
+	public TeacherViewHolder createViewHolder(View view) {
+		return new TeacherViewHolder(view);
 	}
 }

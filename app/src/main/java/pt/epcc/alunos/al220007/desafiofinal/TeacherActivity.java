@@ -1,20 +1,17 @@
 package pt.epcc.alunos.al220007.desafiofinal;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import pt.epcc.alunos.al220007.desafiofinal.entities.AcademicLevel;
+import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Teacher;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanActivity;
-import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanAdapterCreator;
 
 public class TeacherActivity extends HumanActivity<Teacher, TeacherAdapter> {
-
-	@Override
-	public HumanAdapterCreator<TeacherAdapter> generateAdapterCreator() {
-		return new TeacherAdapterCreator();
-	}
 
 	@Override
 	public List<Teacher> generateList() {
@@ -29,5 +26,10 @@ public class TeacherActivity extends HumanActivity<Teacher, TeacherAdapter> {
 	@Override
 	protected LayoutManagerType choseLayoutManager() {
 		return LayoutManagerType.GRID;
+	}
+
+	@Override
+	public TeacherAdapter createAdapter(List<? extends Human> list, Context context) {
+		return new TeacherAdapter(list, context);
 	}
 }

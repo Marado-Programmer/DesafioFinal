@@ -1,17 +1,13 @@
 package pt.epcc.alunos.al220007.desafiofinal;
 
 import android.content.Context;
+import android.view.View;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
-import pt.epcc.alunos.al220007.desafiofinal.entities.Student;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanAdapter;
-import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanViewHolder;
-import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanViewHolderCreator;
 
 public class StudentAdapter extends HumanAdapter<StudentViewHolder> {
 
@@ -20,12 +16,12 @@ public class StudentAdapter extends HumanAdapter<StudentViewHolder> {
 	}
 
 	@Override
-	protected HumanViewHolderCreator<StudentViewHolder> createCreator() {
-		return new StudentViewHolderCreator();
+	protected <E extends Human> void manage(StudentViewHolder holder, E human) {
+
 	}
 
 	@Override
-	protected <E extends Human> void manage(StudentViewHolder holder, E human) {
-
+	public StudentViewHolder createViewHolder(View view) {
+		return new StudentViewHolder(view);
 	}
 }

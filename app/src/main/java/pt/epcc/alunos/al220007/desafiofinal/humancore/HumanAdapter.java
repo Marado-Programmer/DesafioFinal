@@ -13,20 +13,17 @@ import java.util.List;
 import pt.epcc.alunos.al220007.desafiofinal.R;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 
-abstract public class HumanAdapter<T extends HumanViewHolder> extends Adapter<T> {
-	protected HumanViewHolderCreator<T> getInstance;
-
+abstract public class HumanAdapter<T extends HumanViewHolder>
+		extends Adapter<T>
+		implements HumanViewHolderCreator<T>
+{
 	protected List<? extends Human> list;
 	protected Context context;
 
 	public <E extends Human> HumanAdapter(List<E> list, Context context) {
-		this.getInstance = createCreator();
-
 		this.list = list;
 		this.context = context;
 	}
-
-	abstract protected HumanViewHolderCreator<T> createCreator();
 
 	@NonNull
 	@Override
@@ -34,7 +31,7 @@ abstract public class HumanAdapter<T extends HumanViewHolder> extends Adapter<T>
 		View view = LayoutInflater.from(parent.getContext())
 			.inflate(R.layout.human_id_layout, parent, false);
 
-		T viewHolder = this.getInstance.createViewHolder(view);
+		T viewHolder = this.createViewHolder(view);
 		viewHolder.init(this.context);
 
 		return viewHolder;

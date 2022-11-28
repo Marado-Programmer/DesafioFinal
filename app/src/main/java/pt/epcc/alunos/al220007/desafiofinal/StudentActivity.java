@@ -1,12 +1,14 @@
 package pt.epcc.alunos.al220007.desafiofinal;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Student;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanActivity;
-import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanAdapterCreator;
 
 public class StudentActivity extends HumanActivity<Student, StudentAdapter> {
 	@Override
@@ -14,10 +16,6 @@ public class StudentActivity extends HumanActivity<Student, StudentAdapter> {
 		return LayoutManagerType.LINEAR;
 	}
 
-	@Override
-	public HumanAdapterCreator<StudentAdapter> generateAdapterCreator() {
-		return new StudentAdapterCreator();
-	}
 
 	@Override
 	public List<Student> generateList() {
@@ -27,5 +25,10 @@ public class StudentActivity extends HumanActivity<Student, StudentAdapter> {
 			new Student(R.drawable.logo_epcc, "Kroa"),
 			new Student(R.drawable.logo_epcc, "Zizzy Jr")
 		));
+	}
+
+	@Override
+	public StudentAdapter createAdapter(List<? extends Human> list, Context context) {
+		return new StudentAdapter(list, context);
 	}
 }
