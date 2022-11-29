@@ -6,7 +6,7 @@ import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 
 public interface HumanAdapterCreator<
 		E extends Human,
-		T extends HumanAdapter<E, ? extends HumanViewHolder<E>, T>
+		T extends HumanAdapter<E, ? extends HumanViewHolder<E, ? extends HumanDetailsActivity<E>>, T>
 	>
 {
 	@NonNull

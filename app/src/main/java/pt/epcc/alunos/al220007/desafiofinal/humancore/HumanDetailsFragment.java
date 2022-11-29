@@ -13,9 +13,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import pt.epcc.alunos.al220007.desafiofinal.R;
+import pt.epcc.alunos.al220007.desafiofinal.entities.Bundable;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 
-public class HumanDetailsFragment extends Fragment {
+public class HumanDetailsFragment<E extends Human> extends Fragment {
 	protected ViewStub include;
 
 	protected ImageView profilePic;
@@ -24,16 +25,16 @@ public class HumanDetailsFragment extends Fragment {
 	protected long id;
 	protected int extra;
 
-	protected HumanViewHolder<? extends Human> holder;
+	protected DetailsManager manager;
 
 	public HumanDetailsFragment() {
 		super();
 	}
 
-	public HumanDetailsFragment(HumanViewHolder<? extends Human> holder, Bundle bundle) {
+	public HumanDetailsFragment(DetailsManager manager, Bundle bundle) {
 		this();
 
-		this.holder = holder;
+		this.manager = manager;
 		setArguments(bundle);
 	}
 
@@ -65,17 +66,21 @@ public class HumanDetailsFragment extends Fragment {
 	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
-		assert holder != null;
+		if (manager == null) {
+			return;
+		}
+
+		Bundle args = getArguments().getBundle("human");
 
 		profilePic = view.findViewById(R.id.profile_pic);
-		profilePic.setImageResource(holder.profilePic());
+		profilePic.setImageResource(args.getInt(Human.IMAGE_KEY, 0));
 
 		name = view.findViewById(R.id.name);
-		name.setText(holder.name());
+		name.setText(args.getString(Human.NAME_KEY));
 
 		include = view.findViewById(R.id.card_view_extra);
 		include.setLayoutResource(extra);
 
-		holder.findViews(include.inflate());
+		manager.createDetails(include.inflate(), args);
 	}
 }

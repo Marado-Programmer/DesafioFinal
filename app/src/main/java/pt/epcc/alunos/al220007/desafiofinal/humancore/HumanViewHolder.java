@@ -8,13 +8,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 import pt.epcc.alunos.al220007.desafiofinal.R;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 
-abstract public class HumanViewHolder<E extends Human> extends ViewHolder implements View.OnClickListener {
+abstract public class HumanViewHolder<E extends Human, T extends HumanDetailsActivity<E>> extends ViewHolder implements View.OnClickListener, DetailsManager {
 	protected final View view;
 
 	protected ImageView profilePic;
@@ -49,8 +48,6 @@ abstract public class HumanViewHolder<E extends Human> extends ViewHolder implem
 		return this.human.getName();
 	}
 
-	abstract protected void findViews(View view);
-
 	@Override
 	public final void onClick(View v) {
 		if (v != this.view) {
@@ -64,23 +61,25 @@ abstract public class HumanViewHolder<E extends Human> extends ViewHolder implem
 			Bundle bundleFragment = new Bundle();
 
 			bundleFragment.putLong("id", getItemId());
-			bundleFragment.putInt("extra", this.extraID());
+			bundleFragment.putInt("extra", extraID());
+			bundleFragment.putBundle("human", human.toBundle());
 
-			HumanDetailsFragment fragment = new HumanDetailsFragment(this, bundleFragment);
+			HumanDetailsFragment<E> fragment = new HumanDetailsFragment<>(this, bundleFragment);
 
 			context.getSupportFragmentManager().beginTransaction()
 				.setReorderingAllowed(true)
-				.add(
+				.replace(
 					R.id.details,
 					fragment
 				).commit();
 			return;
 		}
 
-		Intent intent = new Intent(this.context, HumanDetailsActivity.class);
+		Intent intent = new Intent(context, aClass());
 
-		intent.putExtra("id", this.getItemId());
-		intent.putExtra("extra", this.extraID());
+		intent.putExtra("id", getItemId());
+		intent.putExtra("extra", extraID());
+		intent.putExtra("human", human.toBundle());
 
 		this.context.startActivity(intent);
 	}
@@ -88,4 +87,6 @@ abstract public class HumanViewHolder<E extends Human> extends ViewHolder implem
 	public final void setHuman(E human) {
 		this.human = human;
 	}
+
+	protected abstract Class<T> aClass();
 }

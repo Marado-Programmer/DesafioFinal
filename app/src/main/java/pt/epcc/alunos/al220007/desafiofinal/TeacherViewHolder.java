@@ -1,22 +1,20 @@
 package pt.epcc.alunos.al220007.desafiofinal;
 
-import android.util.Log;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 
 import pt.epcc.alunos.al220007.desafiofinal.entities.Teacher;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanActivity;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanViewHolder;
 
-public class TeacherViewHolder extends HumanViewHolder<Teacher> {
+public class TeacherViewHolder extends HumanViewHolder<Teacher, TeacherDetailsActivity> {
 
 	protected TeacherViewHolder(@NonNull View itemView, HumanActivity context) {
 		super(itemView, context);
 	}
-
 
 	@Override
 	protected int extraID() {
@@ -24,8 +22,12 @@ public class TeacherViewHolder extends HumanViewHolder<Teacher> {
 	}
 
 	@Override
-	protected void findViews(View view) {
-		Log.i("FINDING", String.valueOf(view));
+	protected Class<TeacherDetailsActivity> aClass() {
+		return TeacherDetailsActivity.class;
+	}
+
+	@Override
+	public void createDetails(View view, Bundle bundle) {
 		TextView school = view.findViewById(R.id.teacherSchool);
 		school.setText("School: " + human.getSchool());
 		TextView academicLevel = view.findViewById(R.id.teacherAcademicLevel);

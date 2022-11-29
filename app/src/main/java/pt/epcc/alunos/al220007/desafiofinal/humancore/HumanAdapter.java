@@ -13,7 +13,7 @@ import pt.epcc.alunos.al220007.desafiofinal.LayoutManagerType;
 import pt.epcc.alunos.al220007.desafiofinal.R;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 
-abstract public class HumanAdapter<E extends Human, T extends HumanViewHolder<E>, U extends HumanAdapter<E, T, U>>
+abstract public class HumanAdapter<E extends Human, T extends HumanViewHolder<E, ? extends HumanDetailsActivity<E>>, U extends HumanAdapter<E, T, U>>
 		extends Adapter<T>
 		implements HumanViewHolderCreator<E, T>
 {
