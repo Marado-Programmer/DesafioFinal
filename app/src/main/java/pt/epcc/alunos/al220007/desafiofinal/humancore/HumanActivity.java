@@ -13,7 +13,7 @@ import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 
 abstract public class HumanActivity<
 		E extends Human,
-		T extends HumanAdapter<E, ? extends HumanViewHolder>
+		T extends HumanAdapter<E, ? extends HumanViewHolder, T>
 	> extends AppCompatActivity implements HumanAdapterCreator<E, T>
 {
 	protected static final int LAYOUT = R.layout.activity_human_fragment;

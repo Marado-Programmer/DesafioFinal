@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 

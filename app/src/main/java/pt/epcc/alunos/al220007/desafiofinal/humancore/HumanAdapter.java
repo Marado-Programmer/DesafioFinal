@@ -13,7 +13,7 @@ import pt.epcc.alunos.al220007.desafiofinal.LayoutManagerType;
 import pt.epcc.alunos.al220007.desafiofinal.R;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 
-abstract public class HumanAdapter<E extends Human, T extends HumanViewHolder<E>>
+abstract public class HumanAdapter<E extends Human, T extends HumanViewHolder<E>, U extends HumanAdapter<E, T, U>>
 		extends Adapter<T>
 		implements HumanViewHolderCreator<E, T>
 {
@@ -21,13 +21,14 @@ abstract public class HumanAdapter<E extends Human, T extends HumanViewHolder<E>
 	protected static final int GRID_LAYOUT = R.layout.human_id_layout_grid;
 
 	protected List<E> list;
-	protected HumanActivity context;
+	protected HumanActivity<E, ? extends HumanAdapter<E, T, U>> context;
 	protected LayoutManagerType layoutManagerType;
 
-	public HumanAdapter(HumanActivity context) {
+	public HumanAdapter(HumanActivity<E, U> context) {
 		this.context = context;
 		list = context.generateList();
 	}
+
 
 	@NonNull
 	@Override

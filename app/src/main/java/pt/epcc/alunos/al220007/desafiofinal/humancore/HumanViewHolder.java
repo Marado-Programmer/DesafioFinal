@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 import pt.epcc.alunos.al220007.desafiofinal.R;
@@ -27,7 +28,6 @@ abstract public class HumanViewHolder<E extends Human> extends ViewHolder implem
 
 	protected HumanViewHolder(@NonNull View itemView, HumanActivity context) {
 		super(itemView);
-
 		this.context = context;
 
 		itemView.setOnClickListener(this);
@@ -41,18 +41,21 @@ abstract public class HumanViewHolder<E extends Human> extends ViewHolder implem
 
 	abstract protected int extraID();
 
-	abstract protected void findViews(View view);
+	final public int profilePic() {
+		return this.human.getImage();
+	}
 
-	abstract protected Bundle helperBundle();
+	final public String name() {
+		return this.human.getName();
+	}
+
+	abstract protected void findViews(View view);
 
 	@Override
 	public final void onClick(View v) {
 		if (v != this.view) {
 			return;
 		}
-
-
-		Bundle bundle = this.helperBundle();
 
 		if (
 			this.context.getResources().getConfiguration().orientation
@@ -63,14 +66,13 @@ abstract public class HumanViewHolder<E extends Human> extends ViewHolder implem
 			bundleFragment.putLong("id", getItemId());
 			bundleFragment.putInt("extra", this.extraID());
 
-			bundleFragment.putBundle("human", bundle);
+			HumanDetailsFragment fragment = new HumanDetailsFragment(this, bundleFragment);
 
-			this.context.getSupportFragmentManager().beginTransaction()
+			context.getSupportFragmentManager().beginTransaction()
 				.setReorderingAllowed(true)
 				.add(
 					R.id.details,
-					HumanDetailsFragment.class,
-					bundleFragment
+					fragment
 				).commit();
 			return;
 		}
@@ -79,8 +81,6 @@ abstract public class HumanViewHolder<E extends Human> extends ViewHolder implem
 
 		intent.putExtra("id", this.getItemId());
 		intent.putExtra("extra", this.extraID());
-
-		intent.putExtra("human", bundle);
 
 		this.context.startActivity(intent);
 	}

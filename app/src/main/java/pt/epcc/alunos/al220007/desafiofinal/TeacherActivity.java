@@ -1,7 +1,5 @@
 package pt.epcc.alunos.al220007.desafiofinal;
 
-import android.content.Context;
-
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
@@ -9,7 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import pt.epcc.alunos.al220007.desafiofinal.entities.AcademicLevel;
-import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Teacher;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanActivity;
 
@@ -31,7 +28,7 @@ public class TeacherActivity extends HumanActivity<Teacher, TeacherAdapter> {
 
 	@NonNull
 	@Override
-	public TeacherAdapter createAdapter(HumanActivity context) {
+	public TeacherAdapter createAdapter(HumanActivity<Teacher, TeacherAdapter> context) {
 		return new TeacherAdapter(context);
 	}
 }

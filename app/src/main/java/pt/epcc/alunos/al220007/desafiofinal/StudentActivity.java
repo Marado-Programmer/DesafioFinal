@@ -1,7 +1,5 @@
 package pt.epcc.alunos.al220007.desafiofinal;
 
-import android.content.Context;
-
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
@@ -65,7 +63,7 @@ public class StudentActivity extends HumanActivity<Student, StudentAdapter> {
 
 	@NonNull
 	@Override
-	public StudentAdapter createAdapter(HumanActivity context) {
+	public StudentAdapter createAdapter(HumanActivity<Student, StudentAdapter> context) {
 		return new StudentAdapter(context);
 	}
 }

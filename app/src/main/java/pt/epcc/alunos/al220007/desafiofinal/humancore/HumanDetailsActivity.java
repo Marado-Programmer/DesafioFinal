@@ -13,12 +13,15 @@ public class HumanDetailsActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.activity_human_details_fragment);
 
-		this.getSupportFragmentManager().beginTransaction()
-			.setReorderingAllowed(true)
-			.add(
-				R.id.details,
-				HumanDetailsFragment.class,
-				this.getIntent().getExtras()
-			).commit();
+		if (savedInstanceState == null) {
+			HumanDetailsFragment fragment = new HumanDetailsFragment(null, getIntent().getExtras());
+
+			this.getSupportFragmentManager().beginTransaction()
+				.setReorderingAllowed(true)
+				.add(
+					R.id.details,
+					fragment
+				).commit();
+		}
 	}
 }

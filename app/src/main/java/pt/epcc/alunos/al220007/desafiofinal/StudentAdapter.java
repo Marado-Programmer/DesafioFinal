@@ -1,6 +1,5 @@
 package pt.epcc.alunos.al220007.desafiofinal;
 
-import android.content.Context;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -9,11 +8,10 @@ import pt.epcc.alunos.al220007.desafiofinal.entities.Student;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanActivity;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanAdapter;
 
-public class StudentAdapter extends HumanAdapter<Student, StudentViewHolder> {
-	public StudentAdapter(HumanActivity<Student, HumanAdapter<Student, StudentViewHolder>> context) {
+public class StudentAdapter extends HumanAdapter<Student, StudentViewHolder, StudentAdapter> {
+	public StudentAdapter(HumanActivity<Student, StudentAdapter> context) {
 		super(context);
 	}
-
 
 	@Override
 	protected LayoutManagerType getDefaultLayout() {

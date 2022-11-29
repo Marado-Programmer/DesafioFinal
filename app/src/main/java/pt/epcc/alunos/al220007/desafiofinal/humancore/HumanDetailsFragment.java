@@ -1,7 +1,6 @@
 package pt.epcc.alunos.al220007.desafiofinal.humancore;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +22,15 @@ public class HumanDetailsFragment extends Fragment {
 
 	protected long id;
 	protected int extra;
+
+	protected HumanViewHolder holder;
+
+	public HumanDetailsFragment(HumanViewHolder holder, Bundle bundle) {
+		super();
+
+		this.holder = holder;
+		setArguments(bundle);
+	}
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,18 +60,17 @@ public class HumanDetailsFragment extends Fragment {
 	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
-		include = view.findViewById(R.id.card_view_extra);
-		include.setLayoutResource(extra);
-		include.inflate();
+		assert holder != null;
 
 		profilePic = view.findViewById(R.id.profile_pic);
+		profilePic.setImageResource(holder.profilePic());
 
 		name = view.findViewById(R.id.name);
+		name.setText(holder.name());
 
-		findViews(view);
-	}
+		include = view.findViewById(R.id.card_view_extra);
+		include.setLayoutResource(extra);
 
-	protected void findViews(View view) {
-
+		holder.findViews(include.inflate());
 	}
 }
