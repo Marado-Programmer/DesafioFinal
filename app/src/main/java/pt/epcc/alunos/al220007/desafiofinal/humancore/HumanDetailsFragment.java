@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import pt.epcc.alunos.al220007.desafiofinal.R;
+import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 
 public class HumanDetailsFragment extends Fragment {
 	protected ViewStub include;
@@ -23,10 +24,14 @@ public class HumanDetailsFragment extends Fragment {
 	protected long id;
 	protected int extra;
 
-	protected HumanViewHolder holder;
+	protected HumanViewHolder<? extends Human> holder;
 
-	public HumanDetailsFragment(HumanViewHolder holder, Bundle bundle) {
+	public HumanDetailsFragment() {
 		super();
+	}
+
+	public HumanDetailsFragment(HumanViewHolder<? extends Human> holder, Bundle bundle) {
+		this();
 
 		this.holder = holder;
 		setArguments(bundle);
