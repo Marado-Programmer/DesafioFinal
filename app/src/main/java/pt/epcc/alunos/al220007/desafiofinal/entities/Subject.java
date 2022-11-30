@@ -1,0 +1,17 @@
+package pt.epcc.alunos.al220007.desafiofinal.entities;
+
+public enum Subject {
+	PORTUGUESE,
+	ENGLISH,
+	INTEGRATION_AREA,
+	TIC,
+	PHYSICAL_ED,
+	MATH,
+	PHYSICS,
+	CHEMISTRY,
+	COMPUTER_ARCHITECTURE,
+	OS,
+	DB,
+	INTRO_TO_PROGRAMMING,
+	ADVANCED_PROGRAMMING,
+}

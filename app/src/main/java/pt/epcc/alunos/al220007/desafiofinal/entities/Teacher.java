@@ -11,6 +11,8 @@ import java.util.Map;
 public class Teacher extends Human {
 	public static final String SCHOOL_KEY = "school";
 	public static final String ACADEMIC_LEVEL_KEY = "lvl";
+	public static final String MODULES_KEY = "modules";
+	public static final String MODULES_KEYS_KEY = "keys";
 
 	private final String school;
 	private final AcademicLevel academicLevel;
@@ -35,11 +37,16 @@ public class Teacher extends Human {
 			String.valueOf(academicLevel).toLowerCase(Locale.ROOT)
 		);
 
+		SubjectModule[] modules = new SubjectModule[this.modules.size()];
+		Integer[] modulesKeys = new Integer[this.modules.size()];
+		bundle.putSerializable(MODULES_KEY, this.modules.values().toArray(modules));
+		bundle.putSerializable(MODULES_KEYS_KEY, this.modules.keySet().toArray(modulesKeys));
+
 		return bundle;
 	}
 
-	public void addSubjectModule(int id, SubjectModule module) {
-		this.modules.put(id, module);
+	public void addSubjectModule(SubjectModule module) {
+		this.modules.put(module.getId(), module);
 	}
 
 	public String getSchool() {

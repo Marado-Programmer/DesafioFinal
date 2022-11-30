@@ -2,6 +2,7 @@ package pt.epcc.alunos.al220007.desafiofinal;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
