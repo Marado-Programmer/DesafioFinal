@@ -7,10 +7,12 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:id="@+id/teacherBtn"
-        android:text="@string/professores" />
+        android:text="@string/professores"
+        style="?android:attr/buttonBarButtonStyle" />
     <Button android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:id="@+id/studentBtn"
-        android:text="@string/alunos" />
+        android:text="@string/alunos"
+        style="?android:attr/buttonBarButtonStyle" />
 </LinearLayout>

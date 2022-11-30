@@ -2,32 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:id="@+id/id"
     android:layout_weight="1">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="72dp"
+            android:layout_height="match_parent"
             android:orientation="vertical">
             <ImageView
                 android:layout_width="72dp"
-                android:layout_height="match_parent"
+                android:layout_height="72dp"
                 android:id="@+id/profile_pic"
                 android:contentDescription="@string/profile_picture" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:layout_toRightOf="@+id/profile_pic"
                 android:id="@+id/name"
                 android:layout_toEndOf="@+id/profile_pic" />
             <ViewStub
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/profile_pic"
                 android:layout_below="@+id/name"
                 android:id="@+id/card_view_extra"
                 android:layout_toEndOf="@+id/profile_pic" />
