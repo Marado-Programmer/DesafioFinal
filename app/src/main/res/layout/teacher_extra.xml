@@ -14,4 +14,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/teacherAcademicLevel"
         android:textColor="@color/white"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/teacherModules" />
 </LinearLayout>

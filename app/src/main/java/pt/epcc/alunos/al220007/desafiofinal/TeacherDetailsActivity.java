@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import pt.epcc.alunos.al220007.desafiofinal.entities.Student;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Teacher;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanActivity;
@@ -17,6 +20,12 @@ public class TeacherDetailsActivity extends HumanDetailsActivity<Teacher> {
 		school.setText("School: " + bundle.getString(Teacher.SCHOOL_KEY));
 		TextView academicLevel = view.findViewById(R.id.teacherAcademicLevel);
 		academicLevel.setText("Academic level: " + bundle.getString(Teacher.ACADEMIC_LEVEL_KEY));
+
+		RecyclerView modulesList = view.findViewById(R.id.teacherModules);
+		modulesList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+		modulesList.setAdapter(
+			new ModulesAdapter(bundle.getIntegerArrayList(Teacher.MODULES_KEYS_KEY))
+		);
 	}
 
 	@Override

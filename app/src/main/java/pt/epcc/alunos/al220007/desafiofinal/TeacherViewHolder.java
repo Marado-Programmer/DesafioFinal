@@ -2,10 +2,11 @@ package pt.epcc.alunos.al220007.desafiofinal;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import pt.epcc.alunos.al220007.desafiofinal.entities.Teacher;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanActivity;
@@ -33,5 +34,11 @@ public class TeacherViewHolder extends HumanViewHolder<Teacher, TeacherDetailsAc
 		school.setText("School: " + human.getSchool());
 		TextView academicLevel = view.findViewById(R.id.teacherAcademicLevel);
 		academicLevel.setText("Academic level: " + human.getAcademicLevel());
+
+		RecyclerView modulesList = view.findViewById(R.id.teacherModules);
+		modulesList.setLayoutManager(new LinearLayoutManager(context));
+		modulesList.setAdapter(
+			new ModulesAdapter(bundle.getIntegerArrayList(Teacher.MODULES_KEYS_KEY))
+		);
 	}
 }
