@@ -1,5 +1,9 @@
 package pt.epcc.alunos.al220007.desafiofinal;
 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
@@ -11,11 +15,17 @@ import pt.epcc.alunos.al220007.desafiofinal.entities.Subject;
 import pt.epcc.alunos.al220007.desafiofinal.entities.SubjectModule;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Teacher;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanActivity;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanDetailsActivity;
 
 public class TeacherActivity extends HumanActivity<Teacher, TeacherAdapter> {
 	@Override
 	protected LayoutManagerType choseLayoutManager() {
 		return LayoutManagerType.GRID;
+	}
+
+	@Override
+	protected Class<? extends HumanDetailsActivity<Teacher>> aClass() {
+		return TeacherDetailsActivity.class;
 	}
 
 	@Override
@@ -165,5 +175,13 @@ public class TeacherActivity extends HumanActivity<Teacher, TeacherAdapter> {
 	@Override
 	public TeacherAdapter createAdapter(HumanActivity<Teacher, TeacherAdapter> context) {
 		return new TeacherAdapter(context);
+	}
+
+	@Override
+	public void createDetails(View view, Bundle bundle) {
+		TextView school = view.findViewById(R.id.teacherSchool);
+		school.setText("School: " + bundle.getString(Teacher.SCHOOL_KEY));
+		TextView academicLevel = view.findViewById(R.id.teacherAcademicLevel);
+		academicLevel.setText("Academic level: " + bundle.getString(Teacher.ACADEMIC_LEVEL_KEY));
 	}
 }

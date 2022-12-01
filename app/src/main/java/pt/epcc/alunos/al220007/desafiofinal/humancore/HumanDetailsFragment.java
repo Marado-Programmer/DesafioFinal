@@ -72,7 +72,9 @@ public class HumanDetailsFragment<E extends Human> extends Fragment {
 
 		Bundle args = getArguments().getBundle("human");
 
-		assert args != null;
+		if (args == null) {
+			return;
+		}
 
 		profilePic = view.findViewById(R.id.profile_pic);
 		profilePic.setImageResource(args.getInt(Human.IMAGE_KEY, 0));

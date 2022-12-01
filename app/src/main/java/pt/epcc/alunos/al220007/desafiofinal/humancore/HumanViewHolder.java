@@ -16,6 +16,8 @@ import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 abstract public class HumanViewHolder<E extends Human, T extends HumanDetailsActivity<E>> extends ViewHolder implements View.OnClickListener, DetailsManager {
 	protected final View view;
 
+	protected int id;
+
 	protected ImageView profilePic;
 	protected TextView name;
 
@@ -54,15 +56,19 @@ abstract public class HumanViewHolder<E extends Human, T extends HumanDetailsAct
 			return;
 		}
 
+		Bundle bundleFragment = new Bundle();
+
+		bundleFragment.putLong("id", getItemId());
+		bundleFragment.putInt("extra", extraID());
+		bundleFragment.putBundle("human", human.toBundle());
+		bundleFragment.putInt("last", id);
+
+		context.setLast(bundleFragment);
+
 		if (
 			this.context.getResources().getConfiguration().orientation
 			== Configuration.ORIENTATION_LANDSCAPE
 		) {
-			Bundle bundleFragment = new Bundle();
-
-			bundleFragment.putLong("id", getItemId());
-			bundleFragment.putInt("extra", extraID());
-			bundleFragment.putBundle("human", human.toBundle());
 
 			HumanDetailsFragment<E> fragment = new HumanDetailsFragment<>(this, bundleFragment);
 
@@ -86,6 +92,10 @@ abstract public class HumanViewHolder<E extends Human, T extends HumanDetailsAct
 
 	public final void setHuman(E human) {
 		this.human = human;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	protected abstract Class<T> aClass();

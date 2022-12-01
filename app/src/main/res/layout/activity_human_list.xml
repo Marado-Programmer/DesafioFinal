@@ -10,7 +10,7 @@
         android:id="@+id/layout_type"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
-        android:layout_gravity="right" />
+        android:layout_gravity="end" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
         android:layout_width="match_parent"

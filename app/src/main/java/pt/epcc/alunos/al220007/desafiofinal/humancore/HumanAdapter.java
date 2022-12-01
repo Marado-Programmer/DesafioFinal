@@ -44,6 +44,7 @@ abstract public class HumanAdapter<E extends Human, T extends HumanViewHolder<E,
 		E human = list.get(position);
 
 		holder.setHuman(human);
+		holder.setId(position);
 
 		if (holder.profilePic != null) {
 			holder.profilePic.setImageResource(human.getImage());

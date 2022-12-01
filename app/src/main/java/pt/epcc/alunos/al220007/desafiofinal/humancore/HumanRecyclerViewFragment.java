@@ -57,8 +57,14 @@ public final class HumanRecyclerViewFragment<
 		if (savedInstanceState == null) {
 			return;
 		}
-		pos = savedInstanceState.getInt(POS_KEY, -1);
 
+		if (getArguments() != null) {
+			pos = getArguments().getInt("last", RecyclerView.NO_POSITION);
+		}
+
+		if (pos == RecyclerView.NO_POSITION) {
+			pos = savedInstanceState.getInt(POS_KEY, RecyclerView.NO_POSITION);
+		}
 	}
 
 	@Nullable
@@ -83,9 +89,9 @@ public final class HumanRecyclerViewFragment<
 
 		setLayoutManager(curLayoutManager);
 
-		recyclerView.setAdapter(adapter);
-
 		scroll(pos);
+
+		recyclerView.setAdapter(adapter);
 	}
 
 	@Override
@@ -123,19 +129,18 @@ public final class HumanRecyclerViewFragment<
 	}
 
 	private void scroll(int pos) {
-		if (pos > 0) {
-			recyclerView.scrollToPosition(pos);
-			return;
+
+		if (pos <= 0) {
+			pos = 0;
+
+			RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+			if (layoutManager != null) {
+				pos = ((LinearLayoutManager) layoutManager)
+					.findFirstVisibleItemPosition();
+			}
 		}
 
-		pos = 0;
-
-		RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
-
-		if (layoutManager != null) {
-			pos = ((LinearLayoutManager) layoutManager)
-				.findFirstCompletelyVisibleItemPosition();
-		}
+		pos = pos <= RecyclerView.NO_POSITION ? 0 : pos;
 
 		recyclerView.scrollToPosition(pos);
 
@@ -169,6 +174,5 @@ public final class HumanRecyclerViewFragment<
 				? LayoutManagerType.GRID
 				: LayoutManagerType.LINEAR
 		);
-
 	}
 }
