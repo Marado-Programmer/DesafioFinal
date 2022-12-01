@@ -4,14 +4,16 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Teacher extends Human {
 	public static final String SCHOOL_KEY = "school";
 	public static final String ACADEMIC_LEVEL_KEY = "lvl";
-	public static final String MODULES_KEY = "modules";
 	public static final String MODULES_KEYS_KEY = "keys";
 
 	private final String school;
@@ -37,10 +39,12 @@ public class Teacher extends Human {
 			String.valueOf(academicLevel).toLowerCase(Locale.ROOT)
 		);
 
-		SubjectModule[] modules = new SubjectModule[this.modules.size()];
 		Integer[] modulesKeys = new Integer[this.modules.size()];
-		bundle.putSerializable(MODULES_KEY, this.modules.values().toArray(modules));
-		bundle.putSerializable(MODULES_KEYS_KEY, this.modules.keySet().toArray(modulesKeys));
+		bundle.putIntegerArrayList(MODULES_KEYS_KEY, new ArrayList<>(Arrays.asList(
+			this.modules
+				.keySet()
+				.toArray(modulesKeys)
+		)));
 
 		return bundle;
 	}

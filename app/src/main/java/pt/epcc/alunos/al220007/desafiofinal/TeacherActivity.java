@@ -5,6 +5,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,8 @@ import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanActivity;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanDetailsActivity;
 
 public class TeacherActivity extends HumanActivity<Teacher, TeacherAdapter> {
+	ArrayList<Teacher> list;
+
 	@Override
 	protected LayoutManagerType choseLayoutManager() {
 		return LayoutManagerType.GRID;
@@ -30,8 +34,11 @@ public class TeacherActivity extends HumanActivity<Teacher, TeacherAdapter> {
 
 	@Override
 	public List<Teacher> generateList() {
-		ArrayList<Teacher> list = new ArrayList<>();
+		if (list != null) {
+			return list;
+		}
 
+		list = new ArrayList<>();
 
 		SubjectModule subject0 = SubjectModule.createOrGetInstance(
 			10684,
@@ -40,11 +47,7 @@ public class TeacherActivity extends HumanActivity<Teacher, TeacherAdapter> {
 			Subject.PORTUGUESE,
 			40
 		);
-		try {
-			subject0.addHours(40);
-		} catch (Exception e) {
-
-		}
+		subject0.addHours(40);
 		SubjectModule subject1 = SubjectModule.createOrGetInstance(
 			10685,
 			"Poesia Contemporânea",
@@ -52,11 +55,7 @@ public class TeacherActivity extends HumanActivity<Teacher, TeacherAdapter> {
 			Subject.PORTUGUESE,
 			40
 		);
-		try {
-			subject1.addHours(12);
-		} catch (Exception e) {
-
-		}
+		subject1.addHours(12);
 		SubjectModule subject2 = SubjectModule.createOrGetInstance(
 			10695,
 			"O mundo do trabalho",
@@ -64,11 +63,7 @@ public class TeacherActivity extends HumanActivity<Teacher, TeacherAdapter> {
 			Subject.ENGLISH,
 			25
 		);
-		try {
-			subject2.addHours(6);
-		} catch (Exception e) {
-
-		}
+		subject2.addHours(6);
 		SubjectModule subject3 = SubjectModule.createOrGetInstance(
 			10699,
 			"A União Europeia",
@@ -76,11 +71,7 @@ public class TeacherActivity extends HumanActivity<Teacher, TeacherAdapter> {
 			Subject.INTEGRATION_AREA,
 			25
 		);
-		try {
-			subject3.addHours(25);
-		} catch (Exception e) {
-
-		}
+		subject3.addHours(25);
 		SubjectModule subject4 = SubjectModule.createOrGetInstance(
 			10701,
 			"A Globalização",
@@ -88,11 +79,7 @@ public class TeacherActivity extends HumanActivity<Teacher, TeacherAdapter> {
 			Subject.INTEGRATION_AREA,
 			25
 		);
-		try {
-			subject4.addHours(25);
-		} catch (Exception e) {
-
-		}
+		subject4.addHours(25);
 		SubjectModule subject5 = SubjectModule.createOrGetInstance(
 			10723,
 			"Funções de Crescimento",
@@ -100,11 +87,7 @@ public class TeacherActivity extends HumanActivity<Teacher, TeacherAdapter> {
 			Subject.MATH,
 			28
 		);
-		try {
-			subject5.addHours(20);
-		} catch (Exception e) {
-
-		}
+		subject5.addHours(20);
 		SubjectModule subject6 = SubjectModule.createOrGetInstance(
 			10730,
 			"Circuitos Elétricos",
@@ -112,11 +95,7 @@ public class TeacherActivity extends HumanActivity<Teacher, TeacherAdapter> {
 			Subject.PHYSICS,
 			18
 		);
-		try {
-			subject6.addHours(18);
-		} catch (Exception e) {
-
-		}
+		subject6.addHours(18);
 		SubjectModule subject7 = SubjectModule.createOrGetInstance(
 			10738,
 			"Compostos Orgânicos | Reações Químicas",
@@ -124,11 +103,7 @@ public class TeacherActivity extends HumanActivity<Teacher, TeacherAdapter> {
 			Subject.CHEMISTRY,
 			16
 		);
-		try {
-			subject7.addMinutes(50);
-		} catch (Exception e) {
-
-		}
+		subject7.addMinutes(50);
 
 		Teacher teacher0 = new Teacher(
 			R.drawable.ic_launcher_foreground,
@@ -183,5 +158,11 @@ public class TeacherActivity extends HumanActivity<Teacher, TeacherAdapter> {
 		school.setText("School: " + bundle.getString(Teacher.SCHOOL_KEY));
 		TextView academicLevel = view.findViewById(R.id.teacherAcademicLevel);
 		academicLevel.setText("Academic level: " + bundle.getString(Teacher.ACADEMIC_LEVEL_KEY));
+
+		RecyclerView modulesList = view.findViewById(R.id.teacherModules);
+		modulesList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+		modulesList.setAdapter(
+			new ModulesAdapter(bundle.getIntegerArrayList(Teacher.MODULES_KEYS_KEY))
+		);
 	}
 }
