@@ -59,9 +59,9 @@ public class ModulesAdapter extends RecyclerView.Adapter<ModulesAdapter.ViewHold
 			year = view.findViewById(R.id.moduleYear);
 			year.setText(String.valueOf(module.getYear()));
 			duration = view.findViewById(R.id.moduleDuration);
-			duration.setText(module.getDuration());
+			duration.setText(module.getDurationString());
 			curDuration = view.findViewById(R.id.moduleCurrent);
-			curDuration.setText(module.getCurrentDuration());
+			curDuration.setText(module.getCurrentDurationString());
 		}
 	}
 }

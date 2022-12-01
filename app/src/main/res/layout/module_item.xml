@@ -1,30 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:shrinkColumns="*"
+    android:stretchColumns="*"
+    android:padding="1dp"
+    android:background="@drawable/border">
+<TableRow
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:layout_height="wrap_content">
 <TextView
-    android:layout_weight="6"
+    android:layout_weight="3"
     android:id="@+id/moduleName"
     android:layout_height="wrap_content"
-    android:layout_width="wrap_content" />
+    android:layout_width="0dp"
+    android:gravity="start"
+    android:textColor="@color/white" />
 <TextView
     android:layout_weight="1"
     android:id="@+id/moduleYear"
     android:layout_height="wrap_content"
-    android:layout_width="wrap_content" />
+    android:layout_width="0dp"
+    android:gravity="end"
+    android:textColor="@color/white" />
 <TextView
     android:layout_weight="1"
     android:id="@+id/moduleDuration"
     android:layout_height="wrap_content"
-    android:layout_width="wrap_content" />
+    android:layout_width="0dp"
+    android:gravity="end"
+    android:textColor="@color/white" />
 <TextView
     android:layout_weight="1"
     android:id="@+id/moduleCurrent"
     android:layout_height="wrap_content"
-    android:layout_width="wrap_content" />
+    android:layout_width="0dp"
+    android:gravity="end"
+    android:textColor="@color/white" />
 </LinearLayout>
-</androidx.cardview.widget.CardView>
+</TableRow>
+</TableLayout>

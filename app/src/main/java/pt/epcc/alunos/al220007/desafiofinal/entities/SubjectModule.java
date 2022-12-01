@@ -1,7 +1,5 @@
 package pt.epcc.alunos.al220007.desafiofinal.entities;
 
-import android.util.Log;
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Locale;
@@ -90,8 +88,35 @@ public final class SubjectModule implements Serializable {
 		return duration;
 	}
 
+	public String getDurationString() {
+		String time = "";
+
+		if (Math.floor(duration / 60) != 0) {
+			time = ((int) Math.floor(duration / 60)) + "h";
+		}
+
+		if (duration % 60 != 0) {
+			time += (duration % 60) + "min";
+		}
+		return time;
+	}
+
 	public int getCurrentDuration() {
 		return currentDuration;
+	}
+
+	public String getCurrentDurationString() {
+		String time = "";
+
+		if (Math.floor(currentDuration / 60) != 0) {
+			time = ((int) Math.floor(currentDuration / 60)) + "h";
+		}
+
+		if ((currentDuration % 60) != 0) {
+			time += (currentDuration % 60) + "min";
+		}
+
+		return time;
 	}
 
 	private void setId(int id) {
