@@ -24,6 +24,11 @@ public class TeacherViewHolder extends HumanViewHolder<Teacher, TeacherDetailsAc
 	}
 
 	@Override
+	protected int miniExtraID() {
+		return R.layout.teacher_extra_tiny;
+	}
+
+	@Override
 	protected Class<TeacherDetailsActivity> aClass() {
 		return TeacherDetailsActivity.class;
 	}

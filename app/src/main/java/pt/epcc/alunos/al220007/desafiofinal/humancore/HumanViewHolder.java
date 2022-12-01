@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,11 +22,11 @@ abstract public class HumanViewHolder<E extends Human, T extends HumanDetailsAct
 	protected ImageView profilePic;
 	protected TextView name;
 
+	protected View extra;
+
 	protected HumanActivity context;
 
 	protected E human;
-
-	protected boolean isInit;
 
 	protected HumanViewHolder(@NonNull View itemView, HumanActivity context) {
 		super(itemView);
@@ -33,14 +34,20 @@ abstract public class HumanViewHolder<E extends Human, T extends HumanDetailsAct
 
 		itemView.setOnClickListener(this);
 
-		this.profilePic = itemView.findViewById(R.id.profile_pic);
-		this.name = itemView.findViewById(R.id.name);
+		profilePic = itemView.findViewById(R.id.profile_pic);
+		name = itemView.findViewById(R.id.name);
 
-		this.view = itemView;
-		this.isInit = false;
+		ViewStub include = itemView.findViewById(R.id.id_extra);
+		include.setLayoutResource(miniExtraID());
+
+		extra = include.inflate();
+
+		view = itemView;
 	}
 
 	abstract protected int extraID();
+
+	abstract protected int miniExtraID();
 
 	final public int profilePic() {
 		return this.human.getImage();
@@ -52,7 +59,7 @@ abstract public class HumanViewHolder<E extends Human, T extends HumanDetailsAct
 
 	@Override
 	public final void onClick(View v) {
-		if (v != this.view) {
+		if (v != view) {
 			return;
 		}
 

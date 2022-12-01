@@ -16,4 +16,8 @@
                 android:id="@+id/name"
                 android:padding="7dp" />
     </androidx.cardview.widget.CardView>
+    <ViewStub
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/id_extra" />
 </LinearLayout>

@@ -53,6 +53,8 @@ abstract public class HumanAdapter<E extends Human, T extends HumanViewHolder<E,
 		if (holder.name != null) {
 			holder.name.setText(human.getName());
 		}
+
+		manageTinyExtra(holder.extra, human);
 	}
 
 	@Override
@@ -77,6 +79,8 @@ abstract public class HumanAdapter<E extends Human, T extends HumanViewHolder<E,
 
 		return 0;
 	}
+
+	abstract protected void manageTinyExtra(View view, E human);
 
 	abstract protected LayoutManagerType getDefaultLayout();
 

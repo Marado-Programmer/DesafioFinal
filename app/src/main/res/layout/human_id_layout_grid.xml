@@ -30,6 +30,10 @@
                 android:textColor="@color/white"
                 android:gravity="center"
                 android:padding="7dp" />
+            <ViewStub
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/id_extra" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

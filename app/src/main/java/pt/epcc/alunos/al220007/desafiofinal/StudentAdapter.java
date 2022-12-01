@@ -14,6 +14,11 @@ public class StudentAdapter extends HumanAdapter<Student, StudentViewHolder, Stu
 	}
 
 	@Override
+	protected void manageTinyExtra(View view, Student human) {
+
+	}
+
+	@Override
 	protected LayoutManagerType getDefaultLayout() {
 		return LayoutManagerType.LINEAR;
 	}

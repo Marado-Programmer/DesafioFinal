@@ -1,6 +1,5 @@
 package pt.epcc.alunos.al220007.desafiofinal;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -24,6 +23,11 @@ public class StudentViewHolder extends HumanViewHolder<Student, StudentDetailsAc
 	}
 
 	@Override
+	protected int miniExtraID() {
+		return R.layout.student_extra_tiny;
+	}
+
+	@Override
 	protected Class<StudentDetailsActivity> aClass() {
 		return StudentDetailsActivity.class;
 	}
@@ -32,8 +36,7 @@ public class StudentViewHolder extends HumanViewHolder<Student, StudentDetailsAc
 	public void createDetails(View view, Bundle bundle) {
 		ListView hobbies = view.findViewById(R.id.studentHobbies);
 		hobbies.setAdapter(
-			new ArrayAdapter<>(
-				(Context) context,
+			new ArrayAdapter<>(context,
 				R.layout.simple_list_item,
 				human.getHobbies().stream().map(Hobby::getName).toArray()
 			)
