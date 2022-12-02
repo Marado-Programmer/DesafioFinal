@@ -1,6 +1,7 @@
 package pt.epcc.alunos.al220007.desafiofinal.humancore;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +14,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import pt.epcc.alunos.al220007.desafiofinal.R;
-import pt.epcc.alunos.al220007.desafiofinal.entities.Bundable;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 
-public class HumanDetailsFragment<E extends Human> extends Fragment {
+public class HumanDetailsFragment extends Fragment {
 	protected ViewStub include;
 
 	protected ImageView profilePic;
@@ -64,19 +64,24 @@ public class HumanDetailsFragment<E extends Human> extends Fragment {
 
 	@Override
 	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-		super.onViewCreated(view, savedInstanceState);
-
 		if (manager == null) {
 			return;
 		}
 
-		Bundle args = getArguments().getBundle("human");
+		Bundle args = getArguments();
+
+		if (args != null) {
+			args = args.getBundle("human");
+		}
 
 		if (args == null) {
 			return;
 		}
 
 		profilePic = view.findViewById(R.id.profile_pic);
+
+		Log.d("MANAGER", "MANAGER:\t" + manager);
+
 		profilePic.setImageResource(args.getInt(Human.IMAGE_KEY, 0));
 
 		name = view.findViewById(R.id.name);

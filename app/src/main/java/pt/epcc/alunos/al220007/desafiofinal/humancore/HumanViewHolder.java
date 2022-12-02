@@ -77,7 +77,7 @@ abstract public class HumanViewHolder<E extends Human, T extends HumanDetailsAct
 			== Configuration.ORIENTATION_LANDSCAPE
 		) {
 
-			HumanDetailsFragment<E> fragment = new HumanDetailsFragment<>(this, bundleFragment);
+			HumanDetailsFragment fragment = new HumanDetailsFragment(this, bundleFragment);
 
 			context.getSupportFragmentManager().beginTransaction()
 				.setReorderingAllowed(true)

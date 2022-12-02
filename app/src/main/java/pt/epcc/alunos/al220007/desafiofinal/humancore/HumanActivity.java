@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -32,6 +34,7 @@ abstract public class HumanActivity<
 
 		last = getIntent().getExtras();
 
+
 		if (last == null) {
 			last = savedInstanceState;
 		}
@@ -39,7 +42,7 @@ abstract public class HumanActivity<
 		if (last != null) {
 			if (
 				this.getResources().getConfiguration().orientation
-					== Configuration.ORIENTATION_LANDSCAPE
+					== Configuration.ORIENTATION_LANDSCAPE && savedInstanceState == null
 			) {
 				Bundle bundleFragment = new Bundle();
 
@@ -47,14 +50,18 @@ abstract public class HumanActivity<
 				bundleFragment.putInt("extra", last.getInt("extra", 0));
 				bundleFragment.putBundle("human", last.getBundle("human"));
 
-				HumanDetailsFragment<E> fragment = new HumanDetailsFragment<>(this, bundleFragment);
+				HumanDetailsFragment fragment = new HumanDetailsFragment(this, bundleFragment);
 
-				getSupportFragmentManager().beginTransaction()
-					.setReorderingAllowed(true)
-					.replace(
-						R.id.details,
-						fragment
-					).commit();
+				FragmentManager fragmentManager = getSupportFragmentManager();
+				FragmentTransaction transaction = fragmentManager.beginTransaction();
+				transaction = transaction.setReorderingAllowed(true);
+				transaction.replace(R.id.details, fragment);
+				transaction.commit();
+
+				return;
+			}
+
+			if (last.getInt("last", RecyclerView.NO_POSITION) == RecyclerView.NO_POSITION) {
 				return;
 			}
 
@@ -68,9 +75,7 @@ abstract public class HumanActivity<
 			return;
 		}
 
-		if (savedInstanceState == null) {
-			transact();
-		}
+		transact();
 	}
 
 	@Override

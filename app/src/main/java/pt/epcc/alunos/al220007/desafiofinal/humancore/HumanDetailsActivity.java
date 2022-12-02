@@ -3,11 +3,11 @@ package pt.epcc.alunos.al220007.desafiofinal.humancore;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import pt.epcc.alunos.al220007.desafiofinal.R;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
@@ -27,10 +27,6 @@ public abstract class HumanDetailsActivity<E extends Human> extends AppCompatAct
 			extras = savedInstanceState;
 		}
 
-		Log.d("EXTRAS", String.valueOf(extras));
-		Log.d("NOT LS", String.valueOf(this.getResources().getConfiguration().orientation
-			!= Configuration.ORIENTATION_LANDSCAPE));
-
 		if (
 			this.getResources().getConfiguration().orientation
 				!= Configuration.ORIENTATION_LANDSCAPE
@@ -49,7 +45,7 @@ public abstract class HumanDetailsActivity<E extends Human> extends AppCompatAct
 
 		Intent intent = new Intent(HumanDetailsActivity.this, aClass());
 
-		intent.putExtra("id", extras.getLong("id", 0));
+		intent.putExtra("id", extras.getLong("id", RecyclerView.NO_POSITION));
 		intent.putExtra("extra", extras.getInt("extra"));
 		intent.putExtra("human", extras.getBundle("human"));
 
