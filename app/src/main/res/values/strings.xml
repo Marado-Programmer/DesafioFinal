@@ -4,15 +4,8 @@
     <string name="professores">Professores</string>
     <string name="alunos">Alunos</string>
     <string name="profile_picture">Profile picture</string>
-    <string name="title_activity_header">HeaderActivity</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="contacts">Contacts:</string>
     <string name="name">Associacao de Ensino Cristovao Colombo</string>
     <string name="street">Avenida do Infante n.o 6</string>
@@ -26,4 +19,16 @@
     <string name="hobbies">Hobbies:</string>
     <string name="modules">Modules</string>
     <string name="visit_web_page">Visit Web Page</string>
+    <string name="madeira_logos">Madeira logos</string>
+    <string name="eco_escolas">eco escolas</string>
+    <string name="visit_website">Visit Website</string>
+    <string name="schedule">Schedule:</string>
+    <string name="week_days">Week days:</string>
+    <string name="_9am_to_12pm_and_2pm_to_5pm">9am to 12pm and 2pm to 5pm</string>
+    <string name="saturday">Saturday:</string>
+    <string name="_10am_to_12pm">10am to 12pm</string>
+    <string name="name_txt">name</string>
+    <string name="year">year</string>
+    <string name="duration">duration</string>
+    <string name="current">current</string>
 </resources>

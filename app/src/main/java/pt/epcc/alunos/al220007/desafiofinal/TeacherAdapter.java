@@ -98,7 +98,7 @@ public class TeacherAdapter extends Adapter<Teacher, TeacherViewHolder> {
 		subject7.addMinutes(50);
 
 		Teacher teacher0 = new Teacher(
-			R.drawable.ic_launcher_foreground,
+			R.drawable.grid,
 			"Augusto",
 			"Bambi",
 			AcademicLevel.BACHELOR
@@ -123,7 +123,7 @@ public class TeacherAdapter extends Adapter<Teacher, TeacherViewHolder> {
 		teacher2.addSubjectModule(subject2);
 		teacher2.addSubjectModule(subject5);
 		Teacher teacher3 = new Teacher(
-			R.drawable.ic_launcher_foreground,
+			R.drawable.linear,
 			"Joao",
 			"Snoopy",
 			AcademicLevel.DOCTOR

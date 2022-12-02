@@ -3,8 +3,7 @@
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:id="@+id/id"
-    android:layout_weight="1">
+        android:layout_weight="1">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -25,8 +24,7 @@
                 android:textSize="@dimen/h1"
                 android:textColor="@color/white"
                 android:id="@+id/name"
-                android:layout_toEndOf="@+id/profile_pic"
-                android:layout_toRightOf="@+id/profile_pic" />
+                android:layout_toEndOf="@+id/profile_pic" />
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="16dp"

@@ -17,12 +17,14 @@ import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.DetailsActivity
 import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 
 public abstract class ViewHolder<E extends Human, T extends DetailsActivity<E>> extends RecyclerView.ViewHolder implements View.OnClickListener, DetailsManager {
-	protected ImageView profilePic;
-	protected TextView name;
+	public static final boolean RECYCLABLE = false;
 
-	protected View extra;
+	protected final ImageView profilePic;
+	protected final TextView name;
 
-	protected HumanActivity<E, ? extends Adapter<E, ? extends ViewHolder<E, T>>> context;
+	protected final View extra;
+
+	protected final HumanActivity<E, ? extends Adapter<E, ? extends ViewHolder<E, T>>> context;
 
 	protected E human;
 
@@ -32,7 +34,7 @@ public abstract class ViewHolder<E extends Human, T extends DetailsActivity<E>> 
 	) {
 		super(itemView);
 
-		setIsRecyclable(false);
+		setIsRecyclable(RECYCLABLE);
 
 		context = ctx;
 
@@ -81,14 +83,6 @@ public abstract class ViewHolder<E extends Human, T extends DetailsActivity<E>> 
 	abstract protected int extraID();
 
 	abstract protected int miniExtraID();
-
-//	final public int profilePic() {
-//		return this.human.getImage();
-//	}
-//
-//	final public String name() {
-//		return this.human.getName();
-//	}
 
 	protected Intent putExtras(Intent intent) {
 		intent.putExtra(DetailsFragment.EXTRA_KEY, extraID());

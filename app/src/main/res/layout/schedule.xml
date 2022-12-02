@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:textColor="@color/white"
-    android:text="Schedule:"
+    android:text="@string/schedule"
     android:textStyle="bold"
     android:id="@+id/schedule_caption" />
     <TableLayout
@@ -17,12 +17,12 @@
         android:layout_below="@+id/schedule_caption">
         <TableRow>
             <TextView
-                android:text="Week days:"
+                android:text="@string/week_days"
                 android:textColor="@color/white"
                 android:gravity="start"
                 android:layout_weight="1" />
             <TextView
-                android:text="9am to 12pm and 2pm to 5pm"
+                android:text="@string/_9am_to_12pm_and_2pm_to_5pm"
                 android:textColor="@color/white"
                 android:gravity="end"
                 android:layout_weight="1" />
@@ -30,12 +30,12 @@
 
         <TableRow>
             <TextView
-                android:text="Saturday:"
+                android:text="@string/saturday"
                 android:textColor="@color/white"
                 android:gravity="start"
                 android:layout_weight="1" />
             <TextView
-                android:text="10am to 12pm"
+                android:text="@string/_10am_to_12pm"
                 android:textColor="@color/white"
                 android:gravity="end"
                 android:layout_weight="1" />

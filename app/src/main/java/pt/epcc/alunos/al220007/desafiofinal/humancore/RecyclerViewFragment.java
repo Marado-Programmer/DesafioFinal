@@ -104,7 +104,9 @@ public final class RecyclerViewFragment<
 		outState.putInt(POS_KEY, pos);
 	}
 
+	@SuppressWarnings("unchecked")
 	private void prepareForList() {
+		//noinspection unchecked
 		context = (HumanActivity<E, T>) getActivity();
 
 		assert context != null;

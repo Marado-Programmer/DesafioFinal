@@ -1,5 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="EntryPointsManager">
+    <entry_points version="2.0">
+      <entry_point TYPE="field" FQNAME="pt.epcc.alunos.al220007.desafiofinal.humancore.DetailsFragment id" />
+      <entry_point TYPE="field" FQNAME="pt.epcc.alunos.al220007.desafiofinal.entities.Subject ADVANCED_PROGRAMMING" />
+      <entry_point TYPE="field" FQNAME="pt.epcc.alunos.al220007.desafiofinal.entities.Subject COMPUTER_ARCHITECTURE" />
+      <entry_point TYPE="field" FQNAME="pt.epcc.alunos.al220007.desafiofinal.entities.Subject DB" />
+      <entry_point TYPE="field" FQNAME="pt.epcc.alunos.al220007.desafiofinal.entities.Subject INTRO_TO_PROGRAMMING" />
+      <entry_point TYPE="field" FQNAME="pt.epcc.alunos.al220007.desafiofinal.entities.Subject OS" />
+      <entry_point TYPE="field" FQNAME="pt.epcc.alunos.al220007.desafiofinal.entities.Subject PHYSICAL_ED" />
+      <entry_point TYPE="field" FQNAME="pt.epcc.alunos.al220007.desafiofinal.entities.Subject TIC" />
+    </entry_points>
+    <pattern value="pt.epcc.alunos.al220007.desafiofinal.humancore.DetailsFragment" />
+    <pattern value="pt.epcc.alunos.al220007.desafiofinal.humancore.activities.Activity" />
+    <pattern value="pt.epcc.alunos.al220007.desafiofinal.ExampleUnitTest" method="addition_isCorrect" />
+    <pattern value="pt.epcc.alunos.al220007.desafiofinal.humancore.activities.DetailsActivity" />
+    <pattern value="pt.epcc.alunos.al220007.desafiofinal.humancore.DetailsFragment" method="DetailsFragment" />
+    <pattern value="pt.epcc.alunos.al220007.desafiofinal.ExampleInstrumentedTest" />
+    <pattern value="pt.epcc.alunos.al220007.desafiofinal.ExampleUnitTest" />
+    <pattern value="pt.epcc.alunos.al220007.desafiofinal.entities.SubjectModule" method="getCompleted" />
+    <pattern value="pt.epcc.alunos.al220007.desafiofinal.entities.SubjectModule" method="getCurrentDuration" />
+    <pattern value="pt.epcc.alunos.al220007.desafiofinal.entities.SubjectModule" method="getDuration" />
+    <pattern value="pt.epcc.alunos.al220007.desafiofinal.entities.Teacher" method="getModules" />
+    <pattern value="pt.epcc.alunos.al220007.desafiofinal.entities.SubjectModule" method="getSubject" />
+    <pattern value="pt.epcc.alunos.al220007.desafiofinal.HeaderActivity" />
+    <pattern value="pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity" />
+    <pattern value="pt.epcc.alunos.al220007.desafiofinal.MainActivity" />
+    <pattern value="pt.epcc.alunos.al220007.desafiofinal.humancore.RecyclerViewFragment" />
+    <pattern value="pt.epcc.alunos.al220007.desafiofinal.StudentActivity" />
+    <pattern value="pt.epcc.alunos.al220007.desafiofinal.StudentDetailsActivity" />
+    <pattern value="pt.epcc.alunos.al220007.desafiofinal.TeacherActivity" />
+    <pattern value="pt.epcc.alunos.al220007.desafiofinal.TeacherDetailsActivity" />
+    <pattern value="pt.epcc.alunos.al220007.desafiofinal.VisitActivity" />
+    <pattern value="pt.epcc.alunos.al220007.desafiofinal.entities.Subject" />
+    <pattern value="pt.epcc.alunos.al220007.desafiofinal.entities.SubjectModule" />
+    <pattern value="pt.epcc.alunos.al220007.desafiofinal.entities.Teacher" />
+    <pattern value="pt.epcc.alunos.al220007.desafiofinal.ExampleInstrumentedTest" method="useAppContext" />
+  </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />

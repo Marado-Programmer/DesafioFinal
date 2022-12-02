@@ -8,10 +8,4 @@
         <!-- Customize your theme here. -->
         <item name="android:background">@color/gray</item>
     </style>
-    <style name="Theme.DesafioFinal.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-    <style name="Theme.DesafioFinal.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-    <style name="Theme.DesafioFinal.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

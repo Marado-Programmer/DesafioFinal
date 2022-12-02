@@ -23,9 +23,9 @@ abstract public class Adapter<E extends Human, T extends ViewHolder<E, ? extends
 	protected static final int LINEAR_LAYOUT = R.layout.human_id_layout_linear;
 	protected static final int GRID_LAYOUT = R.layout.human_id_layout_grid;
 
-	protected List<E> list;
+	protected final List<E> list;
 
-	protected Context context;
+	protected final Context context;
 	protected LayoutManagerType layoutManagerType;
 
 	public Adapter(Context context) {
@@ -33,12 +33,14 @@ abstract public class Adapter<E extends Human, T extends ViewHolder<E, ? extends
 		list = generateList();
 	}
 
+	@SuppressWarnings("unchecked")
 	@NonNull
 	@Override
 	public T onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 		View view = LayoutInflater.from(parent.getContext())
 			.inflate(choseLayout(), parent, false);
 
+		//noinspection unchecked
 		return createViewHolder(view, (HumanActivity<E, ? extends Adapter<E, T>>) context);
 	}
 
@@ -71,8 +73,9 @@ abstract public class Adapter<E extends Human, T extends ViewHolder<E, ? extends
 			type = getDefaultLayout();
 		}
 
-		// WORKAROUND
-		//type = getDefaultLayout();
+		if (ViewHolder.RECYCLABLE) {
+			type = getDefaultLayout();
+		}
 
 		switch (type) {
 			case GRID: return GRID_LAYOUT;
