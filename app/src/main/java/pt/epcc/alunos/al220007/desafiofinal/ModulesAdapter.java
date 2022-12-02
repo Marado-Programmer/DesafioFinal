@@ -43,24 +43,24 @@ public class ModulesAdapter extends RecyclerView.Adapter<ModulesAdapter.ViewHold
 	}
 
 	public static class ViewHolder extends RecyclerView.ViewHolder {
-		private final View view;
-
-		private TextView name, year, duration, curDuration;
+		private final TextView name;
+		private final TextView year;
+		private final TextView duration;
+		private final TextView curDuration;
 
 		public ViewHolder(@NonNull View itemView) {
 			super(itemView);
 
-			view = itemView;
+			name = itemView.findViewById(R.id.moduleName);
+			year = itemView.findViewById(R.id.moduleYear);
+			duration = itemView.findViewById(R.id.moduleDuration);
+			curDuration = itemView.findViewById(R.id.moduleCurrent);
 		}
 
 		public void setModule(SubjectModule module) {
-			name = view.findViewById(R.id.moduleName);
 			name.setText(module.getName());
-			year = view.findViewById(R.id.moduleYear);
 			year.setText(String.valueOf(module.getYear()));
-			duration = view.findViewById(R.id.moduleDuration);
 			duration.setText(module.getDurationString());
-			curDuration = view.findViewById(R.id.moduleCurrent);
 			curDuration.setText(module.getCurrentDurationString());
 		}
 	}

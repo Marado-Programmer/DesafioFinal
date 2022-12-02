@@ -9,13 +9,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import pt.epcc.alunos.al220007.desafiofinal.entities.Teacher;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.Adapter;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.ViewHolder;
 
 public class TeacherViewHolder extends ViewHolder<Teacher, TeacherDetailsActivity> {
-
-	protected TeacherViewHolder(@NonNull View itemView, HumanActivity context) {
-		super(itemView, context);
+	protected TeacherViewHolder(@NonNull View itemView, HumanActivity<Teacher, ? extends Adapter<Teacher, ? extends ViewHolder<Teacher, TeacherDetailsActivity>>> ctx) {
+		super(itemView, ctx);
 	}
 
 	@Override
@@ -36,9 +36,9 @@ public class TeacherViewHolder extends ViewHolder<Teacher, TeacherDetailsActivit
 	@Override
 	public void createDetails(View view, Bundle bundle) {
 		TextView school = view.findViewById(R.id.teacherSchool);
-		school.setText("School: " + human.getSchool());
+		school.setText(String.format("School: %s", human.getSchool()));
 		TextView academicLevel = view.findViewById(R.id.teacherAcademicLevel);
-		academicLevel.setText("Academic level: " + human.getAcademicLevel());
+		academicLevel.setText(String.format("Academic level: %s", human.getAcademicLevel()));
 
 		RecyclerView modulesList = view.findViewById(R.id.teacherModules);
 		modulesList.setLayoutManager(new LinearLayoutManager(context));

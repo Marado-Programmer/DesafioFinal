@@ -19,9 +19,9 @@ import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.DetailsActivity;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 
-public final class HumanRecyclerViewFragment<
+public final class RecyclerViewFragment<
 		E extends Human,
-		T extends Adapter<E, ? extends ViewHolder<E, ? extends DetailsActivity>, T>
+		T extends Adapter<E, ? extends ViewHolder<E, ? extends DetailsActivity<E>>>
 	> extends Fragment implements View.OnClickListener
 {
 	public static final String LAYOUT_MANAGER_KEY = "layoutManagerType";

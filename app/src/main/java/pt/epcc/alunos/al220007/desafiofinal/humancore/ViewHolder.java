@@ -16,17 +16,20 @@ import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.DetailsActivity;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 
-public abstract class ViewHolder<E extends Human, T extends DetailsActivity> extends RecyclerView.ViewHolder implements View.OnClickListener, DetailsManager {
+public abstract class ViewHolder<E extends Human, T extends DetailsActivity<E>> extends RecyclerView.ViewHolder implements View.OnClickListener, DetailsManager {
 	protected ImageView profilePic;
 	protected TextView name;
 
 	protected View extra;
 
-	protected HumanActivity context;
+	protected HumanActivity<E, ? extends Adapter<E, ? extends ViewHolder<E, T>>> context;
 
 	protected E human;
 
-	protected ViewHolder(@NonNull View itemView, HumanActivity ctx) {
+	protected ViewHolder(
+		@NonNull View itemView,
+		HumanActivity<E, ? extends Adapter<E, ? extends ViewHolder<E, T>>> ctx
+	) {
 		super(itemView);
 
 		setIsRecyclable(false);
@@ -52,7 +55,7 @@ public abstract class ViewHolder<E extends Human, T extends DetailsActivity> ext
 
 		Bundle bundleFragment = putExtras(new Bundle());
 
-		Adapter adapter = (Adapter) getBindingAdapter();
+		//Adapter<E, ? extends ViewHolder<E, ? extends DetailsActivity<E>>> adapter = (Adapter<E, ? extends ViewHolder<E, ? extends DetailsActivity<E>>>) getBindingAdapter();
 
 		context.setLastState(bundleFragment);
 
@@ -79,13 +82,13 @@ public abstract class ViewHolder<E extends Human, T extends DetailsActivity> ext
 
 	abstract protected int miniExtraID();
 
-	final public int profilePic() {
-		return this.human.getImage();
-	}
-
-	final public String name() {
-		return this.human.getName();
-	}
+//	final public int profilePic() {
+//		return this.human.getImage();
+//	}
+//
+//	final public String name() {
+//		return this.human.getName();
+//	}
 
 	protected Intent putExtras(Intent intent) {
 		intent.putExtra(DetailsFragment.EXTRA_KEY, extraID());

@@ -1,7 +1,6 @@
 package pt.epcc.alunos.al220007.desafiofinal.humancore;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
