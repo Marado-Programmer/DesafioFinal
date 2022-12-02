@@ -5,12 +5,15 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
+
 import pt.epcc.alunos.al220007.desafiofinal.entities.Student;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.ViewHolder;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.Adapter;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.DetailsActivity;
 
-public class StudentDetailsActivity extends DetailsActivity {
+public class StudentDetailsActivity extends DetailsActivity<Student> {
 	@Override
 	public void createDetails(View view, Bundle bundle) {
 		ListView hobbies = view.findViewById(R.id.studentHobbies);
@@ -23,8 +26,9 @@ public class StudentDetailsActivity extends DetailsActivity {
 		);
 	}
 
+	@NonNull
 	@Override
-	protected Class<? extends HumanActivity<Student, ? extends Adapter>> aClass() {
+	protected Class<? extends HumanActivity<Student, ? extends Adapter<Student, ? extends ViewHolder<Student, ? extends DetailsActivity<Student>>>>> nextDetailsManager() {
 		return StudentActivity.class;
 	}
 }

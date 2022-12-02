@@ -12,6 +12,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.Adapter;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.ViewHolder;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.DetailsActivity;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -60,19 +64,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 			this.switchActivity(HeaderActivity.class);
 		}
 
-		Class<? extends HumanActivity> activityClass = this.getClass(v);
+		Class<? extends HumanActivity<
+			? extends Human,
+			? extends Adapter<
+				? extends Human,
+				? extends ViewHolder<
+					? extends Human,
+					? extends DetailsActivity<? extends Human>
+					>
+				>
+			>> activityClass = this.getClass(v);
 
 		if (activityClass != null) {
 			this.switchActivity(activityClass);
 		}
 	}
 
-	private Class<? extends HumanActivity> getClass(View v) {
+	private <E extends Human> Class<? extends HumanActivity<E, ? extends Adapter<E, ? extends ViewHolder<E, ? extends DetailsActivity<E>>>>> getClass(View v) {
 		if (v == this.teacherBtn) {
-			return  TeacherActivity.class;
+			return (Class<? extends HumanActivity<E, ? extends Adapter<E, ? extends ViewHolder<E, ? extends DetailsActivity<E>>>>>) TeacherActivity.class;
 		}
 		if (v == this.studentBtn) {
-			return StudentActivity.class;
+			return (Class<? extends HumanActivity<E, ? extends Adapter<E, ? extends ViewHolder<E, ? extends DetailsActivity<E>>>>>) StudentActivity.class;
 		}
 
 		return null;

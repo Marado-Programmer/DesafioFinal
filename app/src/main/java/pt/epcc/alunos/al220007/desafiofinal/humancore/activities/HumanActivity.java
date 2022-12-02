@@ -4,32 +4,30 @@ import android.os.Bundle;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
-
 import pt.epcc.alunos.al220007.desafiofinal.LayoutManagerType;
 import pt.epcc.alunos.al220007.desafiofinal.R;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.Adapter;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.DetailsFragment;
-import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanAdapterCreator;
-import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanRecyclerViewFragment;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.AdapterCreator;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.RecyclerViewFragment;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.ViewHolder;
 
 abstract public class HumanActivity<
 		E extends Human,
-		T extends Adapter<E, ? extends ViewHolder<E, ? extends DetailsActivity<E>>, T>
-	> extends Activity<DetailsActivity<E>> implements HumanAdapterCreator<E, T>
+		T extends Adapter<E, ? extends ViewHolder<E, ? extends DetailsActivity<E>>>
+	> extends Activity<DetailsActivity<E>> implements AdapterCreator<E, T>
 {
 	private static final int LAYOUT = R.layout.activity_human_fragment;
 	private static final int FRAME_LAYOUT = R.id.fragment_frame;
 
 	@Override
-	protected int setLayout() {
+	protected final int setLayout() {
 		return LAYOUT;
 	}
 
 	@Override
-	protected void onContentViewSet() {
+	protected final void onContentViewSet() {
 		transact();
 	}
 
@@ -39,16 +37,16 @@ abstract public class HumanActivity<
 			.setReorderingAllowed(true)
 			.add(
 				FRAME_LAYOUT,
-				HumanRecyclerViewFragment.class,
+				RecyclerViewFragment.class,
 				createBundle()
 			).commit();
 	}
 
-	protected Bundle createBundle() {
+	protected final Bundle createBundle() {
 		Bundle bundle = new Bundle();
 
 		bundle.putInt(
-			HumanRecyclerViewFragment.LAYOUT_MANAGER_KEY,
+			RecyclerViewFragment.LAYOUT_MANAGER_KEY,
 			choseLayoutManager().id
 		);
 
@@ -64,16 +62,14 @@ abstract public class HumanActivity<
 		) : RecyclerView.NO_POSITION;
 	}
 
-	abstract protected LayoutManagerType choseLayoutManager();
-
 	@Override
-	protected void onLandscape() {
+	protected final void onLandscape() {
 		showDetails();
 	}
 
 
 	@Override
-	protected void onPortrait() {
+	protected final void onPortrait() {
 		if (getID() == RecyclerView.NO_POSITION) {
 			return;
 		}
@@ -81,5 +77,5 @@ abstract public class HumanActivity<
 		intentDetailsManager();
 	}
 
-	abstract public List<E> generateList();
+	abstract protected LayoutManagerType choseLayoutManager();
 }

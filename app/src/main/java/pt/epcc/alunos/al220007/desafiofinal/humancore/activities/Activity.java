@@ -90,8 +90,7 @@ abstract public class Activity<T extends DetailsManager> extends AppCompatActivi
 
 	protected abstract int setLayout();
 
-	protected void onContentViewSet() {
-	}
+	protected abstract void onContentViewSet();
 
 	protected abstract void onLandscape();
 
@@ -123,5 +122,5 @@ abstract public class Activity<T extends DetailsManager> extends AppCompatActivi
 	}
 
 	@NonNull
-	protected abstract Class<T> nextDetailsManager();
+	protected abstract Class<? extends T> nextDetailsManager();
 }

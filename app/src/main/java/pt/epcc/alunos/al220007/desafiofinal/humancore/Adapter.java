@@ -1,5 +1,6 @@
 package pt.epcc.alunos.al220007.desafiofinal.humancore;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,21 +16,21 @@ import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.DetailsActivity;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 
-abstract public class Adapter<E extends Human, T extends ViewHolder<E, ? extends DetailsActivity>, U extends Adapter<E, T, U>>
+abstract public class Adapter<E extends Human, T extends ViewHolder<E, ? extends DetailsActivity<E>>>
 		extends RecyclerView.Adapter<T>
-		implements HumanViewHolderCreator<E, T>
+		implements ViewHolderCreator<E, T>
 {
 	protected static final int LINEAR_LAYOUT = R.layout.human_id_layout_linear;
 	protected static final int GRID_LAYOUT = R.layout.human_id_layout_grid;
 
 	protected List<E> list;
 
-	protected HumanActivity<E, U> context;
+	protected Context context;
 	protected LayoutManagerType layoutManagerType;
 
-	public Adapter(HumanActivity<E, U> context) {
+	public Adapter(Context context) {
 		this.context = context;
-		list = context.generateList();
+		list = generateList();
 	}
 
 	@NonNull
@@ -38,7 +39,7 @@ abstract public class Adapter<E extends Human, T extends ViewHolder<E, ? extends
 		View view = LayoutInflater.from(parent.getContext())
 			.inflate(choseLayout(), parent, false);
 
-		return createViewHolder(view, context);
+		return createViewHolder(view, (HumanActivity<E, ? extends Adapter<E, T>>) context);
 	}
 
 	@Override
@@ -71,7 +72,7 @@ abstract public class Adapter<E extends Human, T extends ViewHolder<E, ? extends
 		}
 
 		// WORKAROUND
-		type = getDefaultLayout();
+		//type = getDefaultLayout();
 
 		switch (type) {
 			case GRID: return GRID_LAYOUT;
@@ -80,6 +81,8 @@ abstract public class Adapter<E extends Human, T extends ViewHolder<E, ? extends
 
 		return 0;
 	}
+
+	abstract public List<E> generateList();
 
 	abstract protected void manageTinyExtra(View view, E human);
 
