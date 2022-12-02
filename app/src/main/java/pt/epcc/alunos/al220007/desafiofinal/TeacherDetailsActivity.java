@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import pt.epcc.alunos.al220007.desafiofinal.entities.Teacher;
-import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanActivity;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.Adapter;
-import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanDetailsActivity;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.DetailsActivity;
 
-public class TeacherDetailsActivity extends HumanDetailsActivity<Teacher> {
+public class TeacherDetailsActivity extends DetailsActivity<Teacher> {
 	@Override
 	public void createDetails(View view, Bundle bundle) {
 		TextView school = view.findViewById(R.id.teacherSchool);

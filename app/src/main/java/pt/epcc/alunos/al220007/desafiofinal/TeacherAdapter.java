@@ -6,7 +6,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import pt.epcc.alunos.al220007.desafiofinal.entities.Teacher;
-import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanActivity;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.Adapter;
 
 public class TeacherAdapter extends Adapter<Teacher, TeacherViewHolder, TeacherAdapter> {

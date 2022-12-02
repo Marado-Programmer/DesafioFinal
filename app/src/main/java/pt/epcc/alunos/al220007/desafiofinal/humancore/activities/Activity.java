@@ -1,4 +1,4 @@
-package pt.epcc.alunos.al220007.desafiofinal.humancore;
+package pt.epcc.alunos.al220007.desafiofinal.humancore.activities;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -9,7 +9,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-abstract public class Activity extends AppCompatActivity {
+import pt.epcc.alunos.al220007.desafiofinal.humancore.DetailsFragment;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.DetailsManager;
+
+abstract public class Activity extends AppCompatActivity implements DetailsManager {
 	protected static final String ID_KEY = DetailsFragment.ID_KEY;
 	protected static final String EXTRA_KEY = DetailsFragment.EXTRA_KEY;
 	protected static final String HUMAN_KEY = DetailsFragment.HUMAN_KEY;
@@ -70,7 +73,7 @@ abstract public class Activity extends AppCompatActivity {
 			.getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
 	}
 
-	protected Bundle putExtras(Bundle bundle) {
+	protected final Bundle putExtras(Bundle bundle) {
 		bundle.putInt(ID_KEY, lastState.getInt(ID_KEY, RecyclerView.NO_POSITION));
 		bundle.putInt(EXTRA_KEY, lastState.getInt(EXTRA_KEY, 0));
 		bundle.putBundle(HUMAN_KEY, lastState.getBundle(HUMAN_KEY));
@@ -85,13 +88,27 @@ abstract public class Activity extends AppCompatActivity {
 
 	protected abstract int setLayout();
 
-	protected abstract void onContentViewSet();
+	protected void onContentViewSet() {
+	};
 
 	protected abstract void onLandscape();
 
 	protected abstract void onPortrait();
 
-	public void setLastState(Bundle lastState) {
+	public final void setLastState(Bundle lastState) {
 		this.lastState = lastState;
+	}
+
+	protected final void showDetails() {
+		getSupportFragmentManager().beginTransaction()
+			.setReorderingAllowed(true)
+			.replace(
+				DetailsFragment.DETAILS_ID,
+				new DetailsFragment(
+					this,
+					putExtras(new Bundle())
+				)
+			)
+			.commit();
 	}
 }

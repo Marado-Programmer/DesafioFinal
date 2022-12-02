@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanActivity;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 	private Button teacherBtn, studentBtn;

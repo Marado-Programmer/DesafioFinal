@@ -1,4 +1,4 @@
-package pt.epcc.alunos.al220007.desafiofinal.humancore;
+package pt.epcc.alunos.al220007.desafiofinal.humancore.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,11 +10,16 @@ import java.util.List;
 import pt.epcc.alunos.al220007.desafiofinal.LayoutManagerType;
 import pt.epcc.alunos.al220007.desafiofinal.R;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.Adapter;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.DetailsFragment;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanAdapterCreator;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanRecyclerViewFragment;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.ViewHolder;
 
 abstract public class HumanActivity<
 		E extends Human,
-		T extends Adapter<E, ? extends ViewHolder<E, ? extends HumanDetailsActivity<E>>, T>
-	> extends Activity implements HumanAdapterCreator<E, T>, DetailsManager
+		T extends Adapter<E, ? extends ViewHolder<E, ? extends DetailsActivity<E>>, T>
+	> extends Activity implements HumanAdapterCreator<E, T>
 {
 	private static final int LAYOUT = R.layout.activity_human_fragment;
 	private static final int FRAME_LAYOUT = R.id.fragment_frame;
@@ -67,18 +72,6 @@ abstract public class HumanActivity<
 		showDetails();
 	}
 
-	private void showDetails() {
-		getSupportFragmentManager().beginTransaction()
-			.setReorderingAllowed(true)
-			.replace(
-				DetailsFragment.DETAILS_ID,
-				new DetailsFragment(
-					this,
-					putExtras(new Bundle())
-				)
-			)
-			.commit();
-	}
 
 	@Override
 	protected void onPortrait() {
@@ -95,5 +88,5 @@ abstract public class HumanActivity<
 
 	abstract public List<E> generateList();
 
-	protected abstract Class<? extends HumanDetailsActivity<E>> aClass();
+	protected abstract Class<? extends DetailsActivity<E>> aClass();
 }

@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 
 import pt.epcc.alunos.al220007.desafiofinal.entities.Hobby;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Student;
-import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanActivity;
-import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanDetailsActivity;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.DetailsActivity;
 
 public class StudentActivity extends HumanActivity<Student, StudentAdapter> {
 	protected List<Hobby> hobbies;
@@ -27,7 +27,7 @@ public class StudentActivity extends HumanActivity<Student, StudentAdapter> {
 	}
 
 	@Override
-	protected Class<? extends HumanDetailsActivity<Student>> aClass() {
+	protected Class<? extends DetailsActivity<Student>> aClass() {
 		return StudentDetailsActivity.class;
 	}
 

@@ -16,8 +16,8 @@ import pt.epcc.alunos.al220007.desafiofinal.entities.SchoolYear;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Subject;
 import pt.epcc.alunos.al220007.desafiofinal.entities.SubjectModule;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Teacher;
-import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanActivity;
-import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanDetailsActivity;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.DetailsActivity;
 
 public class TeacherActivity extends HumanActivity<Teacher, TeacherAdapter> {
 	private static ArrayList<Teacher> list;
@@ -28,7 +28,7 @@ public class TeacherActivity extends HumanActivity<Teacher, TeacherAdapter> {
 	}
 
 	@Override
-	protected Class<? extends HumanDetailsActivity<Teacher>> aClass() {
+	protected Class<? extends DetailsActivity<Teacher>> aClass() {
 		return TeacherDetailsActivity.class;
 	}
 

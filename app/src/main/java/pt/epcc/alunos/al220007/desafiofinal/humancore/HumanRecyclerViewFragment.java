@@ -16,10 +16,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import pt.epcc.alunos.al220007.desafiofinal.LayoutManagerType;
 import pt.epcc.alunos.al220007.desafiofinal.R;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.DetailsActivity;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 
 public final class HumanRecyclerViewFragment<
 		E extends Human,
-		T extends Adapter<E, ? extends ViewHolder<E, ? extends HumanDetailsActivity<E>>, T>
+		T extends Adapter<E, ? extends ViewHolder<E, ? extends DetailsActivity<E>>, T>
 	> extends Fragment implements View.OnClickListener
 {
 	public static final String LAYOUT_MANAGER_KEY = "layoutManagerType";
