@@ -14,21 +14,23 @@ import pt.epcc.alunos.al220007.desafiofinal.entities.SchoolYear;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Subject;
 import pt.epcc.alunos.al220007.desafiofinal.entities.SubjectModule;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Teacher;
-import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.Adapter;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 
 public class TeacherAdapter extends Adapter<Teacher, TeacherViewHolder> {
+	protected static List<Teacher> teachers;
+
 	public TeacherAdapter(Context context) {
 		super(context);
 	}
 
 	@Override
 	public List<Teacher> generateList() {
-		if (list != null) {
-			return list;
+		if (teachers != null) {
+			return teachers;
 		}
 
-		list = new ArrayList<>();
+		teachers = new ArrayList<>();
 
 		SubjectModule subject0 = SubjectModule.createOrGetInstance(
 			10684,
@@ -128,12 +130,12 @@ public class TeacherAdapter extends Adapter<Teacher, TeacherViewHolder> {
 		);
 		teacher3.addSubjectModule(subject3);
 
-		list.add(teacher0);
-		list.add(teacher1);
-		list.add(teacher2);
-		list.add(teacher3);
+		teachers.add(teacher0);
+		teachers.add(teacher1);
+		teachers.add(teacher2);
+		teachers.add(teacher3);
 
-		return list;
+		return teachers;
 	}
 
 	@Override
