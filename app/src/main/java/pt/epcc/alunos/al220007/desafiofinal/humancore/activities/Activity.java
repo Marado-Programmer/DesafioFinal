@@ -1,5 +1,6 @@
 package pt.epcc.alunos.al220007.desafiofinal.humancore.activities;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.DetailsFragment;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.DetailsManager;
 
-abstract public class Activity extends AppCompatActivity implements DetailsManager {
+abstract public class Activity<T extends DetailsManager> extends AppCompatActivity implements DetailsManager {
 	protected static final String ID_KEY = DetailsFragment.ID_KEY;
 	protected static final String EXTRA_KEY = DetailsFragment.EXTRA_KEY;
 	protected static final String HUMAN_KEY = DetailsFragment.HUMAN_KEY;
@@ -34,6 +35,7 @@ abstract public class Activity extends AppCompatActivity implements DetailsManag
 
 				return;
 			}
+
 			if (isPortrait()) {
 				onPortrait();
 
@@ -89,7 +91,7 @@ abstract public class Activity extends AppCompatActivity implements DetailsManag
 	protected abstract int setLayout();
 
 	protected void onContentViewSet() {
-	};
+	}
 
 	protected abstract void onLandscape();
 
@@ -111,4 +113,15 @@ abstract public class Activity extends AppCompatActivity implements DetailsManag
 			)
 			.commit();
 	}
+
+	protected final void intentDetailsManager() {
+		Intent intent = new Intent(getApplicationContext(), nextDetailsManager());
+
+		intent.putExtras(getLastState());
+
+		startActivity(intent);
+	}
+
+	@NonNull
+	protected abstract Class<T> nextDetailsManager();
 }

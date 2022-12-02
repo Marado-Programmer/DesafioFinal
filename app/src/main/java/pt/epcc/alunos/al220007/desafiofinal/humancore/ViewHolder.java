@@ -16,7 +16,7 @@ import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.DetailsActivity;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 
-public abstract class ViewHolder<E extends Human, T extends DetailsActivity<E>> extends RecyclerView.ViewHolder implements View.OnClickListener, DetailsManager {
+public abstract class ViewHolder<E extends Human, T extends DetailsActivity> extends RecyclerView.ViewHolder implements View.OnClickListener, DetailsManager {
 	protected ImageView profilePic;
 	protected TextView name;
 

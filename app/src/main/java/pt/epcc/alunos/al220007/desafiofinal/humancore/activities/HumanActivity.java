@@ -1,6 +1,5 @@
 package pt.epcc.alunos.al220007.desafiofinal.humancore.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,7 +18,7 @@ import pt.epcc.alunos.al220007.desafiofinal.humancore.ViewHolder;
 abstract public class HumanActivity<
 		E extends Human,
 		T extends Adapter<E, ? extends ViewHolder<E, ? extends DetailsActivity<E>>, T>
-	> extends Activity implements HumanAdapterCreator<E, T>
+	> extends Activity<DetailsActivity<E>> implements HumanAdapterCreator<E, T>
 {
 	private static final int LAYOUT = R.layout.activity_human_fragment;
 	private static final int FRAME_LAYOUT = R.id.fragment_frame;
@@ -79,14 +78,8 @@ abstract public class HumanActivity<
 			return;
 		}
 
-		Intent intent = new Intent(HumanActivity.this, aClass());
-
-		intent.putExtras(getLastState());
-
-		startActivity(intent);
+		intentDetailsManager();
 	}
 
 	abstract public List<E> generateList();
-
-	protected abstract Class<? extends DetailsActivity<E>> aClass();
 }

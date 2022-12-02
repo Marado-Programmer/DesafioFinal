@@ -21,8 +21,10 @@ public class DetailsFragment extends Fragment {
 	public static final int DETAILS_ID = R.id.details;
 
 	public static final String ID_KEY = "id";
-	public static final String EXTRA_KEY = "xtra";
+	public static final String EXTRA_KEY = "extra";
 	public static final String HUMAN_KEY = "human";
+
+	private static final int LAYOUT = R.layout.human_id_layout;
 
 	protected ViewStub include;
 
@@ -66,7 +68,7 @@ public class DetailsFragment extends Fragment {
 		@Nullable ViewGroup container,
 		@Nullable Bundle savedInstanceState
 	) {
-		return inflater.inflate(R.layout.human_id_layout, container, false);
+		return inflater.inflate(LAYOUT, container, false);
 	}
 
 	@Override
@@ -86,9 +88,6 @@ public class DetailsFragment extends Fragment {
 		}
 
 		profilePic = view.findViewById(R.id.profile_pic);
-
-		Log.d("MANAGER", "MANAGER:\t" + manager);
-
 		profilePic.setImageResource(args.getInt(Human.IMAGE_KEY, 0));
 
 		name = view.findViewById(R.id.name);

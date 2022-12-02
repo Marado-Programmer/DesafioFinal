@@ -28,7 +28,7 @@ public class TeacherActivity extends HumanActivity<Teacher, TeacherAdapter> {
 	}
 
 	@Override
-	protected Class<? extends DetailsActivity<Teacher>> aClass() {
+	protected Class<? extends DetailsActivity> aClass() {
 		return TeacherDetailsActivity.class;
 	}
 
@@ -164,5 +164,11 @@ public class TeacherActivity extends HumanActivity<Teacher, TeacherAdapter> {
 		modulesList.setAdapter(
 			new ModulesAdapter(bundle.getIntegerArrayList(Teacher.MODULES_KEYS_KEY))
 		);
+	}
+
+	@NonNull
+	@Override
+	protected Class<DetailsActivity<Teacher>> nextDetailsManager() {
+		return TeacherDetailsActivity.class;
 	}
 }

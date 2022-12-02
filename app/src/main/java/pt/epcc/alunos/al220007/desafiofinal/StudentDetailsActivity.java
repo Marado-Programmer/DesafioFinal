@@ -10,7 +10,7 @@ import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.Adapter;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.DetailsActivity;
 
-public class StudentDetailsActivity extends DetailsActivity<Student> {
+public class StudentDetailsActivity extends DetailsActivity {
 	@Override
 	public void createDetails(View view, Bundle bundle) {
 		ListView hobbies = view.findViewById(R.id.studentHobbies);

@@ -10,6 +10,7 @@ import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.Adapter;
 
 public class TeacherAdapter extends Adapter<Teacher, TeacherViewHolder, TeacherAdapter> {
+
 	public TeacherAdapter(HumanActivity<Teacher, TeacherAdapter> context) {
 		super(context);
 	}

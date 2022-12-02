@@ -9,6 +9,7 @@ import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.Adapter;
 
 public class StudentAdapter extends Adapter<Student, StudentViewHolder, StudentAdapter> {
+
 	public StudentAdapter(HumanActivity<Student, StudentAdapter> context) {
 		super(context);
 	}

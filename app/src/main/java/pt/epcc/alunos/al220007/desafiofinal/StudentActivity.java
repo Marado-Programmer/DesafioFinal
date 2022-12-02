@@ -27,7 +27,7 @@ public class StudentActivity extends HumanActivity<Student, StudentAdapter> {
 	}
 
 	@Override
-	protected Class<? extends DetailsActivity<Student>> aClass() {
+	protected Class<? extends DetailsActivity> aClass() {
 		return StudentDetailsActivity.class;
 	}
 

@@ -15,7 +15,7 @@ import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.DetailsActivity;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 
-abstract public class Adapter<E extends Human, T extends ViewHolder<E, ? extends DetailsActivity<E>>, U extends Adapter<E, T, U>>
+abstract public class Adapter<E extends Human, T extends ViewHolder<E, ? extends DetailsActivity>, U extends Adapter<E, T, U>>
 		extends RecyclerView.Adapter<T>
 		implements HumanViewHolderCreator<E, T>
 {
