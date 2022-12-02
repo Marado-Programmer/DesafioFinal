@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Student extends Human {
 	public static final String HOBBIES_KEY = "hobbies";
@@ -31,13 +30,12 @@ public class Student extends Human {
 	public Bundle toBundle() {
 		Bundle bundle = getBaseBundle();
 
-		List<String> list = new ArrayList<>();
-		for (Hobby hobby : hobbies) {
-			String name = hobby.getName();
-			list.add(name);
-		}
-
-		bundle.putStringArrayList(HOBBIES_KEY, (ArrayList<String>) list);
+		bundle.putStringArray(
+			HOBBIES_KEY,
+			hobbies.stream()
+				.map(Hobby::getName)
+				.toArray(String[]::new)
+		);
 
 		return bundle;
 	}

@@ -7,10 +7,9 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import pt.epcc.alunos.al220007.desafiofinal.entities.Student;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Teacher;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanActivity;
-import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanAdapter;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.Adapter;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanDetailsActivity;
 
 public class TeacherDetailsActivity extends HumanDetailsActivity<Teacher> {
@@ -29,7 +28,7 @@ public class TeacherDetailsActivity extends HumanDetailsActivity<Teacher> {
 	}
 
 	@Override
-	protected Class<? extends HumanActivity<Teacher, ? extends HumanAdapter>> aClass() {
+	protected Class<? extends HumanActivity<Teacher, ? extends Adapter>> aClass() {
 		return TeacherActivity.class;
 	}
 }

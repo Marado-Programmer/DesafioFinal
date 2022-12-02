@@ -5,7 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView.Adapter;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
@@ -13,22 +13,22 @@ import pt.epcc.alunos.al220007.desafiofinal.LayoutManagerType;
 import pt.epcc.alunos.al220007.desafiofinal.R;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 
-abstract public class HumanAdapter<E extends Human, T extends HumanViewHolder<E, ? extends HumanDetailsActivity<E>>, U extends HumanAdapter<E, T, U>>
-		extends Adapter<T>
+abstract public class Adapter<E extends Human, T extends ViewHolder<E, ? extends HumanDetailsActivity<E>>, U extends Adapter<E, T, U>>
+		extends RecyclerView.Adapter<T>
 		implements HumanViewHolderCreator<E, T>
 {
 	protected static final int LINEAR_LAYOUT = R.layout.human_id_layout_linear;
 	protected static final int GRID_LAYOUT = R.layout.human_id_layout_grid;
 
 	protected List<E> list;
-	protected HumanActivity<E, ? extends HumanAdapter<E, T, U>> context;
+
+	protected HumanActivity<E, U> context;
 	protected LayoutManagerType layoutManagerType;
 
-	public HumanAdapter(HumanActivity<E, U> context) {
+	public Adapter(HumanActivity<E, U> context) {
 		this.context = context;
 		list = context.generateList();
 	}
-
 
 	@NonNull
 	@Override
@@ -44,7 +44,6 @@ abstract public class HumanAdapter<E extends Human, T extends HumanViewHolder<E,
 		E human = list.get(position);
 
 		holder.setHuman(human);
-		holder.setId(position);
 
 		if (holder.profilePic != null) {
 			holder.profilePic.setImageResource(human.getImage());

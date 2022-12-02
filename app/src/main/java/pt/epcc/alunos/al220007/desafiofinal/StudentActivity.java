@@ -1,6 +1,5 @@
 package pt.epcc.alunos.al220007.desafiofinal;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -106,7 +105,7 @@ public class StudentActivity extends HumanActivity<Student, StudentAdapter> {
 		ListView hobbies = view.findViewById(R.id.studentHobbies);
 		hobbies.setAdapter(
 			new ArrayAdapter<>(
-				(Context) this,
+				this,
 				R.layout.simple_list_item,
 				bundle.getStringArrayList(Student.HOBBIES_KEY)
 			)

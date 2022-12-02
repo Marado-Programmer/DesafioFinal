@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class Teacher extends Human {
 	public static final String SCHOOL_KEY = "school";
@@ -40,11 +39,9 @@ public class Teacher extends Human {
 		);
 
 		Integer[] modulesKeys = new Integer[this.modules.size()];
-		bundle.putIntegerArrayList(MODULES_KEYS_KEY, new ArrayList<>(Arrays.asList(
-			this.modules
-				.keySet()
-				.toArray(modulesKeys)
-		)));
+		bundle.putIntegerArrayList(MODULES_KEYS_KEY, new ArrayList<>(
+			Arrays.asList(this.modules.keySet().toArray(modulesKeys))
+		));
 
 		return bundle;
 	}

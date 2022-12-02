@@ -4,13 +4,12 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 
 import pt.epcc.alunos.al220007.desafiofinal.entities.Teacher;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanActivity;
-import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanAdapter;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.Adapter;
 
-public class TeacherAdapter extends HumanAdapter<Teacher, TeacherViewHolder, TeacherAdapter> {
+public class TeacherAdapter extends Adapter<Teacher, TeacherViewHolder, TeacherAdapter> {
 	public TeacherAdapter(HumanActivity<Teacher, TeacherAdapter> context) {
 		super(context);
 	}

@@ -3,21 +3,17 @@ package pt.epcc.alunos.al220007.desafiofinal.entities;
 import androidx.annotation.NonNull;
 
 public enum SchoolYear {
-	FIRST, SECOND, THIRD;
+	FIRST(1), SECOND(2), THIRD(3);
 
-	public int toInt() {
-		switch (this) {
-			case FIRST: return 1;
-			case SECOND: return 2;
-			case THIRD: return 3;
-		}
+	private final int year;
 
-		return 0;
+	SchoolYear(int i) {
+		year = i;
 	}
 
 	@NonNull
 	@Override
 	public String toString() {
-		return String.valueOf(toInt());
+		return String.valueOf(year);
 	}
 }

@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import pt.epcc.alunos.al220007.desafiofinal.R;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 
-
 public abstract class HumanDetailsActivity<E extends Human> extends AppCompatActivity implements DetailsManager {
 	protected Bundle extras;
 
@@ -31,13 +30,11 @@ public abstract class HumanDetailsActivity<E extends Human> extends AppCompatAct
 			this.getResources().getConfiguration().orientation
 				!= Configuration.ORIENTATION_LANDSCAPE
 		) {
-			HumanDetailsFragment fragment = new HumanDetailsFragment(this, extras);
-
 			this.getSupportFragmentManager().beginTransaction()
 				.setReorderingAllowed(true)
 				.replace(
 					R.id.details,
-					fragment
+					new DetailsFragment(this, extras)
 				).commit();
 
 			return;
@@ -45,9 +42,13 @@ public abstract class HumanDetailsActivity<E extends Human> extends AppCompatAct
 
 		Intent intent = new Intent(HumanDetailsActivity.this, aClass());
 
-		intent.putExtra("id", extras.getLong("id", RecyclerView.NO_POSITION));
-		intent.putExtra("extra", extras.getInt("extra"));
-		intent.putExtra("human", extras.getBundle("human"));
+		String id = DetailsFragment.ID_KEY;
+		String xtra = DetailsFragment.EXTRA_KEY;
+		String human = DetailsFragment.HUMAN_KEY;
+
+		intent.putExtra(id, extras.getInt(id, RecyclerView.NO_POSITION));
+		intent.putExtra(xtra, extras.getInt(xtra, RecyclerView.NO_POSITION));
+		intent.putExtra(human, extras.getBundle(human));
 
 		startActivity(intent);
 	}
@@ -56,10 +57,14 @@ public abstract class HumanDetailsActivity<E extends Human> extends AppCompatAct
 	protected void onSaveInstanceState(@NonNull Bundle outState) {
 		super.onSaveInstanceState(outState);
 
-		outState.putLong("id", extras.getLong("id"));
-		outState.putInt("extra", extras.getInt("extra", 0));
-		outState.putBundle("human", extras.getBundle("human"));
+		String id = DetailsFragment.ID_KEY;
+		String xtra = DetailsFragment.EXTRA_KEY;
+		String human = DetailsFragment.HUMAN_KEY;
+
+		outState.putInt(id, extras.getInt(id, RecyclerView.NO_POSITION));
+		outState.putInt(xtra, extras.getInt(xtra, RecyclerView.NO_POSITION));
+		outState.putBundle(human, extras.getBundle(human));
 	}
 
-	protected abstract Class<? extends HumanActivity<E, ? extends HumanAdapter>> aClass();
+	protected abstract Class<? extends HumanActivity<E, ? extends Adapter>> aClass();
 }

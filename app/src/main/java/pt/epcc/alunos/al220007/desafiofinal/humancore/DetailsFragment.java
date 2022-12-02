@@ -12,26 +12,33 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import pt.epcc.alunos.al220007.desafiofinal.R;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 
-public class HumanDetailsFragment extends Fragment {
+public class DetailsFragment extends Fragment {
+	public static final int DETAILS_ID = R.id.details;
+
+	public static final String ID_KEY = "id";
+	public static final String EXTRA_KEY = "xtra";
+	public static final String HUMAN_KEY = "human";
+
 	protected ViewStub include;
 
 	protected ImageView profilePic;
 	protected TextView name;
 
-	protected long id;
+	protected int id;
 	protected int extra;
 
 	protected DetailsManager manager;
 
-	public HumanDetailsFragment() {
+	public DetailsFragment() {
 		super();
 	}
 
-	public HumanDetailsFragment(DetailsManager manager, Bundle bundle) {
+	public DetailsFragment(DetailsManager manager, Bundle bundle) {
 		this();
 
 		this.manager = manager;
@@ -48,8 +55,8 @@ public class HumanDetailsFragment extends Fragment {
 			return;
 		}
 
-		id = args.getLong("id", 0);
-		extra = args.getInt("extra", 0);
+		id = args.getInt(ID_KEY, RecyclerView.NO_POSITION);
+		extra = args.getInt(EXTRA_KEY, 0);
 	}
 
 	@Nullable
@@ -71,7 +78,7 @@ public class HumanDetailsFragment extends Fragment {
 		Bundle args = getArguments();
 
 		if (args != null) {
-			args = args.getBundle("human");
+			args = args.getBundle(HUMAN_KEY);
 		}
 
 		if (args == null) {
