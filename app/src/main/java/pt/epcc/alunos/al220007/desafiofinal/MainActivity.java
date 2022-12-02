@@ -3,10 +3,13 @@ package pt.epcc.alunos.al220007.desafiofinal;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanActivity;
@@ -28,6 +31,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		this.getMenuInflater().inflate(R.menu.main, menu);
 
 		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+		if (item.getItemId() == R.id.visit) {
+			startActivity(new Intent(getApplicationContext(), VisitActivity.class));
+		} else if (item.getItemId() == R.id.settings) {
+			Toast.makeText(getApplicationContext(), "TODO", Toast.LENGTH_SHORT).show();
+		}
+
+		return false;
 	}
 
 	private void findViews() {

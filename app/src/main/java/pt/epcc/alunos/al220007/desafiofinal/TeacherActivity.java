@@ -20,7 +20,7 @@ import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanActivity;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.HumanDetailsActivity;
 
 public class TeacherActivity extends HumanActivity<Teacher, TeacherAdapter> {
-	ArrayList<Teacher> list;
+	private static ArrayList<Teacher> list;
 
 	@Override
 	protected LayoutManagerType choseLayoutManager() {
@@ -155,9 +155,9 @@ public class TeacherActivity extends HumanActivity<Teacher, TeacherAdapter> {
 	@Override
 	public void createDetails(View view, Bundle bundle) {
 		TextView school = view.findViewById(R.id.teacherSchool);
-		school.setText("School: " + bundle.getString(Teacher.SCHOOL_KEY));
+		school.setText(String.format("School: %s", bundle.getString(Teacher.SCHOOL_KEY)));
 		TextView academicLevel = view.findViewById(R.id.teacherAcademicLevel);
-		academicLevel.setText("Academic level: " + bundle.getString(Teacher.ACADEMIC_LEVEL_KEY));
+		academicLevel.setText(String.format("Academic level: %s", bundle.getString(Teacher.ACADEMIC_LEVEL_KEY)));
 
 		RecyclerView modulesList = view.findViewById(R.id.teacherModules);
 		modulesList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));

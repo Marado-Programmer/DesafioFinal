@@ -25,4 +25,5 @@
     <string name="layout_type">layout_type</string>
     <string name="hobbies">Hobbies:</string>
     <string name="modules">Modules</string>
+    <string name="visit_web_page">Visit Web Page</string>
 </resources>
