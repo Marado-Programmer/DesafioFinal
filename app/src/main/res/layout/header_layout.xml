@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/header">
-    <ImageView style="@style/HeaderLogo"
-        android:contentDescription="@string/epcc_logo"
-        android:id="@+id/logo" />
-    <TextView style="@style/HeaderTitle" />
+	android:id="@+id/header"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical">
+
+<ImageView
+	android:id="@+id/logo"
+	style="@style/HeaderLogo"
+	android:contentDescription="@string/epcc_logo" />
+
+<TextView style="@style/HeaderTitle" />
 </RelativeLayout>

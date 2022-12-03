@@ -36,6 +36,10 @@
     <pattern value="pt.epcc.alunos.al220007.desafiofinal.entities.SubjectModule" />
     <pattern value="pt.epcc.alunos.al220007.desafiofinal.entities.Teacher" />
     <pattern value="pt.epcc.alunos.al220007.desafiofinal.ExampleInstrumentedTest" method="useAppContext" />
+    <pattern value="pt.epcc.alunos.al220007.desafiofinal.entities.Teacher" method="getAcademicLevel" />
+    <pattern value="pt.epcc.alunos.al220007.desafiofinal.entities.Student" method="getHobbies" />
+    <pattern value="pt.epcc.alunos.al220007.desafiofinal.entities.Teacher" method="getSchool" />
+    <pattern value="pt.epcc.alunos.al220007.desafiofinal.entities.Student" />
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">

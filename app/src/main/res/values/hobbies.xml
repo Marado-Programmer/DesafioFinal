@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="hobbies" translatable="true">
-        <item>Archaeology</item>
-        <item>Architecture</item>
-        <item>Astronomy</item>
-        <item>Animation</item>
-        <item>Aerospace</item>
-        <item>Biology</item>
-        <item>Botany</item>
-        <item>Business</item>
-        <item>Chemistry</item>
-        <item>Entrepreneurship</item>
-        <item>Finance</item>
-        <item>Geography</item>
-        <item>History</item>
-        <item>Linguistics</item>
-        <item>Literature</item>
-        <item>Mathematics</item>
-        <item>Medical science</item>
-        <item>Microbiology</item>
-        <item>Mycology</item>
-        <item>Neuroscience</item>
-        <item>Philosophy</item>
-        <item>Physics</item>
-        <item>Psychology</item>
-        <item>Railway studies</item>
-        <item>Research</item>
-        <item>Science and technology studies</item>
-        <item>Social studies</item>
-        <item>Sociology</item>
-        <item>Sports science</item>
-        <item>Story writing</item>
-        <item>Life science</item>
-        <item>Teaching</item>
-        <item>Web design</item>
-        <item>Wikipedia editing</item>
-    </string-array>
+<string-array name="hobbies" translatable="true">
+<item>Archaeology</item>
+<item>Architecture</item>
+<item>Astronomy</item>
+<item>Animation</item>
+<item>Aerospace</item>
+<item>Biology</item>
+<item>Botany</item>
+<item>Business</item>
+<item>Chemistry</item>
+<item>Entrepreneurship</item>
+<item>Finance</item>
+<item>Geography</item>
+<item>History</item>
+<item>Linguistics</item>
+<item>Literature</item>
+<item>Mathematics</item>
+<item>Medical science</item>
+<item>Microbiology</item>
+<item>Mycology</item>
+<item>Neuroscience</item>
+<item>Philosophy</item>
+<item>Physics</item>
+<item>Psychology</item>
+<item>Railway studies</item>
+<item>Research</item>
+<item>Science and technology studies</item>
+<item>Social studies</item>
+<item>Sociology</item>
+<item>Sports science</item>
+<item>Story writing</item>
+<item>Life science</item>
+<item>Teaching</item>
+<item>Web design</item>
+<item>Wikipedia editing</item>
+</string-array>
 </resources>

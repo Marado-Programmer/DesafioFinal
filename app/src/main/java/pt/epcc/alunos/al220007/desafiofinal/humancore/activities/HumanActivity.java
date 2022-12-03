@@ -2,6 +2,8 @@ package pt.epcc.alunos.al220007.desafiofinal.humancore.activities;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -12,13 +14,15 @@ import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.Adapter;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.AdapterCreator;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.DetailsFragment;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.ExtraBuilder;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.RecyclerViewFragment;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.ViewHolder;
 
 abstract public class HumanActivity<
 	E extends Human,
-	T extends Adapter<E, ? extends ViewHolder<E, ? extends DetailsActivity<E>>>
-	> extends Activity<DetailsActivity<E>> implements AdapterCreator<E, T> {
+	T extends ExtraBuilder<E>,
+	S extends Adapter<E, ? extends ViewHolder<E, T, ? extends DetailsActivity<E, T>>, ? extends ExtraBuilder<E>>
+	> extends Activity<E, T, DetailsActivity<E, T>> implements AdapterCreator<E, T, S> {
 	private static final int LAYOUT = R.layout.activity_human_fragment;
 	private static final int FRAME_LAYOUT = R.id.fragment_frame;
 
@@ -28,7 +32,7 @@ abstract public class HumanActivity<
 	}
 
 	@Override
-	protected final void onContentViewSet() {
+	protected final void onContentViewSet(@Nullable Bundle savedInstanceState) {
 		transact();
 	}
 
@@ -46,9 +50,9 @@ abstract public class HumanActivity<
 	protected final Bundle createBundle() {
 		Bundle bundle = new Bundle();
 
-		bundle.putInt(
+		bundle.putSerializable(
 			RecyclerViewFragment.LAYOUT_MANAGER_KEY,
-			choseLayoutManager().id
+			choseLayoutManager()
 		);
 
 		bundle.putInt(DetailsFragment.ID_KEY, getID());
@@ -80,5 +84,6 @@ abstract public class HumanActivity<
 
 	abstract protected LayoutManagerType choseLayoutManager();
 
-	abstract public List<E> generateList();
+	@NonNull
+	abstract public List<E> genList();
 }

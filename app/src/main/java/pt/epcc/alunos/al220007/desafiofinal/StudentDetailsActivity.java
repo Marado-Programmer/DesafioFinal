@@ -1,34 +1,32 @@
 package pt.epcc.alunos.al220007.desafiofinal;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.view.ViewStub;
 
 import androidx.annotation.NonNull;
 
 import pt.epcc.alunos.al220007.desafiofinal.entities.Student;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.Adapter;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.ExtraBuilder;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.ViewHolder;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.DetailsActivity;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 
-public class StudentDetailsActivity extends DetailsActivity<Student> {
+public class StudentDetailsActivity extends DetailsActivity<Student, StudentExtraBuilder> {
 	@Override
-	public void createDetails(View view, Bundle bundle) {
-		ListView hobbies = view.findViewById(R.id.studentHobbies);
-		hobbies.setAdapter(
-			new ArrayAdapter<>(
-				this,
-				R.layout.simple_list_item,
-				bundle.getStringArrayList(Student.HOBBIES_KEY)
-			)
-		);
+	public void createDetails(StudentExtraBuilder builder) {
+		builder.start();
+		builder.setHobbies();
+	}
+
+	@Override
+	public StudentExtraBuilder createBuilder(@NonNull ViewStub view, Bundle human) {
+		return new StudentExtraBuilder(view, human);
 	}
 
 	@NonNull
 	@Override
-	protected Class<? extends HumanActivity<Student, ? extends Adapter<Student, ? extends ViewHolder<Student, ? extends DetailsActivity<Student>>>>> nextDetailsManager() {
+	public Class<? extends HumanActivity<Student, StudentExtraBuilder, ? extends Adapter<Student, ? extends ViewHolder<Student, StudentExtraBuilder, ? extends DetailsActivity<Student, StudentExtraBuilder>>, ? extends ExtraBuilder<Student>>>> nextDetailsManager() {
 		return StudentActivity.class;
 	}
 }

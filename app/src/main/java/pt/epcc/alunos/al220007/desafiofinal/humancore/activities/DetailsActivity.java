@@ -1,14 +1,17 @@
 package pt.epcc.alunos.al220007.desafiofinal.humancore.activities;
 
-import androidx.annotation.NonNull;
+import android.os.Bundle;
+
+import androidx.annotation.Nullable;
 
 import pt.epcc.alunos.al220007.desafiofinal.R;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.Adapter;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.ExtraBuilder;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.ViewHolder;
 
-public abstract class DetailsActivity<E extends Human>
-	extends Activity<HumanActivity<E, ? extends Adapter<E, ? extends ViewHolder<E, ? extends DetailsActivity<E>>>>> {
+public abstract class DetailsActivity<E extends Human, T extends ExtraBuilder<E>>
+	extends Activity<E, T, HumanActivity<E, T, ? extends Adapter<E, ? extends ViewHolder<E, T, ? extends DetailsActivity<E, T>>, ? extends ExtraBuilder<E>>>> {
 	private static final int LAYOUT = R.layout.activity_human_details_fragment;
 
 	@Override
@@ -17,7 +20,7 @@ public abstract class DetailsActivity<E extends Human>
 	}
 
 	@Override
-	protected final void onContentViewSet() {
+	protected final void onContentViewSet(@Nullable Bundle savedInstanceState) {
 	}
 
 	@Override
@@ -29,8 +32,4 @@ public abstract class DetailsActivity<E extends Human>
 	protected void onLandscape() {
 		intentDetailsManager();
 	}
-
-	@NonNull
-	@Override
-	protected abstract Class<? extends HumanActivity<E, ? extends Adapter<E, ? extends ViewHolder<E, ? extends DetailsActivity<E>>>>> nextDetailsManager();
 }

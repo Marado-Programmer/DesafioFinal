@@ -2,47 +2,53 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:shrinkColumns="*"
-    android:stretchColumns="*"
-    android:padding="1dp"
-    android:background="@drawable/border">
+	android:layout_height="wrap_content"
+	android:background="@drawable/border"
+	android:padding="1dp"
+	android:shrinkColumns="*"
+	android:stretchColumns="*">
+
 <TableRow
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
 	tools:ignore="UselessParent">
+
 <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
 	tools:ignore="UselessParent">
+
 <TextView
-    android:layout_weight="3"
-    android:id="@+id/moduleName"
-    android:layout_height="wrap_content"
-    android:layout_width="0dp"
-    android:gravity="start"
-    android:textColor="@color/white" />
+	android:id="@+id/moduleName"
+	android:layout_width="0dp"
+	android:layout_height="wrap_content"
+	android:layout_weight="3"
+	android:gravity="start"
+	android:textColor="@color/white" />
+
 <TextView
-    android:layout_weight="1"
-    android:id="@+id/moduleYear"
-    android:layout_height="wrap_content"
-    android:layout_width="0dp"
-    android:gravity="end"
-    android:textColor="@color/white" />
+	android:id="@+id/moduleYear"
+	android:layout_width="0dp"
+	android:layout_height="wrap_content"
+	android:layout_weight="1"
+	android:gravity="end"
+	android:textColor="@color/white" />
+
 <TextView
-    android:layout_weight="1"
-    android:id="@+id/moduleDuration"
-    android:layout_height="wrap_content"
-    android:layout_width="0dp"
-    android:gravity="end"
-    android:textColor="@color/white" />
+	android:id="@+id/moduleDuration"
+	android:layout_width="0dp"
+	android:layout_height="wrap_content"
+	android:layout_weight="1"
+	android:gravity="end"
+	android:textColor="@color/white" />
+
 <TextView
-    android:layout_weight="1"
-    android:id="@+id/moduleCurrent"
-    android:layout_height="wrap_content"
-    android:layout_width="0dp"
-    android:gravity="end"
-    android:textColor="@color/white" />
+	android:id="@+id/moduleCurrent"
+	android:layout_width="0dp"
+	android:layout_height="wrap_content"
+	android:layout_weight="1"
+	android:gravity="end"
+	android:textColor="@color/white" />
 </LinearLayout>
 </TableRow>
 </TableLayout>

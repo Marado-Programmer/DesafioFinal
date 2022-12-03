@@ -1,7 +1,6 @@
 package pt.epcc.alunos.al220007.desafiofinal;
 
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -9,25 +8,25 @@ import pt.epcc.alunos.al220007.desafiofinal.entities.Teacher;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.Adapter;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 
-public class TeacherAdapter extends Adapter<Teacher, TeacherViewHolder> {
-	public TeacherAdapter(HumanActivity<Teacher, ? extends Adapter<Teacher, TeacherViewHolder>> context) {
-		super(context);
+public class TeacherAdapter extends Adapter<Teacher, TeacherViewHolder, TeacherExtraBuilder> {
+	public TeacherAdapter(HumanActivity<Teacher, TeacherExtraBuilder, ? extends Adapter<Teacher, TeacherViewHolder, TeacherExtraBuilder>> ctx) {
+		super(ctx);
 	}
 
 	@Override
-	protected void manageTinyExtra(View view, Teacher human) {
-		TextView school = view.findViewById(R.id.teacherSchool);
-		school.setText(String.format("School: %s", human.getSchool()));
+	protected void createExtraDetails(TeacherExtraBuilder builder) {
+		builder.start();
+		builder.setSchool();
 	}
 
 	@Override
-	protected LayoutManagerType getDefaultLayout() {
+	protected LayoutManagerType defaultLayout() {
 		return LayoutManagerType.GRID;
 	}
 
 	@NonNull
 	@Override
-	public TeacherViewHolder createViewHolder(View view, HumanActivity<Teacher, ? extends Adapter<Teacher, TeacherViewHolder>> context) {
-		return new TeacherViewHolder(view, context);
+	public TeacherViewHolder createViewHolder(View view, HumanActivity<Teacher, TeacherExtraBuilder, ? extends Adapter<Teacher, TeacherViewHolder, TeacherExtraBuilder>> ctx) {
+		return new TeacherViewHolder(view, ctx);
 	}
 }

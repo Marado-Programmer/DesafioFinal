@@ -8,8 +8,9 @@ import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 
 public interface AdapterCreator<
 	E extends Human,
-	T extends Adapter<E, ? extends ViewHolder<E, ? extends DetailsActivity<E>>>
+	T extends ExtraBuilder<E>,
+	S extends Adapter<E, ? extends ViewHolder<E, T, ? extends DetailsActivity<E, T>>, ? extends ExtraBuilder<E>>
 	> {
 	@NonNull
-	T createAdapter(HumanActivity<E, T> context);
+	S createAdapter(HumanActivity<E, T, S> context);
 }

@@ -16,8 +16,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import pt.epcc.alunos.al220007.desafiofinal.R;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 
-public class DetailsFragment extends Fragment {
+@SuppressWarnings("FieldCanBeLocal")
+public final class DetailsFragment<E extends Human, T extends ExtraBuilder<E>> extends Fragment {
 	public static final int DETAILS_ID = R.id.details;
+	public static final int IMAGE_ID = R.id.profile_pic;
+	public static final int NAME_ID = R.id.name;
+	public static final int EXTRA_ID = R.id.card_view_extra;
 
 	public static final String ID_KEY = "id";
 	public static final String EXTRA_KEY = "extra";
@@ -25,21 +29,21 @@ public class DetailsFragment extends Fragment {
 
 	private static final int LAYOUT = R.layout.human_id_layout;
 
-	protected ViewStub include;
+	private ViewStub include;
 
-	protected ImageView profilePic;
-	protected TextView name;
+	private ImageView profilePic;
+	private TextView name;
 
-	protected int id;
-	protected int extra;
+	private int id;
+	private int extra;
 
-	protected DetailsManager manager;
+	private DetailsManager<E, T> manager;
 
 	public DetailsFragment() {
 		super();
 	}
 
-	public DetailsFragment(DetailsManager manager, Bundle bundle) {
+	public DetailsFragment(@NonNull DetailsManager<E, T> manager, Bundle bundle) {
 		this();
 
 		this.manager = manager;
@@ -86,15 +90,19 @@ public class DetailsFragment extends Fragment {
 			return;
 		}
 
-		profilePic = view.findViewById(R.id.profile_pic);
+		putBasicDetails(view, args);
+
+		manager.createDetails(manager.createBuilder(include, args));
+	}
+
+	private void putBasicDetails(@NonNull View view, @NonNull Bundle args) {
+		profilePic = view.findViewById(IMAGE_ID);
 		profilePic.setImageResource(args.getInt(Human.IMAGE_KEY, 0));
 
-		name = view.findViewById(R.id.name);
+		name = view.findViewById(NAME_ID);
 		name.setText(args.getString(Human.NAME_KEY));
 
-		include = view.findViewById(R.id.card_view_extra);
+		include = view.findViewById(EXTRA_ID);
 		include.setLayoutResource(extra);
-
-		manager.createDetails(include.inflate(), args);
 	}
 }

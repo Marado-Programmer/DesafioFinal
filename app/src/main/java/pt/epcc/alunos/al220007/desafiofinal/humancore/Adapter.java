@@ -15,37 +15,46 @@ import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.DetailsActivity;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 
-abstract public class Adapter<E extends Human, T extends ViewHolder<E, ? extends DetailsActivity<E>>>
+abstract public class Adapter<E extends Human, T extends ViewHolder<E, S, ? extends DetailsActivity<E, S>>, S extends ExtraBuilder<E>>
 	extends RecyclerView.Adapter<T>
-	implements ViewHolderCreator<E, T> {
+	implements ViewHolderCreator<E, T, S> {
 	protected static final int LINEAR_LAYOUT = R.layout.human_id_layout_linear;
 	protected static final int GRID_LAYOUT = R.layout.human_id_layout_grid;
+	protected final HumanActivity<E, S, ? extends Adapter<E, T, S>> ctx;
+	private final List<E> list;
+	private LayoutManagerType layoutManager;
 
-	protected final List<E> list;
-
-	protected final HumanActivity<E, ? extends Adapter<E, T>> context;
-	protected LayoutManagerType layoutManagerType;
-
-	public Adapter(HumanActivity<E, ? extends Adapter<E, T>> context) {
-		this.context = context;
-		list = context.generateList();
+	public Adapter(HumanActivity<E, S, ? extends Adapter<E, T, S>> ctx) {
+		this.ctx = ctx;
+		list = ctx.genList();
 	}
 
 	@NonNull
 	@Override
-	public T onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-		View view = LayoutInflater.from(parent.getContext())
-			.inflate(choseLayout(), parent, false);
+	public final T onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+		View view = LayoutInflater.from(ctx)
+			.inflate(findLayout(), parent, false);
 
-		return createViewHolder(view, context);
+		return createViewHolder(view, ctx);
 	}
 
 	@Override
-	public void onBindViewHolder(@NonNull T holder, int position) {
+	public final void onBindViewHolder(@NonNull T holder, int position) {
 		E human = list.get(position);
 
 		holder.setHuman(human);
 
+		populateViewHolder(holder, human);
+
+		createExtraDetails(ctx.createBuilder(holder.extra, human.toBundle()));
+	}
+
+	@Override
+	public final int getItemCount() {
+		return list.size();
+	}
+
+	private void populateViewHolder(@NonNull T holder, E human) {
 		if (holder.profilePic != null) {
 			holder.profilePic.setImageResource(human.getImage());
 		}
@@ -53,41 +62,29 @@ abstract public class Adapter<E extends Human, T extends ViewHolder<E, ? extends
 		if (holder.name != null) {
 			holder.name.setText(human.getName());
 		}
-
-		manageTinyExtra(holder.extra, human);
 	}
 
-	@Override
-	public int getItemCount() {
-		return list.size();
-	}
+	private int findLayout() {
+		LayoutManagerType t = layoutManager;
 
-	protected int choseLayout() {
-		LayoutManagerType type = layoutManagerType;
-
-		if (type == null) {
-			type = getDefaultLayout();
+		if (t == null || ViewHolder.RECYCLABLE) {
+			t = defaultLayout();
 		}
 
-		if (ViewHolder.RECYCLABLE) {
-			type = getDefaultLayout();
-		}
-
-		switch (type) {
+		switch (t) {
 			case GRID:
 				return GRID_LAYOUT;
 			case LINEAR:
+			default:
 				return LINEAR_LAYOUT;
 		}
-
-		return 0;
 	}
 
-	abstract protected void manageTinyExtra(View view, E human);
+	abstract protected void createExtraDetails(S builder);
 
-	abstract protected LayoutManagerType getDefaultLayout();
+	abstract protected LayoutManagerType defaultLayout();
 
-	public void setLayoutManagerType(LayoutManagerType layoutManagerType) {
-		this.layoutManagerType = layoutManagerType;
+	public void setLayoutManager(LayoutManagerType layoutManager) {
+		this.layoutManager = layoutManager;
 	}
 }

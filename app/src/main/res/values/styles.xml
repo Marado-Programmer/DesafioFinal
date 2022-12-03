@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="HeaderLogo" parent="Theme.DesafioFinal">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:src">@drawable/logo_epcc</item>
-        <item name="android:gravity">center</item>
-        <item name="android:layout_centerHorizontal">true</item>
-        <item name="android:layout_margin">@dimen/header_margin</item>
-    </style>
-    <style name="HeaderTitle" parent="Theme.DesafioFinal">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:text">EPCC</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">@dimen/h1</item>
-        <item name="android:layout_centerHorizontal">true</item>
-        <item name="android:paddingTop">@dimen/header_margin</item>
-        <item name="android:paddingBottom">@dimen/header_margin</item>
-        <item name="android:paddingRight">@dimen/header_margin</item>
-        <item name="android:paddingLeft">@dimen/header_margin</item>
-        <item name="android:layout_below">@+id/logo</item>
-    </style>
 
-    <dimen name="header_margin">16dp</dimen>
-    <dimen name="h1">36sp</dimen>
+<style name="HeaderLogo" parent="Theme.DesafioFinal">
+<item name="android:layout_width">wrap_content</item>
+<item name="android:layout_height">wrap_content</item>
+<item name="android:src">@drawable/logo_epcc</item>
+<item name="android:gravity">center</item>
+<item name="android:layout_centerHorizontal">true</item>
+<item name="android:layout_margin">@dimen/header_margin</item>
+</style>
+
+<style name="HeaderTitle" parent="Theme.DesafioFinal">
+<item name="android:layout_width">wrap_content</item>
+<item name="android:layout_height">wrap_content</item>
+<item name="android:text">EPCC</item>
+<item name="android:textColor">@color/white</item>
+<item name="android:textSize">@dimen/h1</item>
+<item name="android:layout_centerHorizontal">true</item>
+<item name="android:paddingTop">@dimen/header_margin</item>
+<item name="android:paddingBottom">@dimen/header_margin</item>
+<item name="android:paddingRight">@dimen/header_margin</item>
+<item name="android:paddingLeft">@dimen/header_margin</item>
+<item name="android:layout_below">@+id/logo</item>
+</style>
+
+<dimen name="header_margin">16dp</dimen>
+<dimen name="h1">36sp</dimen>
 </resources>

@@ -21,10 +21,10 @@ import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 
 public final class RecyclerViewFragment<
 	E extends Human,
-	T extends Adapter<E, ? extends ViewHolder<E, ? extends DetailsActivity<E>>>
+	T extends ExtraBuilder<E>,
+	S extends Adapter<E, ? extends ViewHolder<E, T, ? extends DetailsActivity<E, T>>, ? extends ExtraBuilder<E>>
 	> extends Fragment implements View.OnClickListener {
 	public static final String LAYOUT_MANAGER_KEY = "layoutManagerType";
-	private static final String POS_KEY = "pos";
 
 	private static final int LAYOUT = R.layout.activity_human_list;
 
@@ -36,10 +36,10 @@ public final class RecyclerViewFragment<
 
 	private static final int SPAN_COUNT = 3;
 
-	private HumanActivity<E, T> context;
+	private HumanActivity<E, T, S> context;
 
 	private RecyclerView recyclerView;
-	private T adapter;
+	private S adapter;
 
 	private LayoutManagerType curLayoutManager;
 
@@ -55,16 +55,9 @@ public final class RecyclerViewFragment<
 
 		calcInitialLayoutManager(savedInstanceState);
 
-		if (savedInstanceState == null) {
-			return;
-		}
-
 		if (getArguments() != null) {
-			pos = getArguments().getInt("last", RecyclerView.NO_POSITION);
-		}
-
-		if (pos == RecyclerView.NO_POSITION) {
-			pos = savedInstanceState.getInt(POS_KEY, RecyclerView.NO_POSITION);
+			pos = getArguments().getInt(DetailsFragment.ID_KEY, RecyclerView.NO_POSITION);
+			curLayoutManager = (LayoutManagerType) getArguments().getSerializable(LAYOUT_MANAGER_KEY);
 		}
 	}
 
@@ -99,14 +92,13 @@ public final class RecyclerViewFragment<
 	public void onSaveInstanceState(@NonNull Bundle outState) {
 		super.onSaveInstanceState(outState);
 
-		outState.putInt(LAYOUT_MANAGER_KEY, curLayoutManager.id);
-		outState.putInt(POS_KEY, pos);
+		outState.putSerializable(LAYOUT_MANAGER_KEY, curLayoutManager);
 	}
 
 	@SuppressWarnings("unchecked")
 	private void prepareForList() {
 		//noinspection unchecked
-		context = (HumanActivity<E, T>) getActivity();
+		context = (HumanActivity<E, T, S>) getActivity();
 
 		assert context != null;
 
@@ -122,17 +114,18 @@ public final class RecyclerViewFragment<
 
 		assert args != null;
 
-		curLayoutManager = LayoutManagerType.fromID(args.getInt(LAYOUT_MANAGER_KEY));
+		curLayoutManager = (LayoutManagerType) args.getSerializable(LAYOUT_MANAGER_KEY);
 	}
 
 	private void setLayoutManager(LayoutManagerType layoutManagerType) {
-		adapter.setLayoutManagerType(layoutManagerType);
+		adapter.setLayoutManager(layoutManagerType);
 
 		recyclerView.setLayoutManager(getLayoutManager(layoutManagerType));
+
+		context.setLayoutManagerType(layoutManagerType);
 	}
 
 	private void scroll(int pos) {
-
 		if (pos <= 0) {
 			pos = 0;
 

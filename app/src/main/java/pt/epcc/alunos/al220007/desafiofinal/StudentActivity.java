@@ -1,9 +1,8 @@
 package pt.epcc.alunos.al220007.desafiofinal;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.util.Log;
+import android.view.ViewStub;
 
 import androidx.annotation.NonNull;
 
@@ -18,20 +17,46 @@ import pt.epcc.alunos.al220007.desafiofinal.entities.Student;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.DetailsActivity;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 
-public class StudentActivity extends HumanActivity<Student, StudentAdapter> {
+public class StudentActivity extends HumanActivity<Student, StudentExtraBuilder, StudentAdapter> {
 	protected static List<Student> students;
 	protected static List<Hobby> hobbies;
+
+	@NonNull
+	@Override
+	public StudentAdapter createAdapter(HumanActivity<Student, StudentExtraBuilder, StudentAdapter> context) {
+		return new StudentAdapter(context);
+	}
+
+	@Override
+	public void createDetails(StudentExtraBuilder builder) {
+		builder.start();
+		builder.setHobbies();
+	}
+
+	@Override
+	public StudentExtraBuilder createBuilder(@NonNull ViewStub view, Bundle human) {
+		return new StudentExtraBuilder(view, human);
+	}
+
+	@NonNull
+	@Override
+	public Class<? extends DetailsActivity<Student, StudentExtraBuilder>> nextDetailsManager() {
+		return StudentDetailsActivity.class;
+	}
 
 	@Override
 	protected LayoutManagerType choseLayoutManager() {
 		return LayoutManagerType.LINEAR;
 	}
 
+	@NonNull
 	@Override
-	public List<Student> generateList() {
+	public List<Student> genList() {
 		generateHobbies();
 
-		if (students != null) {
+		Log.d("NULL???", String.valueOf(students));
+
+		if (students == null) {
 			students = new ArrayList<>(
 				Arrays.asList(
 					createHumanWithRandomHobbies(
@@ -80,29 +105,5 @@ public class StudentActivity extends HumanActivity<Student, StudentAdapter> {
 		}
 
 		return student;
-	}
-
-	@Override
-	public void createDetails(View view, Bundle bundle) {
-		ListView hobbies = view.findViewById(R.id.studentHobbies);
-		hobbies.setAdapter(
-			new ArrayAdapter<>(
-				this,
-				R.layout.simple_list_item,
-				bundle.getStringArrayList(Student.HOBBIES_KEY)
-			)
-		);
-	}
-
-	@NonNull
-	@Override
-	protected Class<? extends DetailsActivity<Student>> nextDetailsManager() {
-		return StudentDetailsActivity.class;
-	}
-
-	@NonNull
-	@Override
-	public StudentAdapter createAdapter(HumanActivity<Student, StudentAdapter> context) {
-		return new StudentAdapter(this);
 	}
 }

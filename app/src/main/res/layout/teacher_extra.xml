@@ -1,78 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/teacherSchool"
-        android:textColor="@color/white"/>
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="21dp" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/teacherAcademicLevel"
-        android:textColor="@color/white"/>
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="21dp" />
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textSize="21sp"
-        android:text="@string/modules" />
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:shrinkColumns="*"
-        android:stretchColumns="*">
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-                tools:ignore="UselessParent">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                    tools:ignore="UselessParent">
-                <TextView
-                    android:layout_weight="3"
-                    android:layout_height="wrap_content"
-                    android:layout_width="0dp"
-                    android:gravity="start"
-                    android:text="@string/name_txt"
-                    android:textColor="@color/white" />
-                <TextView
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_width="0dp"
-                    android:gravity="end"
-                    android:text="@string/year"
-                    android:textColor="@color/white" />
-                <TextView
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_width="0dp"
-                    android:gravity="end"
-                    android:text="@string/duration"
-                    android:textColor="@color/white" />
-                <TextView
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_width="0dp"
-                    android:gravity="end"
-                    android:text="@string/current"
-                    android:textColor="@color/white" />
-            </LinearLayout>
-        </TableRow>
-    </TableLayout>
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/teacherModules" />
+<TextView
+	android:id="@+id/teacherSchool"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:textColor="@color/white" />
+
+<TextView
+	android:id="@+id/teacherAcademicLevel"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:textColor="@color/white" />
+
+<TextView
+	android:id="@+id/teacherModulesTitle"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:textColor="@color/white"
+	android:textSize="21sp" />
+
+<TableLayout
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:shrinkColumns="*"
+	android:stretchColumns="*">
+
+<TableRow
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	tools:ignore="UselessParent">
+
+<LinearLayout
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	tools:ignore="UselessParent">
+
+<TextView
+	android:id="@+id/teacherModulesName"
+	android:layout_width="0dp"
+	android:layout_height="wrap_content"
+	android:layout_weight="3"
+	android:gravity="start"
+	android:textColor="@color/white" />
+
+<TextView
+	android:id="@+id/teacherModulesYear"
+	android:layout_width="0dp"
+	android:layout_height="wrap_content"
+	android:layout_weight="1"
+	android:gravity="end"
+	android:textColor="@color/white" />
+
+<TextView
+	android:id="@+id/teacherModulesDuration"
+	android:layout_width="0dp"
+	android:layout_height="wrap_content"
+	android:layout_weight="1"
+	android:gravity="end"
+	android:textColor="@color/white" />
+
+<TextView
+	android:id="@+id/teacherModulesCurrent"
+	android:layout_width="0dp"
+	android:layout_height="wrap_content"
+	android:layout_weight="1"
+	android:gravity="end"
+	android:textColor="@color/white" />
+</LinearLayout>
+</TableRow>
+</TableLayout>
+
+<androidx.recyclerview.widget.RecyclerView
+	android:id="@+id/teacherModules"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content" />
 </LinearLayout>
