@@ -1,6 +1,6 @@
 package pt.epcc.alunos.al220007.desafiofinal.entities;
 
-public final class Hobby{
+public final class Hobby {
 	private final String name;
 
 	public Hobby(String name) {

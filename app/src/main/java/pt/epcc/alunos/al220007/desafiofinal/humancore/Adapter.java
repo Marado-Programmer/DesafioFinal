@@ -1,6 +1,5 @@
 package pt.epcc.alunos.al220007.desafiofinal.humancore;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,31 +16,28 @@ import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.DetailsActivity
 import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 
 abstract public class Adapter<E extends Human, T extends ViewHolder<E, ? extends DetailsActivity<E>>>
-		extends RecyclerView.Adapter<T>
-		implements ViewHolderCreator<E, T>
-{
+	extends RecyclerView.Adapter<T>
+	implements ViewHolderCreator<E, T> {
 	protected static final int LINEAR_LAYOUT = R.layout.human_id_layout_linear;
 	protected static final int GRID_LAYOUT = R.layout.human_id_layout_grid;
 
 	protected final List<E> list;
 
-	protected final Context context;
+	protected final HumanActivity<E, ? extends Adapter<E, T>> context;
 	protected LayoutManagerType layoutManagerType;
 
-	public Adapter(Context context) {
+	public Adapter(HumanActivity<E, ? extends Adapter<E, T>> context) {
 		this.context = context;
-		list = generateList();
+		list = context.generateList();
 	}
 
-	@SuppressWarnings("unchecked")
 	@NonNull
 	@Override
 	public T onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 		View view = LayoutInflater.from(parent.getContext())
 			.inflate(choseLayout(), parent, false);
 
-		//noinspection unchecked
-		return createViewHolder(view, (HumanActivity<E, ? extends Adapter<E, T>>) context);
+		return createViewHolder(view, context);
 	}
 
 	@Override
@@ -78,14 +74,14 @@ abstract public class Adapter<E extends Human, T extends ViewHolder<E, ? extends
 		}
 
 		switch (type) {
-			case GRID: return GRID_LAYOUT;
-			case LINEAR: return LINEAR_LAYOUT;
+			case GRID:
+				return GRID_LAYOUT;
+			case LINEAR:
+				return LINEAR_LAYOUT;
 		}
 
 		return 0;
 	}
-
-	abstract public List<E> generateList();
 
 	abstract protected void manageTinyExtra(View view, E human);
 

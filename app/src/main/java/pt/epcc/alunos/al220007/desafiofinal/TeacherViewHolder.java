@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import pt.epcc.alunos.al220007.desafiofinal.entities.Teacher;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.Adapter;
-import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.ViewHolder;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 
 public class TeacherViewHolder extends ViewHolder<Teacher, TeacherDetailsActivity> {
 	protected TeacherViewHolder(@NonNull View itemView, HumanActivity<Teacher, ? extends Adapter<Teacher, ? extends ViewHolder<Teacher, TeacherDetailsActivity>>> ctx) {

@@ -10,8 +10,8 @@ import androidx.annotation.NonNull;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Hobby;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Student;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.Adapter;
-import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.ViewHolder;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 
 public class StudentViewHolder extends ViewHolder<Student, StudentDetailsActivity> {
 	protected StudentViewHolder(@NonNull View itemView, HumanActivity<Student, ? extends Adapter<Student, ? extends ViewHolder<Student, StudentDetailsActivity>>> ctx) {

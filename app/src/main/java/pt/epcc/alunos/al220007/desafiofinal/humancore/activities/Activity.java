@@ -88,6 +88,10 @@ abstract public class Activity<T extends DetailsManager> extends AppCompatActivi
 		return lastState;
 	}
 
+	public final void setLastState(Bundle lastState) {
+		this.lastState = lastState;
+	}
+
 	protected abstract int setLayout();
 
 	protected abstract void onContentViewSet();
@@ -95,10 +99,6 @@ abstract public class Activity<T extends DetailsManager> extends AppCompatActivi
 	protected abstract void onLandscape();
 
 	protected abstract void onPortrait();
-
-	public final void setLastState(Bundle lastState) {
-		this.lastState = lastState;
-	}
 
 	protected final void showDetails() {
 		getSupportFragmentManager().beginTransaction()

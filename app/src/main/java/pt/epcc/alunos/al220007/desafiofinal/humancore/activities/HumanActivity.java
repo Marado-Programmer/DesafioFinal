@@ -4,20 +4,21 @@ import android.os.Bundle;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 import pt.epcc.alunos.al220007.desafiofinal.LayoutManagerType;
 import pt.epcc.alunos.al220007.desafiofinal.R;
 import pt.epcc.alunos.al220007.desafiofinal.entities.Human;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.Adapter;
-import pt.epcc.alunos.al220007.desafiofinal.humancore.DetailsFragment;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.AdapterCreator;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.DetailsFragment;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.RecyclerViewFragment;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.ViewHolder;
 
 abstract public class HumanActivity<
-		E extends Human,
-		T extends Adapter<E, ? extends ViewHolder<E, ? extends DetailsActivity<E>>>
-	> extends Activity<DetailsActivity<E>> implements AdapterCreator<E, T>
-{
+	E extends Human,
+	T extends Adapter<E, ? extends ViewHolder<E, ? extends DetailsActivity<E>>>
+	> extends Activity<DetailsActivity<E>> implements AdapterCreator<E, T> {
 	private static final int LAYOUT = R.layout.activity_human_fragment;
 	private static final int FRAME_LAYOUT = R.id.fragment_frame;
 
@@ -78,4 +79,6 @@ abstract public class HumanActivity<
 	}
 
 	abstract protected LayoutManagerType choseLayoutManager();
+
+	abstract public List<E> generateList();
 }

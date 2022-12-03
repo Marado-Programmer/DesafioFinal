@@ -8,8 +8,7 @@ import pt.epcc.alunos.al220007.desafiofinal.humancore.Adapter;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.ViewHolder;
 
 public abstract class DetailsActivity<E extends Human>
-	extends Activity<HumanActivity<E, ? extends Adapter<E, ? extends ViewHolder<E, ? extends DetailsActivity<E>>>>>
-{
+	extends Activity<HumanActivity<E, ? extends Adapter<E, ? extends ViewHolder<E, ? extends DetailsActivity<E>>>>> {
 	private static final int LAYOUT = R.layout.activity_human_details_fragment;
 
 	@Override

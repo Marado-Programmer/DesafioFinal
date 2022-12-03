@@ -14,7 +14,7 @@ public enum LayoutManagerType {
 		try {
 			return LayoutManagerType.values()[i];
 		} catch (ArrayIndexOutOfBoundsException e) {
-			return  LayoutManagerType.LINEAR;
+			return LayoutManagerType.LINEAR;
 		}
 	}
 }

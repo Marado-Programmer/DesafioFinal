@@ -9,10 +9,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import pt.epcc.alunos.al220007.desafiofinal.entities.Teacher;
-import pt.epcc.alunos.al220007.desafiofinal.humancore.ViewHolder;
-import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.Adapter;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.ViewHolder;
 import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.DetailsActivity;
+import pt.epcc.alunos.al220007.desafiofinal.humancore.activities.HumanActivity;
 
 public class TeacherDetailsActivity extends DetailsActivity<Teacher> {
 	@Override

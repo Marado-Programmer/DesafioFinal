@@ -9,25 +9,18 @@ import java.util.Map;
 
 public final class SubjectModule implements Serializable {
 	private static final Map<Integer, SubjectModule> modules = new HashMap<>();
-
-	private int id = RecyclerView.NO_POSITION;
-
-	private final Subject subject;
-
-	private final String name;
-
-	private final SchoolYear year;
-
-	private boolean completed = false;
-
-	private final int duration;
-	private int currentDuration;
-
 	private static final String DOES_NOT_EXIST_ERR_STR = "Subject doesn't exist.";
 	private static final String INVALID_ID_ERR_STR = "Negative IDs aren't allowed.";
 	private static final String USED_ID_ERR_STR = "ID already in use.";
 	private static final String COMPLETED_MODULE_ERR_STR = "Module already completed.";
+	private final Subject subject;
+	private final String name;
+	private final SchoolYear year;
+	private final int duration;
 	private final String EXCEED_LIMIT_ERR_STR;
+	private int id = RecyclerView.NO_POSITION;
+	private boolean completed = false;
+	private int currentDuration;
 
 	private SubjectModule(String name, SchoolYear year, Subject subject, int duration) {
 		this.name = name;
@@ -71,6 +64,19 @@ public final class SubjectModule implements Serializable {
 
 	public int getId() {
 		return id;
+	}
+
+	private void setId(int id) {
+		if (id < 0) {
+			throw new RuntimeException(INVALID_ID_ERR_STR);
+		}
+
+		if (modules.containsKey(id)) {
+			throw new RuntimeException(USED_ID_ERR_STR);
+		}
+
+		modules.put(id, this);
+		this.id = id;
 	}
 
 	public String getName() {
@@ -122,19 +128,6 @@ public final class SubjectModule implements Serializable {
 		}
 
 		return time;
-	}
-
-	private void setId(int id) {
-		if (id < 0) {
-			throw new RuntimeException(INVALID_ID_ERR_STR);
-		}
-
-		if (modules.containsKey(id)) {
-			throw new RuntimeException(USED_ID_ERR_STR);
-		}
-
-		modules.put(id, this);
-		this.id = id;
 	}
 
 	private boolean isCompleted() {
