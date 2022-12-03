@@ -4,19 +4,28 @@
 	android:layout_height="match_parent"
 	android:orientation="horizontal">
 
+<RelativeLayout
+	android:id="@+id/teacherBtnOut"
+	style="@style/TeacherButtonLandOut"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:layout_weight="1">
+
 <Button
 	android:id="@+id/teacherBtn"
-	style="?android:attr/buttonBarButtonStyle"
+	style="@style/TeacherButtonLand" />
+</RelativeLayout>
+
+<RelativeLayout
+	android:id="@+id/studentBtnOut"
+	style="@style/StudentButtonLand"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:layout_weight="1"
-	android:text="@string/professores" />
+	android:background="#fff">
 
 <Button
 	android:id="@+id/studentBtn"
-	style="?android:attr/buttonBarButtonStyle"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:layout_weight="1"
-	android:text="@string/alunos" />
+	style="@style/StudentButtonLand" />
+</RelativeLayout>
 </LinearLayout>
